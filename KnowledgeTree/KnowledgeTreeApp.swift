@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct KnowledgeTreeApp: App {
+    let document = KnowledgeTreeDocument()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            KnowledgeTreeDocumentView(document: document)
+                .preferredColorScheme(.dark)
         }
     }
 }
