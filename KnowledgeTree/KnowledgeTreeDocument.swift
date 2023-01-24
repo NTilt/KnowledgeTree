@@ -77,6 +77,26 @@ class KnowledgeTreeDocument: ObservableObject {
         buildUpperSector(&knowledgeTree)
     }
     
+    init(_ model: KnowledgeTreeModel, space: KnowledgeSpace) {
+        knowledgeTree = model
+        knowledgeSpace = space
+    }
+    
+    init(test: Bool) {
+        knowledgeTree = KnowledgeTreeModel()
+        let rootVertex = KnowledgeTreeModel.Vertex(isLocked: true, isDraw: true, size: 5, text: "SecondView", id: 0, childList: [1, 2])
+        knowledgeSpace = KnowledgeSpace(root: rootVertex, 300, Location(coordinates: (0, 0)))
+        knowledgeTree.addVertex(vertex: rootVertex)
+        knowledgeTree.addVertex(lock: true, draw: false, 5, "Test1", [])
+        knowledgeTree.addVertex(lock: true, draw: false, 5, "Test2", [])
+        knowledgeTree.linkAll()
+        buildRootSquare(root: rootVertex, &knowledgeTree)
+        buildRightSector(&knowledgeTree)
+        buildLowerSector(&knowledgeTree)
+        buildLeftSector(&knowledgeTree)
+        buildUpperSector(&knowledgeTree)
+    }
+    
     var vertexes: [KnowledgeTreeModel.Vertex] {knowledgeTree.vertexes}
     
     func addVertex(_ isLocked: Bool, _ isDraw: Bool, at location: (Float, Float),
