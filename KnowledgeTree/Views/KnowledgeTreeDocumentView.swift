@@ -12,8 +12,6 @@ struct KnowledgeTreeDocumentView: View {
     @ObservedObject var document: KnowledgeTreeDocument
     @State var spaceWidth: CGFloat = 5000
     @State var spaceHeigth: CGFloat = 5000
-    @State private var selection: String? = nil // Nothing selected by default.
-    @State private var swap: Bool = false
     @Binding var pageIndex: Int
     @Binding var currentVertexName: String?
     
@@ -45,7 +43,6 @@ struct KnowledgeTreeDocumentView: View {
                                     .onLongPressGesture {
                                         currentVertexName = vertexName
                                         pageIndex = 1
-                                        swap.toggle()
                                     }
                             if !vertex.isLocked {
                                 ForEach(vertex.childList, id: \.self) {index in
