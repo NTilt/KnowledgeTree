@@ -12,7 +12,6 @@ struct VertexView: View {
     var vertex: KnowledgeTreeModel.Vertex
     var nameIconLockCondition = "lock.fill"
     var nameIconUnlockCondition = "lock.open.fill"
-    @State private var isShowingDetailView = false
     
     var body: some View {
         GeometryReader { geometry in

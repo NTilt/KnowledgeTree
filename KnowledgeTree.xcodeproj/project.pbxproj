@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110510C72971D5CF0046223E /* NextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110510C62971D5CF0046223E /* NextView.swift */; };
+		110510C92971D6090046223E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110510C82971D6090046223E /* MainView.swift */; };
 		11137741292419630062FE61 /* KnowledgeTreeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11137740292419630062FE61 /* KnowledgeTreeApp.swift */; };
 		11137745292419650062FE61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11137744292419650062FE61 /* Assets.xcassets */; };
 		11137748292419650062FE61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11137747292419650062FE61 /* Preview Assets.xcassets */; };
@@ -24,9 +26,12 @@
 		11B5B86829241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B86729241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift */; };
 		11B5B86A29242085009CC3D4 /* KnowledgeTreeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B86929242085009CC3D4 /* KnowledgeTreeDocument.swift */; };
 		11B5B86C292420CC009CC3D4 /* KnowledgeSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B86B292420CC009CC3D4 /* KnowledgeSpace.swift */; };
+		11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C25BA12971DE9C00C21A27 /* Storage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110510C62971D5CF0046223E /* NextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextView.swift; sourceTree = "<group>"; };
+		110510C82971D6090046223E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1113773D292419620062FE61 /* KnowledgeTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowledgeTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11137740292419630062FE61 /* KnowledgeTreeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeTreeApp.swift; sourceTree = "<group>"; };
 		11137744292419650062FE61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,6 +50,7 @@
 		11B5B86729241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeTreeDocumentView.swift; sourceTree = "<group>"; };
 		11B5B86929242085009CC3D4 /* KnowledgeTreeDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeTreeDocument.swift; sourceTree = "<group>"; };
 		11B5B86B292420CC009CC3D4 /* KnowledgeSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeSpace.swift; sourceTree = "<group>"; };
+		11C25BA12971DE9C00C21A27 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,7 @@
 				11B5B85F29241E08009CC3D4 /* LeftSector.swift */,
 				11B5B86129241E28009CC3D4 /* UpperSector.swift */,
 				11B5B86B292420CC009CC3D4 /* KnowledgeSpace.swift */,
+				11C25BA12971DE9C00C21A27 /* Storage.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -117,6 +124,8 @@
 			children = (
 				11B5B85129241C5A009CC3D4 /* VertexView.swift */,
 				11B5B86729241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift */,
+				110510C62971D5CF0046223E /* NextView.swift */,
+				110510C82971D6090046223E /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,13 +212,16 @@
 				11B5B86829241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift in Sources */,
 				11B5B85C29241DBC009CC3D4 /* Square.swift in Sources */,
 				11B5B86629241EEB009CC3D4 /* KnowledgeTreeModel.swift in Sources */,
+				110510C72971D5CF0046223E /* NextView.swift in Sources */,
 				11B5B85629241D4A009CC3D4 /* Center.swift in Sources */,
+				11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */,
 				11B5B86429241EAE009CC3D4 /* AnotherFunctions.swift in Sources */,
 				11B5B85A29241D8F009CC3D4 /* RightSector.swift in Sources */,
 				11B5B86029241E08009CC3D4 /* LeftSector.swift in Sources */,
 				11137741292419630062FE61 /* KnowledgeTreeApp.swift in Sources */,
 				11B5B85E29241DF5009CC3D4 /* LowerSector.swift in Sources */,
 				11B5B85429241CE3009CC3D4 /* UtilityExtensions.swift in Sources */,
+				110510C92971D6090046223E /* MainView.swift in Sources */,
 				11B5B86C292420CC009CC3D4 /* KnowledgeSpace.swift in Sources */,
 				11B5B85829241D65009CC3D4 /* Location.swift in Sources */,
 				11B5B86229241E28009CC3D4 /* UpperSector.swift in Sources */,

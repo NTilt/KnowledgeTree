@@ -12,8 +12,8 @@ struct KnowledgeTreeDocumentView: View {
     @ObservedObject var document: KnowledgeTreeDocument
     @State var spaceWidth: CGFloat = 5000
     @State var spaceHeigth: CGFloat = 5000
-    @State private var selection: String? = nil // Nothing selected by default.
-    @State private var swap: Bool = false
+    @Binding var pageIndex: Int
+    @Binding var currentVertexName: String?
     
     
     var body: some View {
@@ -33,6 +33,7 @@ struct KnowledgeTreeDocumentView: View {
         GeometryReader { reader in
                 ZStack {
                     ForEach(document.vertexes) { vertex in
+                        let vertexName = vertex.text
                         if vertex.isDraw {
                                 VertexView(vertex: vertex)
                                     .onTapGesture {
@@ -40,7 +41,8 @@ struct KnowledgeTreeDocumentView: View {
                                         
                                     }
                                     .onLongPressGesture {
-                                        swap.toggle()
+                                        currentVertexName = vertexName
+                                        pageIndex = 1
                                     }
                             if !vertex.isLocked {
                                 ForEach(vertex.childList, id: \.self) {index in
@@ -98,11 +100,11 @@ struct KnowledgeTreeDocumentView: View {
     
 }
 
-struct KnowledgeTreeDocumentView_Previews: PreviewProvider {
-    static var previews: some View {
-        let document = KnowledgeTreeDocument()
-        
-        KnowledgeTreeDocumentView(document: document)
-            .preferredColorScheme(.dark)
-    }
-}
+//struct KnowledgeTreeDocumentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let document = KnowledgeTreeDocument()
+//        
+//        KnowledgeTreeDocumentView(document: document)
+//            .preferredColorScheme(.dark)
+//    }
+//}

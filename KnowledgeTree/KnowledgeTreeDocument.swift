@@ -16,10 +16,10 @@ class KnowledgeTreeDocument: ObservableObject {
     
     init() {
         knowledgeTree = KnowledgeTreeModel()
-        let rootVertex = KnowledgeTreeModel.Vertex(isLocked: true, isDraw: true, size: 5, text: "SwiftUI", id: 0, childList: [1, 2, 3, 4, 5, 6, 7, 8, 9])
+        let rootVertex = KnowledgeTreeModel.Vertex(isLocked: true, isDraw: true, size: 5, text: "Структуры и алгоритмы", id: 0, childList: [1, 2, 3, 4, 5, 6, 7, 8, 9])
         knowledgeSpace = KnowledgeSpace(root: rootVertex, 300, Location(coordinates: (0, 0)))
         knowledgeTree.addVertex(vertex: rootVertex)
-        knowledgeTree.addVertex(lock: true, draw: false, 5, "Test1", [])
+        knowledgeTree.addVertex(lock: true, draw: false, 5, "Программирование на С++", [])
         knowledgeTree.addVertex(lock: true, draw: false, 5, "Test2", [])
         knowledgeTree.addVertex(lock: true, draw: false, 5, "Test3", [])
         knowledgeTree.addVertex(lock: true, draw: false, 5, "Test4", [])
@@ -69,6 +69,18 @@ class KnowledgeTreeDocument: ObservableObject {
 //        knowledgeTree.addVertex(lock: true, draw: false, 5, "Test48", [])
 //        knowledgeTree.addVertex(lock: true, draw: false, 5, "Test49", [])
 //        knowledgeTree.addVertex(lock: true, draw: false, 5, "Test50", [])
+        knowledgeTree.linkAll()
+        buildRootSquare(root: rootVertex, &knowledgeTree)
+        buildRightSector(&knowledgeTree)
+        buildLowerSector(&knowledgeTree)
+        buildLeftSector(&knowledgeTree)
+        buildUpperSector(&knowledgeTree)
+    }
+    
+    init(_ model: KnowledgeTreeModel) {
+        knowledgeTree = model
+        let rootVertex = model.vertexes[0]
+        knowledgeSpace = KnowledgeSpace(root: rootVertex, 300, Location(x: 0, y: 0))
         knowledgeTree.linkAll()
         buildRootSquare(root: rootVertex, &knowledgeTree)
         buildRightSector(&knowledgeTree)
