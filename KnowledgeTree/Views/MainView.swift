@@ -10,12 +10,11 @@ import SwiftUI
 struct MainView: View {
     @State var pageIndex: Int = 0
     @State var currentVertexName: String? = nil
-    @State var document: KnowledgeTreeDocument
     @StateObject var storage: Storage
     
     var body: some View {
         if pageIndex == 0 {
-            KnowledgeTreeDocumentView(document: document, pageIndex: $pageIndex, currentVertexName: $currentVertexName)
+            KnowledgeTreeDocumentView(document: storage.getSectionByFaculty(by: "КНиИТ"), pageIndex: $pageIndex, currentVertexName: $currentVertexName)
         }
         else if pageIndex == 1 {
             if let name = currentVertexName {

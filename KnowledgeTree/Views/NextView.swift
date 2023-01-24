@@ -34,7 +34,7 @@ struct NextView: View {
         var directionSpace: some View {
             GeometryReader { directionReader in
                 ZStack {
-                    if let document = storage.getDocumentByName(by: currentVertexName) {
+                    if let document = storage.getSubjectsBySection(by: currentVertexName) {
                         ForEach(document.vertexes) { vertex in
                             if vertex.isDraw {
                                 VertexView(vertex: vertex)
