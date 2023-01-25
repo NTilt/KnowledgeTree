@@ -9,10 +9,9 @@ import SwiftUI
 
 @main
 struct KnowledgeTreeApp: App {
-    let storage = Storage()
     var body: some Scene {
         WindowGroup {
-            MainView(storage: storage)
+            AuthView()
                 .preferredColorScheme(.dark)
         }
     }
