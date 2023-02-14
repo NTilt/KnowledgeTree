@@ -17,6 +17,7 @@ struct VertexView: View {
         GeometryReader { geometry in
             VStack {
                 Text(vertex.text)
+                    .foregroundColor(.white)
                 ZStack {
                     Circle()
                         .foregroundColor(.green)

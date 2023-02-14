@@ -63,7 +63,7 @@ class Storage: ObservableObject {
         model.addVertex(lock: true, draw: false, 5, "ИВТ", [])
         model.addVertex(lock: true, draw: false, 5, "САУ", [])
         model.addVertex(lock: true, draw: false, 5, "ПО", [])
-        var document = KnowledgeTreeDocument(model)
+        let document = KnowledgeTreeDocument(model)
         storage["КНиИТ"] = document
         
         return storage
@@ -78,7 +78,7 @@ class Storage: ObservableObject {
         model.addVertex(lock: true, draw: false, 5, "Математический анализ", [4])
         model.addVertex(lock: true, draw: false, 5, "Алгебра и геометрия", [])
         model.addVertex(lock: true, draw: false, 5, "Машинное обучение и анализ данных", [])
-        var document = KnowledgeTreeDocument(model)
+        let document = KnowledgeTreeDocument(model)
         storage["МОАИС"] = document
         
         return storage
