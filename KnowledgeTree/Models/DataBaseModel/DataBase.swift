@@ -23,7 +23,12 @@ struct DataBase {
                 phone: "89999999999",
                 numberRecordBook: "20192524",
                 directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
-               urlToImage: "yasenikNikita")
+               urlToImage: "yasenikNikita",
+               login: "NTilt")
+    ]
+    
+    private(set) var personSecurity: [UserSecurity] = [
+        UserSecurity(login: "NTilt", password: "1234")
     ]
 }
 
@@ -31,6 +36,15 @@ extension DataBase {
     
     func getAllStudents() -> [Student] {
         return students
+    }
+    
+    func getPasswordForUser(for login: String) -> String? {
+        for userSecurity in personSecurity {
+            if userSecurity.getLogin() == login {
+                return userSecurity.getPassword()
+            }
+        }
+        return nil
     }
     
     mutating func createStudent(
@@ -41,7 +55,8 @@ extension DataBase {
         email: String,
         phone: String,
         numberRecordBook: String,
-        directionOfStudy: DirectionsName
+        directionOfStudy: DirectionsName,
+        login: String
     ) {
         let student = Student(name: name,
                               secondName: secondName,
@@ -50,7 +65,8 @@ extension DataBase {
                               email: email,
                               phone: phone,
                               numberRecordBook: numberRecordBook,
-                              directionOfStudy: directionOfStudy)
+                              directionOfStudy: directionOfStudy,
+                              login: login)
         guard studentInBase(student: student) == false else {
             return
         }

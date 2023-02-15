@@ -12,9 +12,15 @@ struct AuthView: View {
     @State private var isAuth = false
     @State private var mainScreen = false
     let storage = Storage()
+    @State private var dataBase: DataBase
     
     @State private var email = ""
+    @State private var login = ""
     @State private var password = ""
+    
+    init(dataBase: DataBase) {
+        self.dataBase = dataBase
+    }
     
     var body: some View {
         VStack() {
@@ -44,7 +50,7 @@ struct AuthView: View {
                         .cornerRadius(25)
                         .padding(30)
                     
-                    TextField("Введите e-mail:", text: $email)
+                    TextField("Введите login:", text: $login)
                         .font(.title3.bold())
                         .padding()
                         .frame(maxWidth: 400, maxHeight: 75)
@@ -52,6 +58,15 @@ struct AuthView: View {
                         .shadow(radius: 11)
                         .cornerRadius(15)
                         .padding(10)
+                    
+//                    TextField("Введите e-mail:", text: $email)
+//                        .font(.title3.bold())
+//                        .padding()
+//                        .frame(maxWidth: 400, maxHeight: 75)
+//                        .background(.green)
+//                        .shadow(radius: 11)
+//                        .cornerRadius(15)
+//                        .padding(10)
                     
                     SecureField("Введите пароль:", text: $password)
                         .font(.title3.bold())
@@ -96,6 +111,7 @@ struct AuthView: View {
 
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthView()
+        let dataBase = DataBase()
+        AuthView(dataBase: dataBase)
     }
 }

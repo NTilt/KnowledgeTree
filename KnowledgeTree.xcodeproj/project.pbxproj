@@ -12,6 +12,7 @@
 		11137741292419630062FE61 /* KnowledgeTreeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11137740292419630062FE61 /* KnowledgeTreeApp.swift */; };
 		11137745292419650062FE61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11137744292419650062FE61 /* Assets.xcassets */; };
 		11137748292419650062FE61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11137747292419650062FE61 /* Preview Assets.xcassets */; };
+		111FDB2B299CFFA50013F9D7 /* UserSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FDB2A299CFFA50013F9D7 /* UserSecurity.swift */; };
 		112006FD299ABABE003F3B09 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112006FC299ABABE003F3B09 /* MainTabBar.swift */; };
 		1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE129813A7500BD2FFE /* LaunchView.swift */; };
 		1156DFE62981456E00BD2FFE /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE52981456D00BD2FFE /* AuthView.swift */; };
@@ -45,6 +46,7 @@
 		11137740292419630062FE61 /* KnowledgeTreeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeTreeApp.swift; sourceTree = "<group>"; };
 		11137744292419650062FE61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11137747292419650062FE61 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		111FDB2A299CFFA50013F9D7 /* UserSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSecurity.swift; sourceTree = "<group>"; };
 		112006FC299ABABE003F3B09 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		1156DFE02981391500BD2FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1156DFE129813A7500BD2FFE /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
@@ -121,9 +123,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		111FDB29299CFF6A0013F9D7 /* SecurityModels */ = {
+			isa = PBXGroup;
+			children = (
+				111FDB2A299CFFA50013F9D7 /* UserSecurity.swift */,
+			);
+			path = SecurityModels;
+			sourceTree = "<group>";
+		};
+		111FDB2C299D03910013F9D7 /* AuthVIew */ = {
+			isa = PBXGroup;
+			children = (
+				1156DFE52981456D00BD2FFE /* AuthView.swift */,
+			);
+			path = AuthVIew;
+			sourceTree = "<group>";
+		};
 		11B5B84A29241A07009CC3D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				111FDB29299CFF6A0013F9D7 /* SecurityModels */,
 				11E78FE9299B971D00DBC344 /* DataBaseModel */,
 				11E78FE2299B909300DBC344 /* PersonModels */,
 				11E78FDF299B8EFB00DBC344 /* VertexModel */,
@@ -136,13 +155,13 @@
 		11B5B84C29241A55009CC3D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				111FDB2C299D03910013F9D7 /* AuthVIew */,
 				11E78FEF299BA3DF00DBC344 /* PersonsView */,
 				11B5B85129241C5A009CC3D4 /* VertexView.swift */,
 				11B5B86729241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift */,
 				110510C62971D5CF0046223E /* NextView.swift */,
 				110510C82971D6090046223E /* MainView.swift */,
 				1156DFE129813A7500BD2FFE /* LaunchView.swift */,
-				1156DFE52981456D00BD2FFE /* AuthView.swift */,
 				112006FC299ABABE003F3B09 /* MainTabBar.swift */,
 			);
 			path = Views;
@@ -338,6 +357,7 @@
 				11B5B85429241CE3009CC3D4 /* UtilityExtensions.swift in Sources */,
 				110510C92971D6090046223E /* MainView.swift in Sources */,
 				11E78FE8299B92BD00DBC344 /* Speciality.swift in Sources */,
+				111FDB2B299CFFA50013F9D7 /* UserSecurity.swift in Sources */,
 				11B5B86C292420CC009CC3D4 /* KnowledgeSpace.swift in Sources */,
 				11B5B85829241D65009CC3D4 /* Location.swift in Sources */,
 				11B5B86229241E28009CC3D4 /* UpperSector.swift in Sources */,
