@@ -107,7 +107,7 @@ struct StudentInfoView: View {
 
 struct StudentInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        let studentModelView = StudentModelView()
+        let studentModelView = StudentModelView(login: "NTilt")
         StudentInfoView(studentModel: studentModelView)
     }
 }

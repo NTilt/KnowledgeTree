@@ -24,15 +24,36 @@ struct DataBase {
                 numberRecordBook: "20192524",
                 directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
                urlToImage: "yasenikNikita",
-               login: "NTilt")
+               login: "NTilt"),
+        
+        Student(name: "Сергей",
+                secondName: "Сергеев",
+                thirdName: "Сергеевич",
+                groupNumber: 121,
+                email: "sergey@gmail.com",
+                phone: "89999999119",
+                numberRecordBook: "20191232",
+                directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
+               urlToImage: nil,
+               login: "Sergey")
     ]
     
     private(set) var personSecurity: [UserSecurity] = [
-        UserSecurity(login: "NTilt", password: "1234")
+        UserSecurity(login: "NTilt", password: "1234"),
+        UserSecurity(login: "Sergey", password: "4321")
     ]
 }
 
 extension DataBase {
+    
+    func getStudentByLogin(by login: String) -> Student? {
+        for student in students {
+            if student.getLogin() == login {
+                return student
+            }
+        }
+        return nil
+    }
     
     func getUserByLogin(by login: String) -> UserSecurity? {
         for user in personSecurity {

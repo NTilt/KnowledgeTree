@@ -9,40 +9,41 @@ import Foundation
 
 class StudentModelView {
     
-    private var student: Student
+    private var student: Student?
+    private var dataBase = DataBase()
     
-    init() {
-        self.student = DataBase().getAllStudents()[0]
+    init(login: String) {
+        self.student = dataBase.getStudentByLogin(by: login)
     }
 }
 
 extension StudentModelView {
     
     func getStudentName() -> String {
-        return student.getName()
+        return student!.getName()
     }
     
     func getStudentUrlToImage() -> String? {
-        return student.getUrlToImage()
+        return student!.getUrlToImage()
     }
     
     func getStudentSecondName() -> String {
-        return student.getSecondName()
+        return student!.getSecondName()
     }
     
     func getStudentGroupNuber() -> Int {
-        return student.getGroupNumber()
+        return student!.getGroupNumber()
     }
     
     func getStudentPhone() -> String {
-        return student.getPhone()
+        return student!.getPhone()
     }
     
     func getStudentEmail() -> String {
-        return student.getEmail()
+        return student!.getEmail()
     }
     
     func getStudentRecordBookNumber() -> String {
-        return student.getNumberRecordBook()
+        return student!.getNumberRecordBook()
     }
 }

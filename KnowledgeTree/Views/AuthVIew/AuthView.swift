@@ -117,7 +117,8 @@ struct AuthView: View {
             }
         }
         .fullScreenCover(isPresented: $mainScreen) {
-            MainView(storage: storage)
+            let studenModelInfo = StudentModelView(login: login)
+            StudentInfoView(studentModel: studenModelInfo)
         }
     }
 }
