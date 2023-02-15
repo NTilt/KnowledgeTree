@@ -30,6 +30,12 @@
 		11B5B86A29242085009CC3D4 /* KnowledgeTreeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B86929242085009CC3D4 /* KnowledgeTreeDocument.swift */; };
 		11B5B86C292420CC009CC3D4 /* KnowledgeSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B86B292420CC009CC3D4 /* KnowledgeSpace.swift */; };
 		11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C25BA12971DE9C00C21A27 /* Storage.swift */; };
+		11E78FE4299B90B600DBC344 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FE3299B90B600DBC344 /* Student.swift */; };
+		11E78FE8299B92BD00DBC344 /* Speciality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FE7299B92BD00DBC344 /* Speciality.swift */; };
+		11E78FEB299B974400DBC344 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FEA299B974400DBC344 /* DataBase.swift */; };
+		11E78FEE299BA22900DBC344 /* StudentModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FED299BA22900DBC344 /* StudentModelView.swift */; };
+		11E78FF1299BA3F300DBC344 /* StudentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FF0299BA3F300DBC344 /* StudentInfoView.swift */; };
+		11E78FF3299BA78C00DBC344 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FF2299BA78C00DBC344 /* Resources.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +64,12 @@
 		11B5B86929242085009CC3D4 /* KnowledgeTreeDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeTreeDocument.swift; sourceTree = "<group>"; };
 		11B5B86B292420CC009CC3D4 /* KnowledgeSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeSpace.swift; sourceTree = "<group>"; };
 		11C25BA12971DE9C00C21A27 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		11E78FE3299B90B600DBC344 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		11E78FE7299B92BD00DBC344 /* Speciality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speciality.swift; sourceTree = "<group>"; };
+		11E78FEA299B974400DBC344 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		11E78FED299BA22900DBC344 /* StudentModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModelView.swift; sourceTree = "<group>"; };
+		11E78FF0299BA3F300DBC344 /* StudentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoView.swift; sourceTree = "<group>"; };
+		11E78FF2299BA78C00DBC344 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +124,8 @@
 		11B5B84A29241A07009CC3D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				11E78FE9299B971D00DBC344 /* DataBaseModel */,
+				11E78FE2299B909300DBC344 /* PersonModels */,
 				11E78FDF299B8EFB00DBC344 /* VertexModel */,
 				11E78FDE299B8EE100DBC344 /* StudyModels */,
 				11E78FDD299B8EC000DBC344 /* SpaceModels */,
@@ -122,6 +136,7 @@
 		11B5B84C29241A55009CC3D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				11E78FEF299BA3DF00DBC344 /* PersonsView */,
 				11B5B85129241C5A009CC3D4 /* VertexView.swift */,
 				11B5B86729241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift */,
 				110510C62971D5CF0046223E /* NextView.swift */,
@@ -138,6 +153,7 @@
 			children = (
 				11B5B85329241CE3009CC3D4 /* UtilityExtensions.swift */,
 				11B5B86329241EAE009CC3D4 /* AnotherFunctions.swift */,
+				11E78FF2299BA78C00DBC344 /* Resources.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -145,6 +161,7 @@
 		11E78FDB299B8E7800DBC344 /* ModelsViews */ = {
 			isa = PBXGroup;
 			children = (
+				11E78FEC299BA20000DBC344 /* StudentModelView */,
 				11B5B86929242085009CC3D4 /* KnowledgeTreeDocument.swift */,
 			);
 			path = ModelsViews;
@@ -177,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				11C25BA12971DE9C00C21A27 /* Storage.swift */,
+				11E78FE7299B92BD00DBC344 /* Speciality.swift */,
 			);
 			path = StudyModels;
 			sourceTree = "<group>";
@@ -196,6 +214,38 @@
 				11137744292419650062FE61 /* Assets.xcassets */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		11E78FE2299B909300DBC344 /* PersonModels */ = {
+			isa = PBXGroup;
+			children = (
+				11E78FE3299B90B600DBC344 /* Student.swift */,
+			);
+			path = PersonModels;
+			sourceTree = "<group>";
+		};
+		11E78FE9299B971D00DBC344 /* DataBaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				11E78FEA299B974400DBC344 /* DataBase.swift */,
+			);
+			path = DataBaseModel;
+			sourceTree = "<group>";
+		};
+		11E78FEC299BA20000DBC344 /* StudentModelView */ = {
+			isa = PBXGroup;
+			children = (
+				11E78FED299BA22900DBC344 /* StudentModelView.swift */,
+			);
+			path = StudentModelView;
+			sourceTree = "<group>";
+		};
+		11E78FEF299BA3DF00DBC344 /* PersonsView */ = {
+			isa = PBXGroup;
+			children = (
+				11E78FF0299BA3F300DBC344 /* StudentInfoView.swift */,
+			);
+			path = PersonsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,23 +321,29 @@
 				11B5B86829241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift in Sources */,
 				11B5B85C29241DBC009CC3D4 /* Square.swift in Sources */,
 				11B5B86629241EEB009CC3D4 /* KnowledgeTreeModel.swift in Sources */,
+				11E78FE4299B90B600DBC344 /* Student.swift in Sources */,
 				110510C72971D5CF0046223E /* NextView.swift in Sources */,
 				11B5B85629241D4A009CC3D4 /* Center.swift in Sources */,
 				11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */,
 				1156DFE62981456E00BD2FFE /* AuthView.swift in Sources */,
 				11B5B86429241EAE009CC3D4 /* AnotherFunctions.swift in Sources */,
 				1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */,
+				11E78FEB299B974400DBC344 /* DataBase.swift in Sources */,
 				112006FD299ABABE003F3B09 /* MainTabBar.swift in Sources */,
+				11E78FF1299BA3F300DBC344 /* StudentInfoView.swift in Sources */,
 				11B5B85A29241D8F009CC3D4 /* RightSector.swift in Sources */,
 				11B5B86029241E08009CC3D4 /* LeftSector.swift in Sources */,
 				11137741292419630062FE61 /* KnowledgeTreeApp.swift in Sources */,
 				11B5B85E29241DF5009CC3D4 /* LowerSector.swift in Sources */,
 				11B5B85429241CE3009CC3D4 /* UtilityExtensions.swift in Sources */,
 				110510C92971D6090046223E /* MainView.swift in Sources */,
+				11E78FE8299B92BD00DBC344 /* Speciality.swift in Sources */,
 				11B5B86C292420CC009CC3D4 /* KnowledgeSpace.swift in Sources */,
 				11B5B85829241D65009CC3D4 /* Location.swift in Sources */,
 				11B5B86229241E28009CC3D4 /* UpperSector.swift in Sources */,
 				11B5B86A29242085009CC3D4 /* KnowledgeTreeDocument.swift in Sources */,
+				11E78FF3299BA78C00DBC344 /* Resources.swift in Sources */,
+				11E78FEE299BA22900DBC344 /* StudentModelView.swift in Sources */,
 				11B5B85229241C5A009CC3D4 /* VertexView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
