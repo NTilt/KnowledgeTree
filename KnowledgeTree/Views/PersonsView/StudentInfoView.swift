@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StudentInfoView: View {
     
-    @ObservedObject var studentModel: StudentModelView
+    var studentModel: StudentModelView
     
     var body: some View {
         let studentName = studentModel.getStudentName()

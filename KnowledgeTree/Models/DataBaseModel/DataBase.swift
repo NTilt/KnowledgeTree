@@ -34,6 +34,15 @@ struct DataBase {
 
 extension DataBase {
     
+    func getUserByLogin(by login: String) -> UserSecurity? {
+        for user in personSecurity {
+            if user.getLogin() == login {
+                return user
+            }
+        }
+        return nil
+    }
+    
     func getAllStudents() -> [Student] {
         return students
     }

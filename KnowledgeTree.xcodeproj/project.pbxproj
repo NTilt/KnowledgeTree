@@ -13,6 +13,8 @@
 		11137745292419650062FE61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11137744292419650062FE61 /* Assets.xcassets */; };
 		11137748292419650062FE61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11137747292419650062FE61 /* Preview Assets.xcassets */; };
 		111FDB2B299CFFA50013F9D7 /* UserSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FDB2A299CFFA50013F9D7 /* UserSecurity.swift */; };
+		111FDB33299D09C60013F9D7 /* AuthModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FDB32299D09C60013F9D7 /* AuthModelView.swift */; };
+		111FDB36299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FDB35299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift */; };
 		112006FD299ABABE003F3B09 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112006FC299ABABE003F3B09 /* MainTabBar.swift */; };
 		1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE129813A7500BD2FFE /* LaunchView.swift */; };
 		1156DFE62981456E00BD2FFE /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE52981456D00BD2FFE /* AuthView.swift */; };
@@ -47,6 +49,8 @@
 		11137744292419650062FE61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11137747292419650062FE61 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		111FDB2A299CFFA50013F9D7 /* UserSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSecurity.swift; sourceTree = "<group>"; };
+		111FDB32299D09C60013F9D7 /* AuthModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModelView.swift; sourceTree = "<group>"; };
+		111FDB35299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeTreeErrors.swift; sourceTree = "<group>"; };
 		112006FC299ABABE003F3B09 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		1156DFE02981391500BD2FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1156DFE129813A7500BD2FFE /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
@@ -139,9 +143,34 @@
 			path = AuthVIew;
 			sourceTree = "<group>";
 		};
+		111FDB2D299D088B0013F9D7 /* KnowlegdeTreeModelView */ = {
+			isa = PBXGroup;
+			children = (
+				11B5B86929242085009CC3D4 /* KnowledgeTreeDocument.swift */,
+			);
+			path = KnowlegdeTreeModelView;
+			sourceTree = "<group>";
+		};
+		111FDB31299D09BA0013F9D7 /* AuthModelView */ = {
+			isa = PBXGroup;
+			children = (
+				111FDB32299D09C60013F9D7 /* AuthModelView.swift */,
+			);
+			path = AuthModelView;
+			sourceTree = "<group>";
+		};
+		111FDB34299D2A7D0013F9D7 /* CustomErrorModel */ = {
+			isa = PBXGroup;
+			children = (
+				111FDB35299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift */,
+			);
+			path = CustomErrorModel;
+			sourceTree = "<group>";
+		};
 		11B5B84A29241A07009CC3D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				111FDB34299D2A7D0013F9D7 /* CustomErrorModel */,
 				111FDB29299CFF6A0013F9D7 /* SecurityModels */,
 				11E78FE9299B971D00DBC344 /* DataBaseModel */,
 				11E78FE2299B909300DBC344 /* PersonModels */,
@@ -180,8 +209,9 @@
 		11E78FDB299B8E7800DBC344 /* ModelsViews */ = {
 			isa = PBXGroup;
 			children = (
+				111FDB31299D09BA0013F9D7 /* AuthModelView */,
+				111FDB2D299D088B0013F9D7 /* KnowlegdeTreeModelView */,
 				11E78FEC299BA20000DBC344 /* StudentModelView */,
-				11B5B86929242085009CC3D4 /* KnowledgeTreeDocument.swift */,
 			);
 			path = ModelsViews;
 			sourceTree = "<group>";
@@ -342,6 +372,7 @@
 				11B5B86629241EEB009CC3D4 /* KnowledgeTreeModel.swift in Sources */,
 				11E78FE4299B90B600DBC344 /* Student.swift in Sources */,
 				110510C72971D5CF0046223E /* NextView.swift in Sources */,
+				111FDB36299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift in Sources */,
 				11B5B85629241D4A009CC3D4 /* Center.swift in Sources */,
 				11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */,
 				1156DFE62981456E00BD2FFE /* AuthView.swift in Sources */,
@@ -365,6 +396,7 @@
 				11E78FF3299BA78C00DBC344 /* Resources.swift in Sources */,
 				11E78FEE299BA22900DBC344 /* StudentModelView.swift in Sources */,
 				11B5B85229241C5A009CC3D4 /* VertexView.swift in Sources */,
+				111FDB33299D09C60013F9D7 /* AuthModelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

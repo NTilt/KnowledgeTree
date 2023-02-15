@@ -7,9 +7,9 @@
 
 import Foundation
 
-class StudentModelView: ObservableObject {
+class StudentModelView {
     
-    @Published private var student: Student
+    private var student: Student
     
     init() {
         self.student = DataBase().getAllStudents()[0]

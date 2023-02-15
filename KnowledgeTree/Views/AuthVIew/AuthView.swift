@@ -12,15 +12,14 @@ struct AuthView: View {
     @State private var isAuth = false
     @State private var mainScreen = false
     let storage = Storage()
-    @State private var dataBase: DataBase
+    @ObservedObject private var authModelView = AuthModelView()
     
     @State private var email = ""
     @State private var login = ""
     @State private var password = ""
+    @State private var alertMessage = ""
+    @State private var showAlert = false
     
-    init(dataBase: DataBase) {
-        self.dataBase = dataBase
-    }
     
     var body: some View {
         VStack() {
@@ -77,7 +76,18 @@ struct AuthView: View {
                         .cornerRadius(15)
                     
                     Button {
-                        mainScreen.toggle()
+                        authModelView.checkInputData(inputLogin: login, inputPassword: password) { (result) in
+                            switch result {
+                                
+                            case .success(_):
+                                mainScreen.toggle()
+                                
+                            case .failure(let error):
+                                print(error)
+                                alertMessage = error.errorDescription
+                                showAlert = true
+                            }
+                        }
                     } label: {
                         Text("Войти")
                             .foregroundColor(.black)
@@ -87,8 +97,11 @@ struct AuthView: View {
                             .shadow(radius: 11)
                             .cornerRadius(25)
                             .padding(30)
+                    }.alert(alertMessage, isPresented: $showAlert) {
+                        Button("OK", role: .cancel) {
+                            alertMessage = ""
+                        }
                     }
-                        
                 }
 
             }
@@ -111,7 +124,6 @@ struct AuthView: View {
 
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
-        let dataBase = DataBase()
-        AuthView(dataBase: dataBase)
+        AuthView()
     }
 }
