@@ -20,6 +20,12 @@
 		1156DFE62981456E00BD2FFE /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE52981456D00BD2FFE /* AuthView.swift */; };
 		118F2B4029A3B40400FAFF9C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B3F29A3B40400FAFF9C /* SectionView.swift */; };
 		118F2B4329A3B4A800FAFF9C /* BlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B4229A3B4A800FAFF9C /* BlobView.swift */; };
+		118F2B4529A3B55B00FAFF9C /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B4429A3B55B00FAFF9C /* AccountView.swift */; };
+		118F2B4829A3B58500FAFF9C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B4729A3B58500FAFF9C /* HomeView.swift */; };
+		118F2B4B29A3B5E600FAFF9C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B4A29A3B5E600FAFF9C /* SearchView.swift */; };
+		118F2B4E29A3B61D00FAFF9C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B4D29A3B61D00FAFF9C /* SignUpView.swift */; };
+		118F2B5029A3B68F00FAFF9C /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B4F29A3B68F00FAFF9C /* ModalView.swift */; };
+		118F2B5229A3B6E200FAFF9C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B5129A3B6E200FAFF9C /* SignInView.swift */; };
 		11B5B85229241C5A009CC3D4 /* VertexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B85129241C5A009CC3D4 /* VertexView.swift */; };
 		11B5B85429241CE3009CC3D4 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B85329241CE3009CC3D4 /* UtilityExtensions.swift */; };
 		11B5B85629241D4A009CC3D4 /* Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B85529241D4A009CC3D4 /* Center.swift */; };
@@ -59,6 +65,12 @@
 		1156DFE52981456D00BD2FFE /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		118F2B3F29A3B40400FAFF9C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		118F2B4229A3B4A800FAFF9C /* BlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobView.swift; sourceTree = "<group>"; };
+		118F2B4429A3B55B00FAFF9C /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		118F2B4729A3B58500FAFF9C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		118F2B4A29A3B5E600FAFF9C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		118F2B4D29A3B61D00FAFF9C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		118F2B4F29A3B68F00FAFF9C /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		118F2B5129A3B6E200FAFF9C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		11B5B85129241C5A009CC3D4 /* VertexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexView.swift; sourceTree = "<group>"; };
 		11B5B85329241CE3009CC3D4 /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
 		11B5B85529241D4A009CC3D4 /* Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Center.swift; sourceTree = "<group>"; };
@@ -183,8 +195,35 @@
 			isa = PBXGroup;
 			children = (
 				118F2B4229A3B4A800FAFF9C /* BlobView.swift */,
+				118F2B4429A3B55B00FAFF9C /* AccountView.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		118F2B4629A3B57C00FAFF9C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				118F2B4729A3B58500FAFF9C /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		118F2B4929A3B5D800FAFF9C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				118F2B4A29A3B5E600FAFF9C /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		118F2B4C29A3B60300FAFF9C /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				118F2B4D29A3B61D00FAFF9C /* SignUpView.swift */,
+				118F2B4F29A3B68F00FAFF9C /* ModalView.swift */,
+				118F2B5129A3B6E200FAFF9C /* SignInView.swift */,
+			);
+			path = Modals;
 			sourceTree = "<group>";
 		};
 		11B5B84A29241A07009CC3D4 /* Models */ = {
@@ -204,6 +243,9 @@
 		11B5B84C29241A55009CC3D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				118F2B4C29A3B60300FAFF9C /* Modals */,
+				118F2B4929A3B5D800FAFF9C /* Search */,
+				118F2B4629A3B57C00FAFF9C /* Home */,
 				118F2B4129A3B49600FAFF9C /* Account */,
 				118F2B3E29A3B3F300FAFF9C /* Section */,
 				111FDB2C299D03910013F9D7 /* AuthVIew */,
@@ -394,16 +436,22 @@
 				11B5B86629241EEB009CC3D4 /* KnowledgeTreeModel.swift in Sources */,
 				118F2B4329A3B4A800FAFF9C /* BlobView.swift in Sources */,
 				11E78FE4299B90B600DBC344 /* Student.swift in Sources */,
+				118F2B4829A3B58500FAFF9C /* HomeView.swift in Sources */,
 				110510C72971D5CF0046223E /* NextView.swift in Sources */,
 				111FDB36299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift in Sources */,
 				11B5B85629241D4A009CC3D4 /* Center.swift in Sources */,
 				11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */,
+				118F2B5229A3B6E200FAFF9C /* SignInView.swift in Sources */,
+				118F2B5029A3B68F00FAFF9C /* ModalView.swift in Sources */,
+				118F2B4B29A3B5E600FAFF9C /* SearchView.swift in Sources */,
 				1156DFE62981456E00BD2FFE /* AuthView.swift in Sources */,
 				11B5B86429241EAE009CC3D4 /* AnotherFunctions.swift in Sources */,
 				1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */,
 				11E78FEB299B974400DBC344 /* DataBase.swift in Sources */,
 				112006FD299ABABE003F3B09 /* MainTabBar.swift in Sources */,
+				118F2B4E29A3B61D00FAFF9C /* SignUpView.swift in Sources */,
 				118F2B4029A3B40400FAFF9C /* SectionView.swift in Sources */,
+				118F2B4529A3B55B00FAFF9C /* AccountView.swift in Sources */,
 				11E78FF1299BA3F300DBC344 /* StudentInfoView.swift in Sources */,
 				11B5B85A29241D8F009CC3D4 /* RightSector.swift in Sources */,
 				11B5B86029241E08009CC3D4 /* LeftSector.swift in Sources */,
