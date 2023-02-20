@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct KnowledgeTreeApp: App {
+    @StateObject var model = Model()
     var body: some Scene {
         WindowGroup {
-            AuthView()
-                .preferredColorScheme(.dark)
+            ContentView()
+                .environmentObject(model)
         }
     }
 }
