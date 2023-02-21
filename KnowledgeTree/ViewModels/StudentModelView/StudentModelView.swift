@@ -13,7 +13,7 @@ class StudentModelView {
     private var dataBase = DataBase()
     
     init(login: String) {
-        self.student = dataBase.getStudentByLogin(by: login)
+        self.student = dataBase.getStudentByEmail(by: login)
     }
 }
 

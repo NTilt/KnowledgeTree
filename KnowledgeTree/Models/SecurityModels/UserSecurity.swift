@@ -15,17 +15,17 @@ enum AccessLevel {
 }
 
 struct UserSecurity {
-    private var login: String
+    private var email: String
     private var password: String
     private var accessLevel: AccessLevel = .base
     
-    init(login: String, password: String) {
-        self.login = login
+    init(email: String, password: String) {
+        self.email = email
         self.password = password
     }
     
-    init(login: String, password: String, accessLevel: AccessLevel) {
-        self.login = login
+    init(email: String, password: String, accessLevel: AccessLevel) {
+        self.email = email
         self.password = password
         self.accessLevel = accessLevel
     }
@@ -41,7 +41,7 @@ extension UserSecurity {
         return password
     }
     
-    func getLogin() -> String {
-        return login
+    func getEmail() -> String {
+        return email
     }
 }

@@ -18,6 +18,7 @@ struct SignInView: View {
     @FocusState var focusedField: Field?
     @State var circleY: CGFloat = 150
     @EnvironmentObject var model: Model
+    @ObservedObject private var authModelView = AuthModelView()
     @State var appear = [false, false, false]
     @AppStorage("isLogged") var isLogged = true
     
@@ -48,7 +49,16 @@ struct SignInView: View {
                     .focused($focusedField, equals: .password)
                     .shadow(color: focusedField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
                 Button {
-                    isLogged = true
+                    authModelView.checkInputData(inputEmail: email, inputPassword: password) { (result) in
+                        switch result {
+                            
+                        case .success(_):
+                            isLogged = true
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
                 } label: {
                     Text("Войти")
                         .fontWeight(.bold)

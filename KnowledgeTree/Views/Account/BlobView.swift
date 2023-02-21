@@ -19,7 +19,7 @@ struct BlobView: View {
             let x2 = cos(angle2.radians)
             
             Canvas { context, size in
-                context.fill(path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height), x: x, x2: x2), with: .linearGradient(Gradient(colors: [Color("111"), .green, .blue]), startPoint: CGPoint(x: 0, y: 0), endPoint: CGPoint(x: 400, y: 400)))
+                context.fill(path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height), x: x, x2: x2), with: .linearGradient(Gradient(colors: [Color("lightGreen"), .green, .blue]), startPoint: CGPoint(x: 0, y: 0), endPoint: CGPoint(x: 400, y: 400)))
             }
             .frame(width: 400, height: 414)
             .rotationEffect(.degrees(appear ? 360 : 0))

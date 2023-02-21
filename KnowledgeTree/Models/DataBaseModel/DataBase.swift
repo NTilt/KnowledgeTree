@@ -19,45 +19,43 @@ struct DataBase {
                 secondName: "Ясеник",
                 thirdName: "Сергеевич",
                 groupNumber: 441,
-                email: "nikitayasenik@gmail.com",
+                email: "yasenikns@sgu.ru",
                 phone: "89999999999",
                 numberRecordBook: "20192524",
                 directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
-               urlToImage: "yasenikNikita",
-               login: "NTilt"),
+               urlToImage: "yasenikNikita"),
         
         Student(name: "Сергей",
                 secondName: "Сергеев",
                 thirdName: "Сергеевич",
                 groupNumber: 121,
-                email: "sergey@gmail.com",
+                email: "sergeyaa@sgu.ru",
                 phone: "89999999119",
                 numberRecordBook: "20191232",
                 directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
-               urlToImage: nil,
-               login: "Sergey")
+               urlToImage: nil)
     ]
     
     private(set) var personSecurity: [UserSecurity] = [
-        UserSecurity(login: "NTilt", password: "1234"),
-        UserSecurity(login: "Sergey", password: "4321")
+        UserSecurity(email: "yasenikns@sgu.ru", password: "1234"),
+        UserSecurity(email: "sergeyaa@sgu.ru", password: "4321")
     ]
 }
 
 extension DataBase {
     
-    func getStudentByLogin(by login: String) -> Student? {
+    func getStudentByEmail(by email: String) -> Student? {
         for student in students {
-            if student.getLogin() == login {
+            if student.getEmail() == email {
                 return student
             }
         }
         return nil
     }
     
-    func getUserByLogin(by login: String) -> UserSecurity? {
+    func getUserByEmail(by email: String) -> UserSecurity? {
         for user in personSecurity {
-            if user.getLogin() == login {
+            if user.getEmail() == email {
                 return user
             }
         }
@@ -68,9 +66,9 @@ extension DataBase {
         return students
     }
     
-    func getPasswordForUser(for login: String) -> String? {
+    func getPasswordForUser(for email: String) -> String? {
         for userSecurity in personSecurity {
-            if userSecurity.getLogin() == login {
+            if userSecurity.getEmail() == email {
                 return userSecurity.getPassword()
             }
         }
@@ -85,8 +83,7 @@ extension DataBase {
         email: String,
         phone: String,
         numberRecordBook: String,
-        directionOfStudy: DirectionsName,
-        login: String
+        directionOfStudy: DirectionsName
     ) {
         let student = Student(name: name,
                               secondName: secondName,
@@ -95,8 +92,7 @@ extension DataBase {
                               email: email,
                               phone: phone,
                               numberRecordBook: numberRecordBook,
-                              directionOfStudy: directionOfStudy,
-                              login: login)
+                              directionOfStudy: directionOfStudy)
         guard studentInBase(student: student) == false else {
             return
         }

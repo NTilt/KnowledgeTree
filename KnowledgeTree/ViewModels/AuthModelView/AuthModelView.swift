@@ -21,12 +21,12 @@ class AuthModelView: ObservableObject {
 
 extension AuthModelView {
     
-    func checkInputData(inputLogin: String,
+    func checkInputData(inputEmail: String,
                         inputPassword: String,
                         completion: @escaping (Result<Bool, AuthError>) -> Void) {
         
-        guard inputLogin != "" else {
-            completion(.failure(AuthError.loginFieldEmpty))
+        guard inputEmail != "" else {
+            completion(.failure(AuthError.emailFieldEmpty))
             return
         }
         
@@ -35,8 +35,8 @@ extension AuthModelView {
             return
         }
         
-        guard let user = dataBase.getUserByLogin(by: inputLogin) else {
-            completion(.failure(AuthError.invalidLogin))
+        guard let user = dataBase.getUserByEmail(by: inputEmail) else {
+            completion(.failure(AuthError.invalidEmail))
             return
         }
         let password = user.getPassword()

@@ -147,7 +147,7 @@ struct HomeView: View {
         .tabViewStyle(.page(indexDisplayMode: .never))
         .frame(height: 430)
         .background(
-            Image("222")
+            Image("greenBlobs")
                 .resizable()
                 .frame(width: 700, height: 600)
                 .offset(x: 300, y: -50)

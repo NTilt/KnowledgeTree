@@ -76,7 +76,7 @@ struct AuthView: View {
                         .cornerRadius(15)
                     
                     Button {
-                        authModelView.checkInputData(inputLogin: login, inputPassword: password) { (result) in
+                        authModelView.checkInputData(inputEmail: login, inputPassword: password) { (result) in
                             switch result {
                                 
                             case .success(_):

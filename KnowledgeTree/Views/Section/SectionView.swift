@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SectionView: View {
-    var section: CourseSection = courseSections[0]
+    
+    var section: CourseSection 
     @EnvironmentObject var model: Model
     @Environment(\.dismiss) var dismiss
     
@@ -127,6 +128,6 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView()
+        SectionView(section: courseSections[0])
     }
 }

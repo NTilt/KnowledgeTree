@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct CourseView: View {
-    var course: Course = fullCourses[0]
+    var course: Course
     var namespace: Namespace.ID
+    @State var sectionIndex = 0
     @Binding var show: Bool
     @State var appear = [false, false, false]
     @EnvironmentObject var model: Model
     @State var viewState: CGSize = .zero
     @State var isDraggable = true
     @State var showSection = false
-    @State var selectedIndex = 0
+    
+    
     
     var body: some View {
         ZStack {
@@ -118,8 +120,8 @@ struct CourseView: View {
                 
                 SectionRow(section: section)
                     .onTapGesture {
-                        selectedIndex = index
                         showSection = true
+                        sectionIndex = index
                     }
             }
         }
@@ -127,7 +129,7 @@ struct CourseView: View {
         .strokeStyle(cornerRadius: 30)
         .padding(20)
         .sheet(isPresented: $showSection) {
-            SectionView(section: courseSections[selectedIndex])
+            SectionView(section: courseSections[sectionIndex])
         }
     }
     
@@ -236,7 +238,7 @@ struct CourseView: View {
 struct CourseView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        CourseView(namespace: namespace, show: .constant(true))
+        CourseView(course: fullCourses[0], namespace: namespace, show: .constant(true))
             .environmentObject(Model())
     }
 }

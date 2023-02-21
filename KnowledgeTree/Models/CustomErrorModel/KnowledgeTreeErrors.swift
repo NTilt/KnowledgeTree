@@ -22,7 +22,7 @@ public enum AuthError: LocalizedError {
             return "Your login incorrect"
         case .invalidPassword:
             return "Your password incorrect"
-        case .loginFieldEmpty:
+        case .emailFieldEmpty:
             return "Text field login is empty"
         case .passwordFieldEmpty:
             return "Text field password is empty"
@@ -32,7 +32,7 @@ public enum AuthError: LocalizedError {
     case invalidLogin
     case invalidPassword
     case invalidEmail
-    case loginFieldEmpty
+    case emailFieldEmpty
     case passwordFieldEmpty
 }
 

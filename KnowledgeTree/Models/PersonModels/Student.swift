@@ -21,7 +21,6 @@ struct Student: Identifiable {
     private var ratingInGroup: Int?
     private var rationInFaculties: Int?
     private var urlToImage: String?
-    private var login: String
     
     init(
          name: String,
@@ -35,8 +34,7 @@ struct Student: Identifiable {
          directionOfStudy: DirectionsName,
          ratingInGroup: Int?,
          rationInFaculties: Int?,
-         urlToImage: String?,
-         login: String
+         urlToImage: String?
     ) {
         self.id = UUID()
         self.name = name
@@ -51,7 +49,6 @@ struct Student: Identifiable {
         self.ratingInGroup = ratingInGroup
         self.rationInFaculties = rationInFaculties
         self.urlToImage = urlToImage
-        self.login = login
     }
     
     init(
@@ -63,8 +60,7 @@ struct Student: Identifiable {
         phone: String,
         numberRecordBook: String,
         directionOfStudy: DirectionsName,
-        urlToImage: String? = nil,
-        login: String
+        urlToImage: String? = nil
     ) {
         self.id = UUID()
         self.name = name
@@ -76,7 +72,6 @@ struct Student: Identifiable {
         self.numberRecordBook = numberRecordBook
         self.directionOfStudy = directionOfStudy
         self.urlToImage = urlToImage
-        self.login = login
     }
 }
 
@@ -114,8 +109,4 @@ extension Student {
         return email
     }
     
-    func getLogin() -> String {
-        return login
-    }
-
 }
