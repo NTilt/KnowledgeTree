@@ -44,6 +44,19 @@ struct DataBase {
 
 extension DataBase {
     
+    func isEmailCorrect(_ email: String) -> Bool {
+        return email.contains("@sgu.ru") ? true : false
+    }
+    
+    func isEmalAlreadyExists(_ email: String) -> Bool {
+        for user in personSecurity {
+            if user.getEmail() == email {
+                return true
+            }
+        }
+        return false
+    }
+    
     func getStudentByEmail(by email: String) -> Student? {
         for student in students {
             if student.getEmail() == email {

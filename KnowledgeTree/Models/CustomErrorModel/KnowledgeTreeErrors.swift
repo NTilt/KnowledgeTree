@@ -12,6 +12,29 @@ protocol LocalizedError: Error {
     var errorDescription: String { get }
 }
 
+public enum RegisterErorr: LocalizedError {
+    
+    var errorDescription: String {
+        switch self {
+        case .emailAlreadyExists:
+            return "Данная почта уже зарегистрирована"
+        case .emailDoesntMatchForSGU:
+            return "Данная почта не соответсвует условиям: @sgu.ru"
+        case .emailFieldEmpty:
+            return "Поле email пустое"
+        case .passwordFieldEmpty:
+            return "Поле password пустое"
+        }
+        
+    }
+    
+    case emailAlreadyExists
+    case emailDoesntMatchForSGU
+    case emailFieldEmpty
+    case passwordFieldEmpty
+    
+}
+
 public enum AuthError: LocalizedError {
     
     var errorDescription: String {

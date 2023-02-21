@@ -17,6 +17,9 @@ struct SignUpView: View {
     @State var password = ""
     @FocusState var focusedField: Field?
     @State var circleY: CGFloat = 150
+    @State var showIconEmail = false
+    @State var showIconPassword = false
+    @ObservedObject private var authModelView = AuthModelView()
     @EnvironmentObject var model: Model
     @State var appear = [false, false, false]
     
@@ -32,6 +35,9 @@ struct SignUpView: View {
                 .offset(y: appear[1] ? 0 : 20)
             Group {
                 TextField("Почта", text: $email)
+                    .onTapGesture(perform: {
+                        showIconEmail = false
+                    })
                     .inpuStyle(icon: "envelope.open")
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
@@ -39,12 +45,59 @@ struct SignUpView: View {
                     .disableAutocorrection(true)
                     .focused($focusedField, equals: .email)
                     .shadow(color: focusedField == .email ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                    .overlay {
+                        if showIconEmail {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.red)
+                                .frame(width: 36, height: 36)
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .padding(20)
+                        }
+                        
+                    }
                 SecureField("Пароль", text: $password)
+                    .onTapGesture(perform: {
+                        showIconPassword = false
+                    })
                     .inpuStyle(icon: "key")
                     .textContentType(.password)
                     .focused($focusedField, equals: .password)
                     .shadow(color: focusedField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
-                Button {} label: {
+                    .overlay {
+                        if showIconPassword {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.red)
+                                .frame(width: 36, height: 36)
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .padding(20)
+                        }
+                        
+                    }
+                Button {
+                    authModelView.signUp(inputEmail: email, inputPassword: password) { result in
+                        switch result {
+                        case .success(_):
+                            showIconEmail = false
+                            showIconPassword = false
+                            print("Регистрация успешна")
+                        case .failure(let error):
+                            let authError = error as RegisterErorr
+                                switch authError {
+                                case .emailAlreadyExists:
+                                    showIconEmail = true
+                                case .emailDoesntMatchForSGU:
+                                    showIconEmail = true
+                                case .emailFieldEmpty:
+                                    showIconEmail = true
+                                case .passwordFieldEmpty:
+                                    showIconPassword = true
+                                }
+                            print(error)
+                        }
+                    }
+                } label: {
                     Text("Создать аккаунт")
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)

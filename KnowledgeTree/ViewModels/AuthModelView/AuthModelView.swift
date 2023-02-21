@@ -19,11 +19,45 @@ class AuthModelView: ObservableObject {
     }
 }
 
+// MARK: for SignUP
 extension AuthModelView {
     
-    func checkInputData(inputEmail: String,
-                        inputPassword: String,
-                        completion: @escaping (Result<Bool, AuthError>) -> Void) {
+    func signUp(inputEmail: String,
+                inputPassword: String,
+                completion: @escaping (Result<Bool, RegisterErorr>) -> Void) {
+        
+        guard inputEmail != "" else {
+            completion(.failure(RegisterErorr.emailFieldEmpty))
+            return
+        }
+        
+        guard inputPassword != "" else {
+            completion(.failure(RegisterErorr.passwordFieldEmpty))
+            return
+        }
+        
+        guard dataBase.isEmailCorrect(inputEmail) == true else {
+            completion(.failure(RegisterErorr.emailDoesntMatchForSGU))
+            return
+        }
+        
+        guard dataBase.isEmalAlreadyExists(inputEmail) == false else {
+            completion(.failure(RegisterErorr.emailAlreadyExists))
+            return
+        }
+        
+        completion(.success(true))
+    }
+    
+}
+
+
+// MARK: for SignIn
+extension AuthModelView {
+    
+    func signIn(inputEmail: String,
+                inputPassword: String,
+                completion: @escaping (Result<Bool, AuthError>) -> Void) {
         
         guard inputEmail != "" else {
             completion(.failure(AuthError.emailFieldEmpty))

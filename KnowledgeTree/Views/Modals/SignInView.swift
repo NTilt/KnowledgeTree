@@ -18,6 +18,8 @@ struct SignInView: View {
     @FocusState var focusedField: Field?
     @State var circleY: CGFloat = 150
     @EnvironmentObject var model: Model
+    @State var showIconPassword = false
+    @State var showIconEmail = false
     @ObservedObject private var authModelView = AuthModelView()
     @State var appear = [false, false, false]
     @AppStorage("isLogged") var isLogged = true
@@ -36,6 +38,9 @@ struct SignInView: View {
             
             Group {
                 TextField("Почта", text: $email)
+                    .onTapGesture(perform: {
+                        showIconEmail = false
+                    })
                     .inpuStyle(icon: "envelope.open")
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
@@ -43,20 +48,58 @@ struct SignInView: View {
                     .disableAutocorrection(true)
                     .focused($focusedField, equals: .email)
                     .shadow(color: focusedField == .email ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                    .overlay {
+                        if showIconEmail {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.red)
+                                .frame(width: 36, height: 36)
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .padding(20)
+                        }
+                    }
                 SecureField("Пароль", text: $password)
+                    .onTapGesture(perform: {
+                        showIconPassword = false
+                    })
                     .inpuStyle(icon: "key")
                     .textContentType(.password)
                     .focused($focusedField, equals: .password)
                     .shadow(color: focusedField == .password ? .primary.opacity(0.3) : .clear, radius: 10, x: 0, y: 3)
+                    .overlay {
+                        if showIconPassword {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.red)
+                                .frame(width: 36, height: 36)
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .padding(20)
+                        }
+                        
+                    }
                 Button {
-                    authModelView.checkInputData(inputEmail: email, inputPassword: password) { (result) in
+                    authModelView.signIn(inputEmail: email, inputPassword: password) { (result) in
                         switch result {
                             
                         case .success(_):
                             isLogged = true
-                            
+                            showIconEmail = false
+                            showIconPassword = false
                         case .failure(let error):
-                            print(error)
+                            let authError = error as AuthError
+                                switch authError {
+                                case .invalidLogin:
+                                    break
+                                case .invalidPassword:
+                                    showIconPassword = true
+                                case .invalidEmail:
+                                    showIconEmail = true
+                                case .emailFieldEmpty:
+                                    showIconEmail = true
+                                case .passwordFieldEmpty:
+                                    showIconPassword = true
+                                }
+                                print(error)
                         }
                     }
                 } label: {
