@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AccountView: View {
     @AppStorage("isLogged") var isLogged = true
+    var studentModel: StudentModelView
     @Environment(\.dismiss) var dismiss
     @AppStorage("isLiteMode") var isLiteMode = true
     
@@ -62,7 +63,7 @@ struct AccountView: View {
                         .offset(x: 200, y: 130)
                         .scaleEffect(0.6)
                 )
-            Text("Ясеник Никита")
+            Text("\(studentModel.getStudentName()) \(studentModel.getStudentSecondName())")
                 .font(.title.weight(.semibold))
             HStack {
                 Image(systemName: "location")
@@ -76,7 +77,7 @@ struct AccountView: View {
     
     var menu: some View {
         Section {
-            NavigationLink(destination: ContentView()) {
+            NavigationLink(destination: HomeView()) {
                 Label("Настройки", systemImage: "gear")
             }
             Label("Помощь", systemImage: "questionmark")
@@ -103,7 +104,7 @@ struct AccountView: View {
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountView()
+        AccountView(studentModel: StudentModelView(email: "yasenikns@sgu.ru"))
     }
 }
 

@@ -10,7 +10,10 @@ import SwiftUI
 struct ContentView: View {
     @AppStorage("selectedTab") var selectedTab: Tab = .home
     @AppStorage("showModal") var showModal = false
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var appModel: AppModel
+    @State var pageIndex: Int = 0
+    @State var currentVertexName: String? = nil
+    @EnvironmentObject var storage: Storage
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -18,20 +21,16 @@ struct ContentView: View {
             case .home:
                 HomeView()
             case .study:
-                AccountView()
+                MainView(storage: storage)
             case .rating:
-                AccountView()
+                HomeView()
             case .profile:
-                AccountView()
+                let studentModel = StudentModelView(email: appModel.email)
+                AccountView(studentModel: studentModel)
             }
             TabBar()
-                .offset(y: model.showDetail ? 200 : 0)
+                .offset(y: appModel.showDetail ? 200 : 0)
                 .ignoresSafeArea()
-            
-            if showModal {
-                ModalView()
-                    .zIndex(1)
-            }
         }
         .safeAreaInset(edge: .bottom) {
             Color.clear.frame(height: 44)
@@ -42,7 +41,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(Model())
+            .environmentObject(AppModel())
+            .environmentObject(Storage())
     }
 }
 

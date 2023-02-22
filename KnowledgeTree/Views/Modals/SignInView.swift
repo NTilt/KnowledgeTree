@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
+    
     enum Field: Hashable {
         case email
         case password
@@ -17,12 +18,12 @@ struct SignInView: View {
     @State var password = ""
     @FocusState var focusedField: Field?
     @State var circleY: CGFloat = 150
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var model: AppModel
     @State var showIconPassword = false
     @State var showIconEmail = false
     @ObservedObject private var authModelView = AuthModelView()
     @State var appear = [false, false, false]
-    @AppStorage("isLogged") var isLogged = true
+    @AppStorage("isLogged") var isLogged = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -82,6 +83,9 @@ struct SignInView: View {
                         switch result {
                             
                         case .success(_):
+                            model.email = email
+                            email = ""
+                            password = ""
                             isLogged = true
                             showIconEmail = false
                             showIconPassword = false
@@ -173,7 +177,7 @@ struct SignInVIew_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             SignInView()
-                .environmentObject(Model())
+                .environmentObject(AppModel())
         }
     }
 }

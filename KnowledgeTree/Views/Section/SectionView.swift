@@ -10,7 +10,7 @@ import SwiftUI
 struct SectionView: View {
     
     var section: CourseSection 
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var model: AppModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {

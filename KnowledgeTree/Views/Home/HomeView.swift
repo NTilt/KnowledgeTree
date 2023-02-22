@@ -16,7 +16,7 @@ struct HomeView: View {
     @State var selectedID = UUID()
     @State var showCourse = false
     @State var selectedIndex = 0
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
     
     var body: some View {
@@ -161,6 +161,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(Model())
+            .environmentObject(AppModel())
     }
 }

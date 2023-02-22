@@ -58,15 +58,6 @@ struct AuthView: View {
                         .cornerRadius(15)
                         .padding(10)
                     
-//                    TextField("Введите e-mail:", text: $email)
-//                        .font(.title3.bold())
-//                        .padding()
-//                        .frame(maxWidth: 400, maxHeight: 75)
-//                        .background(.green)
-//                        .shadow(radius: 11)
-//                        .cornerRadius(15)
-//                        .padding(10)
-                    
                     SecureField("Введите пароль:", text: $password)
                         .font(.title3.bold())
                         .padding()
@@ -117,7 +108,7 @@ struct AuthView: View {
             }
         }
         .fullScreenCover(isPresented: $mainScreen) {
-            let studenModelInfo = StudentModelView(login: login)
+            let studenModelInfo = StudentModelView(email: email)
             StudentInfoView(studentModel: studenModelInfo)
         }
     }

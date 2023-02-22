@@ -20,7 +20,8 @@ struct SignUpView: View {
     @State var showIconEmail = false
     @State var showIconPassword = false
     @ObservedObject private var authModelView = AuthModelView()
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var model: AppModel
+    @AppStorage("isLogged") var isLogged = false
     @State var appear = [false, false, false]
     
     var body: some View {
@@ -79,8 +80,12 @@ struct SignUpView: View {
                     authModelView.signUp(inputEmail: email, inputPassword: password) { result in
                         switch result {
                         case .success(_):
+                            isLogged = true
+                            model.email = email
                             showIconEmail = false
                             showIconPassword = false
+                            email = ""
+                            password = ""
                             print("Регистрация успешна")
                         case .failure(let error):
                             let authError = error as RegisterErorr
@@ -167,7 +172,7 @@ struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             SignUpView()
-                .environmentObject(Model())
+                .environmentObject(AppModel())
         }
     }
 }

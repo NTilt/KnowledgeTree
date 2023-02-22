@@ -13,7 +13,7 @@ struct CourseView: View {
     @State var sectionIndex = 0
     @Binding var show: Bool
     @State var appear = [false, false, false]
-    @EnvironmentObject var model: Model
+    @EnvironmentObject var model: AppModel
     @State var viewState: CGSize = .zero
     @State var isDraggable = true
     @State var showSection = false
@@ -239,7 +239,7 @@ struct CourseView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
         CourseView(course: fullCourses[0], namespace: namespace, show: .constant(true))
-            .environmentObject(Model())
+            .environmentObject(AppModel())
     }
 }
 

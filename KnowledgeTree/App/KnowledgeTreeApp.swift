@@ -9,11 +9,15 @@ import SwiftUI
 
 @main
 struct KnowledgeTreeApp: App {
-    @StateObject var model = Model()
+    @StateObject var model = AppModel()
+    @StateObject var storage = Storage()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ModalView()
                 .environmentObject(model)
+                .environmentObject(storage)
+//            ContentView()
+//                .environmentObject(model)
         }
     }
 }

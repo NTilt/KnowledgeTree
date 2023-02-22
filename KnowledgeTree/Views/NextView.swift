@@ -9,27 +9,34 @@ import SwiftUI
 
 struct NextView: View {
     @Binding var pageIndex: Int
-    @State var spaceWidth: CGFloat = 5000
-    @State var spaceHeight: CGFloat = 5000
+//    @State var spaceWidth: CGFloat = 5000
+//    @State var spaceHeight: CGFloat = 5000
     @State private var steadyZoomScale: CGFloat = 1
     @GestureState private var gestureZoomScale: CGFloat = 1
     var minimumZoomScale: CGFloat = 0
     var maximumZoomScale: CGFloat = 1.5
     var currentVertexName: String
+    private let minScale = 0.3
+    private let maxScale = 1.0
+    @State private var scale = 1.0
+    @State private var lastScale = 1.0
+    @State var stateVertexOffset = CGSize.zero
+    @GestureState var gestureVertexOffset = CGSize.zero
     @StateObject var storage: Storage
     
     var body: some View {
-            ScrollView ([.horizontal, .vertical]) {
-                ZStack {
-                    Color.black
-                        .edgesIgnoringSafeArea(.all)
-                    directionSpace
-                }
-                .frame(width: spaceWidth * zoomScale, height: spaceHeight * zoomScale)
-                .scaleEffect(zoomScale)
-                .gesture(zoomGesture())
+        GeometryReader { reader in
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
+                directionSpace
+                    .position(position(in: reader))
+                    .scaleEffect(scale)
             }
+            .gesture(panGesture().simultaneously(with: magnification))
         }
+        
+    }
         
         var directionSpace: some View {
             GeometryReader { directionReader in
@@ -73,27 +80,80 @@ struct NextView: View {
                 }
             }
         }
-        
-        private var zoomScale: CGFloat {
-            var finalZoom = steadyZoomScale * gestureZoomScale
-            if finalZoom < minimumZoomScale {
-                finalZoom = minimumZoomScale
+    
+    func getMinimumScaleAllowed() -> CGFloat {
+        return max(scale, minScale)
+    }
+    
+    func getMaximumScaleAllowed() -> CGFloat {
+        return min(scale, maxScale)
+    }
+    
+    func validateScaleLimits() {
+        scale = getMinimumScaleAllowed()
+        scale = getMaximumScaleAllowed()
+    }
+    
+    var magnification: some Gesture {
+        MagnificationGesture()
+            .onChanged { state in
+                let delta = state / lastScale
+                scale *= delta
+                lastScale = state
             }
-            if finalZoom > maximumZoomScale {
-                finalZoom = maximumZoomScale
+            .onEnded { state in
+                withAnimation {
+                    validateScaleLimits()
+                }
+                lastScale = 1.0
             }
-            return finalZoom
+    }
+    
+    private var zoomScale: CGFloat {
+        var finalZoom = steadyZoomScale * gestureZoomScale
+        if finalZoom < minimumZoomScale {
+            finalZoom = minimumZoomScale
         }
-        
-        private func zoomGesture() -> some Gesture {
-            MagnificationGesture()
-                .updating($gestureZoomScale) {latestGestureScale, gestureZoomScale, transaction in
+        if finalZoom > maximumZoomScale {
+            finalZoom = maximumZoomScale
+        }
+        return finalZoom
+    }
+    
+    private func zoomGesture() -> some Gesture {
+        MagnificationGesture()
+            .updating($gestureZoomScale) { latestGestureScale, gestureZoomScale, transaction in
                     gestureZoomScale = latestGestureScale
-                }
-                .onEnded {
-                    gestureScaleAtEnd in
-                    steadyZoomScale *= gestureScaleAtEnd
-                }
-        }
+            }
+            .onEnded { gestureScaleAtEnd in
+                steadyZoomScale *= gestureScaleAtEnd
+            }
+    }
+    
+    private var vertexOffset: CGSize {
+        (stateVertexOffset + gestureVertexOffset) * scale
+    }
+    
+    private func panGesture() -> some Gesture {
+        DragGesture()
+            .updating($gestureVertexOffset) { lst, gestureVertexOffset, _ in
+                gestureVertexOffset = lst.translation / scale
+            }
+            .onEnded { lastGesture in
+                stateVertexOffset = stateVertexOffset + (lastGesture.translation / scale)
+            }
+    }
+    
+    private func position(in geometry: GeometryProxy) -> CGPoint {
+        convertFrom((x: 0, y: 0), in: geometry)
+    }
+    
+    private func convertFrom(_ location: (x: Int, y: Int), in geometry: GeometryProxy) -> CGPoint {
+        let center = geometry.frame(in: .local).center
+        return CGPoint(
+            x: center.x + CGFloat(location.x) * scale + vertexOffset.width,
+            y: center.y + CGFloat(location.y) * scale + vertexOffset.height
+        )
+    }
 }
 

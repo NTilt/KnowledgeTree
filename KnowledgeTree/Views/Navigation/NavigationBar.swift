@@ -11,6 +11,7 @@ struct NavigationBar: View {
     @Binding var hasScrolled: Bool
     @State var showSearch = false
     @State var showAccount = false
+    @EnvironmentObject var appModel: AppModel
     @AppStorage("showModal") var showModal = false
     @AppStorage("isLogged") var isLogged = false
     
@@ -63,7 +64,8 @@ struct NavigationBar: View {
                         .strokeStyle(cornerRadius: 18)
                     }
                     .sheet(isPresented: $showAccount) {
-                        AccountView()
+                        let studentModel = StudentModelView(email: appModel.email)
+                        AccountView(studentModel: studentModel)
                     }
             }
             .frame(maxWidth: .infinity, alignment: .trailing)

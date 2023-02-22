@@ -8,9 +8,10 @@
 import SwiftUI
 import Combine
 
-class Model: ObservableObject {
+class AppModel: ObservableObject {
     @Published var showDetail: Bool = false
     @Published var selectedModel: Modal = .signIn
+    @Published var email: String = "yasenikns@sgu.ru"
 }
 
 

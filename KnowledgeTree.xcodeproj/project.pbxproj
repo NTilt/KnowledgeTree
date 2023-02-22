@@ -34,7 +34,7 @@
 		118F2B6029A3B81C00FAFF9C /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B5F29A3B81C00FAFF9C /* Tab.swift */; };
 		118F2B6229A3B84000FAFF9C /* PreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B6129A3B84000FAFF9C /* PreferenceKey.swift */; };
 		118F2B6529A3B85F00FAFF9C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B6429A3B85F00FAFF9C /* Course.swift */; };
-		118F2B6829A3BA2200FAFF9C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B6729A3BA2200FAFF9C /* Model.swift */; };
+		118F2B6829A3BA2200FAFF9C /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B6729A3BA2200FAFF9C /* AppModel.swift */; };
 		118F2B6A29A3BA4A00FAFF9C /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B6929A3BA4A00FAFF9C /* CourseSection.swift */; };
 		118F2B8329A3C04C00FAFF9C /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B8029A3C04C00FAFF9C /* CourseItem.swift */; };
 		118F2B8429A3C04C00FAFF9C /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B8129A3C04C00FAFF9C /* CourseView.swift */; };
@@ -97,7 +97,7 @@
 		118F2B5F29A3B81C00FAFF9C /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		118F2B6129A3B84000FAFF9C /* PreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKey.swift; sourceTree = "<group>"; };
 		118F2B6429A3B85F00FAFF9C /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
-		118F2B6729A3BA2200FAFF9C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		118F2B6729A3BA2200FAFF9C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		118F2B6929A3BA4A00FAFF9C /* CourseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
 		118F2B8029A3C04C00FAFF9C /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
 		118F2B8129A3C04C00FAFF9C /* CourseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
@@ -297,7 +297,7 @@
 		118F2B6629A3BA1700FAFF9C /* UIModel */ = {
 			isa = PBXGroup;
 			children = (
-				118F2B6729A3BA2200FAFF9C /* Model.swift */,
+				118F2B6729A3BA2200FAFF9C /* AppModel.swift */,
 			);
 			path = UIModel;
 			sourceTree = "<group>";
@@ -537,7 +537,7 @@
 				11B5B86829241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift in Sources */,
 				118F2B9129A3C0AD00FAFF9C /* ContentView.swift in Sources */,
 				11B5B85C29241DBC009CC3D4 /* Square.swift in Sources */,
-				118F2B6829A3BA2200FAFF9C /* Model.swift in Sources */,
+				118F2B6829A3BA2200FAFF9C /* AppModel.swift in Sources */,
 				118F2B8829A3C07E00FAFF9C /* SectionRow.swift in Sources */,
 				118F2B9029A3C0AD00FAFF9C /* NavigationBar.swift in Sources */,
 				118F2B6A29A3BA4A00FAFF9C /* CourseSection.swift in Sources */,

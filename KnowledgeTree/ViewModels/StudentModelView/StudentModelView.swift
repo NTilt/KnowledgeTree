@@ -7,13 +7,13 @@
 
 import Foundation
 
-class StudentModelView {
+class StudentModelView: ObservableObject {
     
     private var student: Student?
     private var dataBase = DataBase()
     
-    init(login: String) {
-        self.student = dataBase.getStudentByEmail(by: login)
+    init(email: String) {
+        self.student = dataBase.getStudentByEmail(by: email)
     }
 }
 

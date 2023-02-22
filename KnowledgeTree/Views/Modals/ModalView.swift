@@ -9,19 +9,17 @@ import SwiftUI
 
 struct ModalView: View {
     
-    @EnvironmentObject var model: Model
-    @AppStorage("showModal") var showModal = true
+    @EnvironmentObject var model: AppModel
+    @EnvironmentObject var storage: Storage
     @State var viewState: CGSize = .zero
     @State var isDismissed = false
     @State var appear = [false, false, false]
     @AppStorage("isLogged") var isLogged = false
+    @AppStorage("email") var email = ""
     
     var body: some View {
         ZStack {
             Color.clear.background(.regularMaterial)
-                .onTapGesture {
-                    dismissModal()
-                }
                 .ignoresSafeArea()
             
             Group {
@@ -51,19 +49,19 @@ struct ModalView: View {
                     .allowsHitTesting(false)
             )
            
-            Button {
-                dismissModal()
-            } label: {
-                Image(systemName: "xmark")
-                    .font(.body.weight(.bold))
-                    .foregroundColor(.secondary)
-                    .padding(8)
-                    .background(.ultraThinMaterial, in: Circle())
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-            .padding(20)
-            .opacity(appear[1] ? 1 : 0)
-            .offset(y: appear[1] ? 0 : -200)
+//            Button {
+//                dismissModal()
+//            } label: {
+//                Image(systemName: "xmark")
+//                    .font(.body.weight(.bold))
+//                    .foregroundColor(.secondary)
+//                    .padding(8)
+//                    .background(.ultraThinMaterial, in: Circle())
+//            }
+//            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+//            .padding(20)
+//            .opacity(appear[1] ? 1 : 0)
+//            .offset(y: appear[1] ? 0 : -200)
         }
         .onAppear {
             withAnimation(.spring().delay(0.1)) {
@@ -76,10 +74,8 @@ struct ModalView: View {
                 appear[2] = true
             }
         }
-        .onChange(of: isLogged) { newValue in
-            if newValue {
-                dismissModal()
-            }
+        .fullScreenCover(isPresented: $isLogged) {
+            ContentView()
         }
     }
     
@@ -89,23 +85,9 @@ struct ModalView: View {
                 viewState = value.translation
             }
             .onEnded { value in
-                if value.translation.height > 200 {
-                   dismissModal()
-                }
-                else {
-                    withAnimation(.openCard) {
-                        viewState = .zero
-                }
+                withAnimation(.openCard) {
+                    viewState = .zero
             }
-        }
-    }
-    
-    func dismissModal() {
-        withAnimation {
-            isDismissed = true
-        }
-        withAnimation(.linear.delay(0.3)) {
-            showModal = false
         }
     }
 }
@@ -113,7 +95,7 @@ struct ModalView: View {
 struct ModalView_Previews: PreviewProvider {
     static var previews: some View {
         ModalView()
-            .environmentObject(Model())
+            .environmentObject(AppModel())
     }
 }
 
