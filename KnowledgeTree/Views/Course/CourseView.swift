@@ -115,7 +115,7 @@ struct CourseView: View {
     
     var content: some View {
         VStack(alignment: .leading) {
-            ForEach(Array(courseSections.enumerated()), id: \.offset) { index, section in
+            ForEach(Array(course.sections.enumerated()), id: \.offset) { index, section in
                 if index != 0 { Divider() }
                 
                 SectionRow(section: section)

@@ -18,7 +18,7 @@ struct NextView: View {
     var currentVertexName: String
     private let minScale = 0.3
     private let maxScale = 1.0
-    @State private var scale = 1.0
+    @AppStorage("scale") var scale = 1.0
     @State private var lastScale = 1.0
     @State var stateVertexOffset = CGSize.zero
     @GestureState var gestureVertexOffset = CGSize.zero

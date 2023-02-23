@@ -18,6 +18,7 @@
 		112006FD299ABABE003F3B09 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112006FC299ABABE003F3B09 /* MainTabBar.swift */; };
 		1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE129813A7500BD2FFE /* LaunchView.swift */; };
 		1156DFE62981456E00BD2FFE /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE52981456D00BD2FFE /* AuthView.swift */; };
+		1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180E13B29A738E200577003 /* TeacherTabBar.swift */; };
 		118F2B4029A3B40400FAFF9C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B3F29A3B40400FAFF9C /* SectionView.swift */; };
 		118F2B4329A3B4A800FAFF9C /* BlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B4229A3B4A800FAFF9C /* BlobView.swift */; };
 		118F2B4529A3B55B00FAFF9C /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B4429A3B55B00FAFF9C /* AccountView.swift */; };
@@ -65,6 +66,7 @@
 		11E78FEE299BA22900DBC344 /* StudentModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FED299BA22900DBC344 /* StudentModelView.swift */; };
 		11E78FF1299BA3F300DBC344 /* StudentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FF0299BA3F300DBC344 /* StudentInfoView.swift */; };
 		11E78FF3299BA78C00DBC344 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FF2299BA78C00DBC344 /* Resources.swift */; };
+		11ED4B0129A666030041ED56 /* DataBaseCourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED4B0029A666030041ED56 /* DataBaseCourseSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +83,7 @@
 		1156DFE02981391500BD2FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1156DFE129813A7500BD2FFE /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		1156DFE52981456D00BD2FFE /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		1180E13B29A738E200577003 /* TeacherTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabBar.swift; sourceTree = "<group>"; };
 		118F2B3F29A3B40400FAFF9C /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		118F2B4229A3B4A800FAFF9C /* BlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobView.swift; sourceTree = "<group>"; };
 		118F2B4429A3B55B00FAFF9C /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		11E78FED299BA22900DBC344 /* StudentModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModelView.swift; sourceTree = "<group>"; };
 		11E78FF0299BA3F300DBC344 /* StudentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoView.swift; sourceTree = "<group>"; };
 		11E78FF2299BA78C00DBC344 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		11ED4B0029A666030041ED56 /* DataBaseCourseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseCourseSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +294,7 @@
 			children = (
 				118F2B6429A3B85F00FAFF9C /* Course.swift */,
 				118F2B6929A3BA4A00FAFF9C /* CourseSection.swift */,
+				11ED4B0029A666030041ED56 /* DataBaseCourseSection.swift */,
 			);
 			path = CourseModel;
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 				118F2B8C29A3C0AD00FAFF9C /* TabBar.swift */,
 				118F2B8D29A3C0AD00FAFF9C /* NavigationBar.swift */,
 				118F2B8E29A3C0AD00FAFF9C /* ContentView.swift */,
+				1180E13B29A738E200577003 /* TeacherTabBar.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -535,6 +541,7 @@
 			files = (
 				118F2B5B29A3B78600FAFF9C /* AngularButtonStyle.swift in Sources */,
 				11B5B86829241F7D009CC3D4 /* KnowledgeTreeDocumentView.swift in Sources */,
+				1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */,
 				118F2B9129A3C0AD00FAFF9C /* ContentView.swift in Sources */,
 				11B5B85C29241DBC009CC3D4 /* Square.swift in Sources */,
 				118F2B6829A3BA2200FAFF9C /* AppModel.swift in Sources */,
@@ -586,6 +593,7 @@
 				11B5B86A29242085009CC3D4 /* KnowledgeTreeDocument.swift in Sources */,
 				11E78FF3299BA78C00DBC344 /* Resources.swift in Sources */,
 				11E78FEE299BA22900DBC344 /* StudentModelView.swift in Sources */,
+				11ED4B0129A666030041ED56 /* DataBaseCourseSection.swift in Sources */,
 				118F2B8429A3C04C00FAFF9C /* CourseView.swift in Sources */,
 				11B5B85229241C5A009CC3D4 /* VertexView.swift in Sources */,
 				111FDB33299D09C60013F9D7 /* AuthModelView.swift in Sources */,
@@ -714,6 +722,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"KnowledgeTree/Preview Content\"";
@@ -733,6 +742,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = FLT.KnowledgeTree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -744,6 +754,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"KnowledgeTree/Preview Content\"";
@@ -763,6 +774,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = FLT.KnowledgeTree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

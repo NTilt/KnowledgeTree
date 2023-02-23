@@ -37,12 +37,22 @@ struct DataBase {
     ]
     
     private(set) var personSecurity: [UserSecurity] = [
-        UserSecurity(email: "yasenikns@sgu.ru", password: "1234"),
-        UserSecurity(email: "sergeyaa@sgu.ru", password: "4321")
+        UserSecurity(email: "yasenikns@sgu.ru", password: "1234", accessLevel: .student),
+        UserSecurity(email: "sergeyaa@sgu.ru", password: "4321", accessLevel: .student),
+        UserSecurity(email: "teacher", password: "12345", accessLevel: .teacher)
     ]
 }
 
 extension DataBase {
+    
+    func getUserAccessLevelBy(email: String) -> AccessLevel {
+        for user in personSecurity {
+            if user.getEmail() == email {
+                return user.getAccessLevel()
+            }
+        }
+        return .base
+    }
     
     func isEmailCorrect(_ email: String) -> Bool {
         return email.contains("@sgu.ru") ? true : false
