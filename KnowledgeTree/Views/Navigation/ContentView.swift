@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("selectedTab") var selectedTab: Tab = .home
+    @AppStorage("selectedTeacherTab") var selectedTeacherTab: TeacherTab = .home
     @AppStorage("showModal") var showModal = false
     @EnvironmentObject var appModel: AppModel
     @State var pageIndex: Int = 0
@@ -17,20 +18,38 @@ struct ContentView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            switch selectedTab {
-            case .home:
-                HomeView()
-            case .study:
-                MainView(storage: storage)
-            case .rating:
-                HomeView()
-            case .profile:
-                let studentModel = StudentModelView(email: appModel.email)
-                AccountView(studentModel: studentModel)
+            if appModel.accessLevel == .teacher {
+                switch selectedTeacherTab {
+                case .home:
+                    HomeView()
+                case .edit:
+                    HomeView()
+                case .rating:
+                    HomeView()
+                case .profile:
+                    HomeView()
+                }
+                TeacherTabBar()
+                    .offset(y: appModel.showDetail ? 200 : 0)
+                    .ignoresSafeArea()
             }
-            TabBar()
-                .offset(y: appModel.showDetail ? 200 : 0)
-                .ignoresSafeArea()
+            else {
+                switch selectedTab {
+                case .home:
+                    HomeView()
+                case .study:
+                    MainView(storage: storage)
+                case .rating:
+                    HomeView()
+                case .profile:
+                    let studentModel = StudentModelView(email: appModel.email)
+                    AccountView(studentModel: studentModel)
+                }
+                TabBar()
+                    .offset(y: appModel.showDetail ? 200 : 0)
+                    .ignoresSafeArea()
+            }
+            
         }
         .safeAreaInset(edge: .bottom) {
             Color.clear.frame(height: 44)

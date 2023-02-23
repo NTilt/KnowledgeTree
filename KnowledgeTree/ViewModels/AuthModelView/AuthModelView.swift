@@ -19,6 +19,13 @@ class AuthModelView: ObservableObject {
     }
 }
 
+extension AuthModelView {
+    
+    func getUserAccessLevel(by email: String) -> AccessLevel {
+        return dataBase.getUserAccessLevelBy(email: email)
+    }
+}
+
 // MARK: for SignUP
 extension AuthModelView {
     

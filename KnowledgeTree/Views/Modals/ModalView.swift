@@ -15,7 +15,6 @@ struct ModalView: View {
     @State var isDismissed = false
     @State var appear = [false, false, false]
     @AppStorage("isLogged") var isLogged = false
-    @AppStorage("email") var email = ""
     
     var body: some View {
         ZStack {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AccessLevel {
+enum AccessLevel: String {
     case teacher
     case student
     case admin
@@ -43,5 +43,9 @@ extension UserSecurity {
     
     func getEmail() -> String {
         return email
+    }
+    
+    func getAccessLevel() -> AccessLevel {
+        return accessLevel
     }
 }

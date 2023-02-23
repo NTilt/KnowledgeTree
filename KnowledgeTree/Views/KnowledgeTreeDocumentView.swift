@@ -18,7 +18,7 @@ struct KnowledgeTreeDocumentView: View {
     var maximumZoomScale: CGFloat = 1.5
     private let minScale = 0.3
     private let maxScale = 1.0
-    @State private var scale = 1.0
+    @AppStorage("scale") var scale = 1.0
     @State private var lastScale = 1.0
     @Binding var pageIndex: Int
     @Binding var currentVertexName: String?
