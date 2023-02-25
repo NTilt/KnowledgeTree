@@ -14,27 +14,36 @@ struct DataBase {
                    descriptionNameOfDirection: "Математическое обеспечение и администрирование информационных систем")
     ]
     
-    private(set) var users: [User] = [
-        Student(name: "Никита",
-                secondName: "Ясеник",
-                thirdName: "Сергеевич",
-                groupNumber: 441,
-                email: "yasenikns@sgu.ru",
-                phone: "89999999999",
-                numberRecordBook: "20192524",
-                directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
-               urlToImage: "yasenikNikita"),
-        
-        Student(name: "Сергей",
-                secondName: "Сергеев",
-                thirdName: "Сергеевич",
-                groupNumber: 121,
-                email: "sergeyaa@sgu.ru",
-                phone: "89999999119",
-                numberRecordBook: "20191232",
-                directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
-               urlToImage: nil),
-        Teacher(name: "Ольга", secondName: "Матвеева", email: "teacher@sgu.ru", phone: "1231123123", experience: 20)
+    private var studentNikita = Student(name: "Никита",
+                                        secondName: "Ясеник",
+                                        thirdName: "Сергеевич",
+                                        groupNumber: 441,
+                                        email: "yasenikns@sgu.ru",
+                                        phone: "89999999999",
+                                        numberRecordBook: "20192524",
+                                        directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
+                                       urlToImage: "yasenikNikita")
+    
+    private var studentSergey = Student(name: "Сергей",
+                                        secondName: "Сергеев",
+                                        thirdName: "Сергеевич",
+                                        groupNumber: 121,
+                                        email: "sergeyaa@sgu.ru",
+                                        phone: "89999999119",
+                                        numberRecordBook: "20191232",
+                                        directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
+                                       urlToImage: nil)
+    
+    private var teacherOlga = Teacher(name: "Ольга", secondName: "Матвеева", email: "teacher@sgu.ru", phone: "1231123123", experience: 20)
+    
+    private lazy var group441 = StudyGroup(groupNumber: 441, students: [self.studentNikita, self.studentSergey])
+    
+    private lazy var programmingSwift = StudyItem(course: courseSwift, teachers: [teacherOlga], listOfGroups: [group441])
+    
+    private lazy var users: [User] = [
+        self.studentNikita,
+        self.studentSergey,
+        self.teacherOlga,
     ]
     
     private(set) var personSecurity: [UserSecurity] = [
@@ -42,11 +51,16 @@ struct DataBase {
         UserSecurity(email: "sergeyaa@sgu.ru", password: "4321", accessLevel: .student),
         UserSecurity(email: "teacher@sgu.ru", password: "12345", accessLevel: .teacher)
     ]
+    
+    private lazy var groups: [StudyGroup] = [
+        group441
+    ]
+    
 }
 
 extension DataBase {
     
-    func getStudentsByGroupNumber(by number: Int) -> [Student] {
+    mutating func getStudentsByGroupNumber(by number: Int) -> [Student] {
         var listOfStudents: [Student] = []
         for user in users {
             if let student = user as? Student {
@@ -80,7 +94,7 @@ extension DataBase {
         return false
     }
     
-    func getUserByEmail(by email: String) -> User? {
+    mutating func getUserByEmail(by email: String) -> User? {
         for user in users {
             if user.getEmail() == email {
                 return user
@@ -132,7 +146,7 @@ extension DataBase {
         
     }
     
-    func studentInBase(student: Student) -> Bool {
+    mutating func studentInBase(student: Student) -> Bool {
         let numberRecordBookNewStudent = student.getNumberRecordBook()
         for studentInBase in users {
             if let student = studentInBase as? Student {
@@ -145,7 +159,7 @@ extension DataBase {
         return false
     }
     
-    func getStudentByRecordBook(by numberRecordBook: String) -> Student? {
+    mutating func getStudentByRecordBook(by numberRecordBook: String) -> Student? {
         for studentInBase in users {
             if let student = studentInBase as? Student {
                 if student.getNumberRecordBook() == numberRecordBook {
