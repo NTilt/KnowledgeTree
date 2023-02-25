@@ -14,7 +14,7 @@ struct DataBase {
                    descriptionNameOfDirection: "Математическое обеспечение и администрирование информационных систем")
     ]
     
-    private(set) var students: [Student] = [
+    private(set) var users: [User] = [
         Student(name: "Никита",
                 secondName: "Ясеник",
                 thirdName: "Сергеевич",
@@ -33,17 +33,30 @@ struct DataBase {
                 phone: "89999999119",
                 numberRecordBook: "20191232",
                 directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
-               urlToImage: nil)
+               urlToImage: nil),
+        Teacher(name: "Ольга", secondName: "Матвеева", email: "teacher@sgu.ru", phone: "1231123123", experience: 20)
     ]
     
     private(set) var personSecurity: [UserSecurity] = [
         UserSecurity(email: "yasenikns@sgu.ru", password: "1234", accessLevel: .student),
         UserSecurity(email: "sergeyaa@sgu.ru", password: "4321", accessLevel: .student),
-        UserSecurity(email: "teacher", password: "12345", accessLevel: .teacher)
+        UserSecurity(email: "teacher@sgu.ru", password: "12345", accessLevel: .teacher)
     ]
 }
 
 extension DataBase {
+    
+    func getStudentsByGroupNumber(by number: Int) -> [Student] {
+        var listOfStudents: [Student] = []
+        for user in users {
+            if let student = user as? Student {
+                if student.getGroupNumber() == number {
+                    listOfStudents.append(student)
+                }
+            }
+        }
+        return listOfStudents
+    }
     
     func getUserAccessLevelBy(email: String) -> AccessLevel {
         for user in personSecurity {
@@ -67,17 +80,8 @@ extension DataBase {
         return false
     }
     
-    func getStudentByEmail(by email: String) -> Student? {
-        for student in students {
-            if student.getEmail() == email {
-                return student
-            }
-        }
-        return nil
-    }
-    
-    func getUserByEmail(by email: String) -> UserSecurity? {
-        for user in personSecurity {
+    func getUserByEmail(by email: String) -> User? {
+        for user in users {
             if user.getEmail() == email {
                 return user
             }
@@ -85,8 +89,13 @@ extension DataBase {
         return nil
     }
     
-    func getAllStudents() -> [Student] {
-        return students
+    func getUserSecurityByEmail(by email: String) -> UserSecurity? {
+        for user in personSecurity {
+            if user.getEmail() == email {
+                return user
+            }
+        }
+        return nil
     }
     
     func getPasswordForUser(for email: String) -> String? {
@@ -119,26 +128,31 @@ extension DataBase {
         guard studentInBase(student: student) == false else {
             return
         }
-        students.append(student)
+        users.append(student)
         
     }
     
     func studentInBase(student: Student) -> Bool {
         let numberRecordBookNewStudent = student.getNumberRecordBook()
-        for studentInBase in students {
-            let numberRecordBookStudentInBase = studentInBase.getNumberRecordBook()
-            if numberRecordBookStudentInBase == numberRecordBookNewStudent {
-                return true
+        for studentInBase in users {
+            if let student = studentInBase as? Student {
+                let numberRecordBookStudentInBase = student.getRecordBook()
+                if numberRecordBookStudentInBase == numberRecordBookNewStudent {
+                    return true
+                }
             }
         }
         return false
     }
     
     func getStudentByRecordBook(by numberRecordBook: String) -> Student? {
-        for studentInBase in students {
-            if studentInBase.getNumberRecordBook() == numberRecordBook {
-                return studentInBase
+        for studentInBase in users {
+            if let student = studentInBase as? Student {
+                if student.getNumberRecordBook() == numberRecordBook {
+                    return student
+                }
             }
+            
         }
         return nil
     }
