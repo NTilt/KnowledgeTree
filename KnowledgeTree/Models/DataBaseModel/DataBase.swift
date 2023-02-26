@@ -27,7 +27,7 @@ struct DataBase {
     private var studentSergey = Student(name: "Сергей",
                                         secondName: "Сергеев",
                                         thirdName: "Сергеевич",
-                                        groupNumber: 121,
+                                        groupNumber: 421,
                                         email: "sergeyaa@sgu.ru",
                                         phone: "89999999119",
                                         numberRecordBook: "20191232",
@@ -36,9 +36,19 @@ struct DataBase {
     
     private var teacherOlga = Teacher(name: "Ольга", secondName: "Матвеева", email: "teacher@sgu.ru", phone: "1231123123", experience: 20)
     
-    private lazy var group441 = StudyGroup(groupNumber: 441, students: [self.studentNikita, self.studentSergey])
+    private lazy var group441 = StudyGroup(groupNumber: 441, students: [self.studentNikita])
+    private lazy var group421 = StudyGroup(groupNumber: 421, students: [self.studentSergey])
     
-    private lazy var programmingSwift = StudyItem(course: courseSwift, teachers: [teacherOlga], listOfGroups: [group441])
+    
+    private lazy var programmingSwift = StudyItem(course: courseSwift, teachers: [teacherOlga], listOfGroups: [group441, group421])
+    private lazy var programmingC = StudyItem(course: courseCplusPlus, teachers: [teacherOlga], listOfGroups: [group421])
+    private lazy var programmingJava = StudyItem(course: courseJava, teachers: [teacherOlga], listOfGroups: [group441])
+    
+    private lazy var studyItems: [StudyItem] = [
+        programmingSwift,
+        programmingC,
+        programmingJava
+    ]
     
     private lazy var users: [User] = [
         self.studentNikita,
@@ -53,12 +63,28 @@ struct DataBase {
     ]
     
     private lazy var groups: [StudyGroup] = [
-        group441
+        group441,
+        group421
     ]
     
 }
 
 extension DataBase {
+    
+    mutating func getGroupNumberByEmail(email: String) -> Int? {
+        for user in users {
+            if let student = user as? Student {
+                if student.getEmail() == email {
+                    return student.getGroupNumber()
+                }
+            }
+        }
+        return nil
+    }
+    
+    mutating func getStudyItems() -> [StudyItem] {
+        return studyItems
+    }
     
     mutating func getStudentsByGroupNumber(by number: Int) -> [Student] {
         var listOfStudents: [Student] = []

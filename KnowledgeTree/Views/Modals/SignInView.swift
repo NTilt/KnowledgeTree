@@ -85,6 +85,7 @@ struct SignInView: View {
                         case .success(_):
                             model.email = email
                             model.accessLevel = authModelView.getUserAccessLevel(by: email)
+                            model.groupNumber = authModelView.getGroupNumberByEmail(by: email)
                             email = ""
                             password = ""
                             isLogged = true

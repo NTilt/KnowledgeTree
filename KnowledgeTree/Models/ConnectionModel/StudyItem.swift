@@ -30,6 +30,10 @@ struct StudyItem: Identifiable {
     func getCourse() -> Course {
         return course
     }
+    
+    func getListOfGroups() -> [StudyGroup] {
+        return listOfGroups
+    }
 }
 
 struct StudyItemModel  {
@@ -67,6 +71,26 @@ struct StudyItemModel  {
             }
         }
         return listOfItems
+    }
+    
+    func getCoursesByGroup(by groupNumber: Int) -> [Course] {
+        var courses: [Course] = []
+        for item in studyItems {
+            if item.getListOfGroups().contains(where: { $0.getGroupNumber() == groupNumber }) {
+                courses.append(item.getCourse())
+            }
+        }
+        return courses
+    }
+    
+    func getCoursesByTeacherEmail(by email: String) -> [Course] {
+        var courses: [Course] = []
+        for item in studyItems {
+            if item.getTeachers().contains(where: {$0.getEmail() == email}) {
+                courses.append(item.getCourse())
+            }
+        }
+        return courses
     }
 }
 

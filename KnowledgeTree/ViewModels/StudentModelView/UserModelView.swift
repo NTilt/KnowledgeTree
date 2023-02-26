@@ -19,6 +19,10 @@ class UserModelView: ObservableObject {
 
 extension UserModelView {
     
+    func getUser() -> User? {
+        return user
+    }
+    
     func getUserName() -> String {
         return user!.getName()
     }

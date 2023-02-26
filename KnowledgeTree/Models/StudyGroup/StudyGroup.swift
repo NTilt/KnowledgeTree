@@ -18,6 +18,10 @@ struct StudyGroup {
         self.students = students
     }
     
+    func getGroupNumber() -> Int {
+        return groupNumber
+    }
+    
 }
 
 //Тут делать подписку на курс, то есть создается CourseProgress для конкретной группы

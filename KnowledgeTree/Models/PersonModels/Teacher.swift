@@ -25,3 +25,9 @@ class Teacher: User {
         super.init(name: name, secondName: secondName, thirdName: thirdName, email: email, phone: phone, address: address, urlToImage: urlToImage)
     }
 }
+
+extension Teacher: Equatable {
+    static func == (lhs: Teacher, rhs: Teacher) -> Bool {
+        return lhs.getEmail() == rhs.getEmail()
+    }
+}
