@@ -10,8 +10,9 @@ import SwiftUI
 struct KnowledgeTreeDocumentView: View {
     
     @ObservedObject var document: KnowledgeTreeDocument
-//    @State var spaceWidth: CGFloat = 5000
-//    @State var spaceHeigth: CGFloat = 5000
+    @ObservedObject var universityDocument = UniversityDocument()
+    @Namespace var namespave
+    @State var show = false
     @State private var steadyZoomScale: CGFloat = 1
     @GestureState private var gestureZoomScale: CGFloat = 1
     var minimumZoomScale: CGFloat = 0
@@ -70,6 +71,9 @@ struct KnowledgeTreeDocumentView: View {
                                     .onLongPressGesture {
                                         currentVertexName = vertexName
                                         pageIndex = 1
+                                    }
+                                    .onTapGesture(count: 2) {
+                                        
                                     }
                             if !vertex.isLocked {
                                 ForEach(vertex.childList, id: \.self) {index in

@@ -8,11 +8,21 @@
 import Foundation
 
 
-struct CourseProgress {
+class CourseProgress {
     private var course: Course
-    private var sectionProgress: [SectionProgress] = []
+    var sectionProgress: [SectionProgress] = []
     
     init(course: Course) {
         self.course = course
+        for section in course.sections {
+            sectionProgress.append(SectionProgress(sectionName: section.title, progress: 0))
+        }
+    }
+}
+
+extension CourseProgress {
+    
+    func getCourse() -> Course {
+        return course
     }
 }

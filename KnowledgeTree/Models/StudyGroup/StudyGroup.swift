@@ -22,6 +22,10 @@ struct StudyGroup {
         return groupNumber
     }
     
+    func getStudents() -> [Student] {
+        return students
+    }
+    
 }
 
 //Тут делать подписку на курс, то есть создается CourseProgress для конкретной группы

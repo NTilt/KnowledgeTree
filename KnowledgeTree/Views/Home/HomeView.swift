@@ -22,8 +22,8 @@ struct HomeView: View {
     
     private var courses: [Course] {
         var courses: [Course] = []
-        if let groupNumber = model.groupNumber {
-            courses.append(contentsOf: universityDocument.getCoursesForGroup(groupNumber: groupNumber))
+        if model.accessLevel == .student {
+            courses.append(contentsOf: universityDocument.getCoursesForStudent(studentEmail: model.email))
         }
         else {
             courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
