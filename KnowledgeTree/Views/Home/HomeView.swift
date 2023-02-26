@@ -18,6 +18,18 @@ struct HomeView: View {
     @State var selectedIndex = 0
     @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
+    @ObservedObject var universityDocument = UniversityDocument()
+    
+    private var courses: [Course] {
+        var courses: [Course] = []
+        if let groupNumber = model.groupNumber {
+            courses.append(contentsOf: universityDocument.getCoursesForGroup(groupNumber: groupNumber))
+        }
+        else {
+            courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
+        }
+        return courses
+    }
     
     var body: some View {
         ZStack {
@@ -40,7 +52,7 @@ struct HomeView: View {
 
                 }
                 else {
-                    ForEach(fullCourses) { course in
+                    ForEach(courses) { course in
                         Rectangle()
                             .fill(.white)
                             .frame(height: 300)
@@ -78,7 +90,7 @@ struct HomeView: View {
     }
     
     var detail: some View {
-        ForEach(fullCourses) { course in
+        ForEach(courses) { course in
             if course.id == selectedID {
                 CourseView(course: course, namespace: namespace, show: $show)
                     .zIndex(1)
@@ -90,7 +102,7 @@ struct HomeView: View {
     }
     
     var cards: some View {
-        ForEach(fullCourses) { course in
+        ForEach(courses) { course in
             CourseItem(course: course, namespace: namespace, show: $show)
                 .onTapGesture {
                     withAnimation(.openCard) {

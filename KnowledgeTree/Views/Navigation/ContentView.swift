@@ -17,6 +17,7 @@ struct ContentView: View {
     @EnvironmentObject var storage: Storage
     
     var body: some View {
+        let userModel = UserModelView(email: appModel.email)
         ZStack(alignment: .bottom) {
             if appModel.accessLevel == .teacher {
                 switch selectedTeacherTab {
@@ -27,7 +28,7 @@ struct ContentView: View {
                 case .rating:
                     HomeView()
                 case .profile:
-                    HomeView()
+                    AccountView(userModel: userModel)
                 }
                 TeacherTabBar()
                     .offset(y: appModel.showDetail ? 200 : 0)
@@ -42,8 +43,7 @@ struct ContentView: View {
                 case .rating:
                     HomeView()
                 case .profile:
-                    let studentModel = StudentModelView(email: appModel.email)
-                    AccountView(studentModel: studentModel)
+                    AccountView(userModel: userModel)
                 }
                 TabBar()
                     .offset(y: appModel.showDetail ? 200 : 0)
