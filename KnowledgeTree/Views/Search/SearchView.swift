@@ -40,13 +40,13 @@ struct SearchView: View {
             .navigationTitle("Поиск")
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $show) {
-                CourseView(course: fullCourses[selectedIndex], namespace: namespace, show: $show)
+                CourseView(course: courses[selectedIndex], namespace: namespace, show: $show)
             }
         }
     }
     
     var content: some View {
-        ForEach(Array(fullCourses.enumerated()), id: \.offset) { index, course in
+        ForEach(Array(courses.enumerated()), id: \.offset) { index, course in
             if course.title.contains(text) || text == "" {
                 if index != 0 { Divider() }
                 Button {
@@ -71,10 +71,9 @@ struct SearchView: View {
                         }
                     }
                     .padding(.vertical, 4)
-                .listRowSeparator(.hidden)
+                    .listRowSeparator(.hidden)
+                }
             }
-            }
-            
         }
     }
 }

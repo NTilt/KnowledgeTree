@@ -68,9 +68,11 @@ extension Student {
     func getGroupNumber() -> Int {
         return groupNumber
     }
-    
-    func getRecordBook() -> String {
-        return numberRecordBook
-    }
-    
 }
+
+extension Student: Equatable {
+    static func == (lhs: Student, rhs: Student) -> Bool {
+        return lhs.getNumberRecordBook() == rhs.getNumberRecordBook()
+    }
+}
+

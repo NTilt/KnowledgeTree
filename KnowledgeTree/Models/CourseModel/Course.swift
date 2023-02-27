@@ -17,6 +17,10 @@ struct Course: Identifiable {
     var icon: String
     var sections: [CourseSection]
     
+    func getID() -> UUID {
+        return id
+    }
+    
 }
 
 extension Course: Equatable {
@@ -27,11 +31,25 @@ extension Course: Equatable {
 
 var courses: [Course] = [
     
-    Course(title: "C# для начинающих", subtitle: "23 модуля - 18 часов", text: "Научитесь создавать простые консольные приложения на языке С++", image: "c#_course", background: "Background 1", icon: "c#_icon", sections: cPlusPlusSections),
-    courseSwift,
     courseCplusPlus,
-    courseJava
+    courseCSharp,
+    courseGeom,
+    courseMath,
+    courseSwift,
+    courseJava,
+    courseDataBase,
+    courseMachineLearning,
 ]
+
+var courseMachineLearning = Course(title: "Машинное обучение и анализ данных", subtitle: "27 модулей - 44 часа", text: "Машинное обучение и анализ данных", image: "machineLearning_course", background: "Background 1", icon: "machineLearning_icon", sections: cPlusPlusSections)
+
+var courseDataBase = Course(title: "Базы данных", subtitle: "14 модулей - 20 часов", text: "Базы данных", image: "database_course", background: "Background 1", icon: "database_icon", sections: cPlusPlusSections)
+
+var courseMath = Course(title: "Математический анализ", subtitle: "35 модулей - 55 часов", text: "Математический анализ", image: "math_course", background: "Background 1", icon: "math_icon", sections: cPlusPlusSections)
+
+var courseGeom = Course(title: "Алгебра и геометрия", subtitle: "40 модулей - 40 часов", text: "Алгебра и геометрия", image: "geom_course", background: "Background 1", icon: "geom_icon", sections: cPlusPlusSections)
+
+var courseCSharp = Course(title: "C# для начинающих", subtitle: "23 модуля - 18 часов", text: "Научитесь создавать простые консольные приложения на языке С++", image: "c#_course", background: "Background 1", icon: "c#_icon", sections: cPlusPlusSections)
 
 var courseJava = Course(title: "Java", subtitle: "14 модулей - 15 часов", text: "Познакомьтесь с языком Java и откройте для себя новые парадигмы программирования", image: "java_course", background: "Background 1", icon: "java_icon", sections: cPlusPlusSections)
 

@@ -13,5 +13,5 @@ import Foundation
 
 struct GroupProgress {
     private var groupNumber: Int
-    private var studentProgress: [StudentProgress]
+    private var studentProgress: [StudentProgress] = []
 }

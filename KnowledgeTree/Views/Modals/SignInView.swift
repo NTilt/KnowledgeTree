@@ -19,6 +19,7 @@ struct SignInView: View {
     @FocusState var focusedField: Field?
     @State var circleY: CGFloat = 150
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var storage: Storage
     @State var showIconPassword = false
     @State var showIconEmail = false
     @ObservedObject private var authModelView = AuthModelView()
@@ -83,9 +84,11 @@ struct SignInView: View {
                         switch result {
                             
                         case .success(_):
+                            let groupNumber = authModelView.getGroupNumberByEmail(by: email)
                             model.email = email
                             model.accessLevel = authModelView.getUserAccessLevel(by: email)
-                            model.groupNumber = authModelView.getGroupNumberByEmail(by: email)
+                            model.groupNumber = groupNumber
+                            storage.groupNumber = groupNumber
                             email = ""
                             password = ""
                             isLogged = true
@@ -180,6 +183,7 @@ struct SignInVIew_Previews: PreviewProvider {
         ZStack {
             SignInView()
                 .environmentObject(AppModel())
+                .environmentObject(Storage())
         }
     }
 }

@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct DataBase {
+class DataBase: ObservableObject {
     
     private(set) var specialities: [Speciality] = [
         Speciality(nameOfDirection: .MathematicalSupportAndAdministrationOfInformationSystems,
                    descriptionNameOfDirection: "Математическое обеспечение и администрирование информационных систем")
     ]
     
-    private var studentNikita = Student(name: "Никита",
+    var studentNikita = Student(name: "Никита",
                                         secondName: "Ясеник",
                                         thirdName: "Сергеевич",
                                         groupNumber: 441,
@@ -24,7 +24,7 @@ struct DataBase {
                                         directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
                                        urlToImage: "yasenikNikita")
     
-    private var studentSergey = Student(name: "Сергей",
+    var studentSergey = Student(name: "Сергей",
                                         secondName: "Сергеев",
                                         thirdName: "Сергеевич",
                                         groupNumber: 421,
@@ -63,15 +63,58 @@ struct DataBase {
     ]
     
     private lazy var groups: [StudyGroup] = [
-        group441,
-        group421
+        self.group441,
+        self.group421
+    ]
+    
+    var fullProgramm: [CourseProgramm] = [
+        CourseProgramm(course: courseCplusPlus,
+                       childCourses: [
+                        courseGeom,
+                        courseCSharp,
+                        courseSwift,
+                        courseJava]),
+        CourseProgramm(course: courseCSharp, childCourses: [courseDataBase], category: .advanced),
+        CourseProgramm(course: courseGeom, childCourses: [courseMath], category: .advanced),
+        CourseProgramm(course: courseMath, childCourses: [courseMachineLearning], category: .advanced),
+        CourseProgramm(course: courseSwift, childCourses: [], category: .advanced),
+        CourseProgramm(course: courseJava, childCourses: [], category: .advanced),
+        CourseProgramm(course: courseDataBase, childCourses: [], category: .advanced),
+        CourseProgramm(course: courseMachineLearning, childCourses: [], category: .advanced),
+        
     ]
     
 }
 
 extension DataBase {
     
-    mutating func getGroupNumberByEmail(email: String) -> Int? {
+    func getCourseFromTitle(title: String) -> [Course] {
+        var courses: [Course] = []
+        for courseProgramm in fullProgramm {
+            if courseProgramm.getCourse().title == title {
+                courses.append(contentsOf: courseProgramm.getChildsCourses())
+            }
+        }
+        return courses
+    }
+    
+    func getProgrammForStudent(student: Student) -> [CourseProgramm] {
+        // тут проверять направление студента и выдавать нужную ему программу
+        // пока что программа для всех одна
+        return fullProgramm
+    }
+    
+    func getStudentsByGroup(by groupNumber: Int) -> [Student] {
+        var students: [Student] = []
+        for group in groups {
+            if group.getGroupNumber() == groupNumber {
+                students.append(contentsOf: group.getStudents())
+            }
+        }
+        return students
+    }
+    
+    func getGroupNumberByEmail(email: String) -> Int? {
         for user in users {
             if let student = user as? Student {
                 if student.getEmail() == email {
@@ -82,11 +125,11 @@ extension DataBase {
         return nil
     }
     
-    mutating func getStudyItems() -> [StudyItem] {
+    func getStudyItems() -> [StudyItem] {
         return studyItems
     }
     
-    mutating func getStudentsByGroupNumber(by number: Int) -> [Student] {
+    func getStudentsByGroupNumber(by number: Int) -> [Student] {
         var listOfStudents: [Student] = []
         for user in users {
             if let student = user as? Student {
@@ -120,7 +163,7 @@ extension DataBase {
         return false
     }
     
-    mutating func getUserByEmail(by email: String) -> User? {
+    func getUserByEmail(by email: String) -> User? {
         for user in users {
             if user.getEmail() == email {
                 return user
@@ -147,7 +190,7 @@ extension DataBase {
         return nil
     }
     
-    mutating func createStudent(
+    func createStudent(
         name: String,
         secondName: String,
         thirdName: String?,
@@ -172,11 +215,11 @@ extension DataBase {
         
     }
     
-    mutating func studentInBase(student: Student) -> Bool {
+    func studentInBase(student: Student) -> Bool {
         let numberRecordBookNewStudent = student.getNumberRecordBook()
         for studentInBase in users {
             if let student = studentInBase as? Student {
-                let numberRecordBookStudentInBase = student.getRecordBook()
+                let numberRecordBookStudentInBase = student.getNumberRecordBook()
                 if numberRecordBookStudentInBase == numberRecordBookNewStudent {
                     return true
                 }
@@ -185,7 +228,7 @@ extension DataBase {
         return false
     }
     
-    mutating func getStudentByRecordBook(by numberRecordBook: String) -> Student? {
+    func getStudentByRecordBook(by numberRecordBook: String) -> Student? {
         for studentInBase in users {
             if let student = studentInBase as? Student {
                 if student.getNumberRecordBook() == numberRecordBook {

@@ -17,6 +17,8 @@ struct ModalView: View {
     @AppStorage("isLogged") var isLogged = false
     
     var body: some View {
+        let userModel = UserModelView(email: model.email)
+        let user = userModel.getUser()
         ZStack {
             Color.clear.background(.regularMaterial)
                 .ignoresSafeArea()
@@ -74,7 +76,12 @@ struct ModalView: View {
             }
         }
         .fullScreenCover(isPresented: $isLogged) {
-            ContentView()
+            if user is Student {
+                StudentContentView(studentDocument: StudentDocument(student: user as! Student))
+            }
+            else {
+                TeacherContentView()
+            }
         }
     }
     

@@ -38,6 +38,7 @@ struct VertexView: View {
             }
             .position(position(for: vertex, in: geometry))
             
+            
         }
     }
     

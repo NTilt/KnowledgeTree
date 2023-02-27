@@ -16,12 +16,32 @@ struct CourseSection : Identifiable {
     var background: String
     var icon: String
     var progress: CGFloat
+    
+    init(title: String, subtitle: String, text: String, image: String, background: String, icon: String, progress: CGFloat) {
+        self.title = title
+        self.subtitle = subtitle
+        self.text = text
+        self.image = image
+        self.background = background
+        self.icon = icon
+        self.progress = progress
+    }
+    
+    init(title: String, subtitle: String, text: String, image: String, background: String, icon: String) {
+        self.title = title
+        self.subtitle = subtitle
+        self.text = text
+        self.image = image
+        self.background = background
+        self.icon = icon
+        self.progress = 0
+    }
 }
 
 var courseSections = [
-    CourseSection(title: "Основы С++", subtitle: "7 разделов - 30 часов", text: "Вы познакомитесь с основными возможностями языка С++", image: "c++_course", background: "Background 1", icon: "c++_icon", progress: 0.2),
-    CourseSection(title: "C# для начинающих", subtitle: "23 модуля - 18 часов", text: "Научитесь создавать простые консольные приложения на языке С++", image: "c#_course", background: "Background 1", icon: "c#_icon", progress: 0.5),
-    CourseSection(title: "Java", subtitle: "14 модулей - 15 часов", text: "Познакомьтесь с языком Java и откройте для себя новые парадигмы программирования", image: "java_course", background: "Background 1", icon: "java_icon", progress: 0.8),
-    CourseSection(title: "SwiftUI", subtitle: "25 модулей - 25 часов", text: "Узнайте, как проектировать мобильные приложения под iOS", image: "swiftui_course", background: "Background 1", icon: "swiftui_icon", progress: 1),
+    CourseSection(title: "Основы С++", subtitle: "7 разделов - 30 часов", text: "Вы познакомитесь с основными возможностями языка С++", image: "c++_course", background: "Background 1", icon: "c++_icon"),
+    CourseSection(title: "C# для начинающих", subtitle: "23 модуля - 18 часов", text: "Научитесь создавать простые консольные приложения на языке С++", image: "c#_course", background: "Background 1", icon: "c#_icon"),
+    CourseSection(title: "Java", subtitle: "14 модулей - 15 часов", text: "Познакомьтесь с языком Java и откройте для себя новые парадигмы программирования", image: "java_course", background: "Background 1", icon: "java_icon"),
+    CourseSection(title: "SwiftUI", subtitle: "25 модулей - 25 часов", text: "Узнайте, как проектировать мобильные приложения под iOS", image: "swiftui_course", background: "Background 1", icon: "swiftui_icon"),
 ]
 
