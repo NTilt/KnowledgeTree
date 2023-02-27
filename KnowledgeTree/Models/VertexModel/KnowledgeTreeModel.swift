@@ -86,7 +86,6 @@ struct KnowledgeTreeModel {
             let vertex = Vertex(isLocked: true, isDraw: isDraw, size: 5, text: titleCourse, id: dict[titleCourse]!, childList: childList)
             vertexes.append(vertex)
             childList = []
-            
         }
     }
     
@@ -137,6 +136,7 @@ struct KnowledgeTreeModel {
     
     
     mutating func linkAll() {
+        self.vertexes = self.vertexes.sorted(by: {$0.id < $1.id})
         for parent in vertexes {
             for ind in parent.childList {
                 for i in 1...vertexes.count {
@@ -203,6 +203,7 @@ struct KnowledgeTreeModel {
     }
     
     func checkLearnedParents(of vertex: Vertex) -> Bool {
+        // проверить тут
         for parentIndex in vertex.parentList {
             let parent = getVertexFromIndex(from: parentIndex)
             if parent!.isLocked {
