@@ -18,18 +18,15 @@ struct StudentHomeView: View {
     @State var selectedIndex = 0
     @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
-    @ObservedObject var universityDocument = UniversityDocument()
+    //@ObservedObject var universityDocument = UniversityDocument()
     @ObservedObject var studentDocument: StudentDocument
     
-    private var courses: [Course] {
-        var courses: [Course] = []
-        if model.accessLevel == .student {
-            courses.append(contentsOf: universityDocument.getCoursesForStudent(studentEmail: model.email))
-        }
-        else {
-            courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
-        }
-        return courses
+    private var openCourses: [Course] {
+        studentDocument.getOpenCourses()
+    }
+    
+    private var allCourses: [Course] {
+        studentDocument.getAllCourses()
     }
     
     var body: some View {
@@ -53,7 +50,7 @@ struct StudentHomeView: View {
 
                 }
                 else {
-                    ForEach(courses) { course in
+                    ForEach(allCourses) { course in
                         Rectangle()
                             .fill(.white)
                             .frame(height: 300)
@@ -91,7 +88,7 @@ struct StudentHomeView: View {
     }
     
     var detail: some View {
-        ForEach(courses) { course in
+        ForEach(allCourses) { course in
             if course.id == selectedID {
                 CourseView(course: course, namespace: namespace, show: $show)
                     .zIndex(1)
@@ -103,7 +100,7 @@ struct StudentHomeView: View {
     }
     
     var cards: some View {
-        ForEach(courses) { course in
+        ForEach(allCourses) { course in
             CourseItem(course: course, namespace: namespace, show: $show)
                 .onTapGesture {
                     withAnimation(.openCard) {
@@ -134,7 +131,7 @@ struct StudentHomeView: View {
     
     var coursesView: some View {
         TabView {
-            ForEach(Array(courses.enumerated()), id: \.offset) { index, course in
+            ForEach(Array(allCourses.enumerated()), id: \.offset) { index, course in
                 GeometryReader { proxy in
                     let minX = proxy.frame(in: .global).minX
                     FeaturedItem(course: course)

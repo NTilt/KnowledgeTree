@@ -31,14 +31,14 @@ extension Course: Equatable {
 
 var courses: [Course] = [
     
-    courseCSharp,
-    courseSwift,
     courseCplusPlus,
-    courseJava,
-    courseMachineLearning,
-    courseDataBase,
+    courseCSharp,
+    courseGeom,
     courseMath,
-    courseGeom
+    courseSwift,
+    courseJava,
+    courseDataBase,
+    courseMachineLearning,
 ]
 
 var courseMachineLearning = Course(title: "Машинное обучение и анализ данных", subtitle: "27 модулей - 44 часа", text: "Машинное обучение и анализ данных", image: "machineLearning_course", background: "Background 1", icon: "machineLearning_icon", sections: cPlusPlusSections)

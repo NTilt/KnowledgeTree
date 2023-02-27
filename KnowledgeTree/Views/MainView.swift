@@ -14,12 +14,7 @@ struct MainView: View {
     
     var body: some View {
         if pageIndex == 0 {
-            KnowledgeTreeDocumentView(document: storage.getSectionByFaculty(by: "КНиИТ"), pageIndex: $pageIndex, currentVertexName: $currentVertexName)
-        }
-        else if pageIndex == 1 {
-            if let name = currentVertexName {
-                NextView(pageIndex: $pageIndex, currentVertexName: name, storage: storage)
-            }
+            KnowledgeTreeDocumentView(document: storage.getSubjectsBySection(by: "МОАИС"), pageIndex: $pageIndex, currentVertexName: $currentVertexName)
         }
     }
 }
