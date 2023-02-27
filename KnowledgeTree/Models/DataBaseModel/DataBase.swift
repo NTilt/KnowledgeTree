@@ -88,6 +88,16 @@ class DataBase: ObservableObject {
 
 extension DataBase {
     
+    func getCourseFromTitle(title: String) -> [Course] {
+        var courses: [Course] = []
+        for courseProgramm in fullProgramm {
+            if courseProgramm.getCourse().title == title {
+                courses.append(contentsOf: courseProgramm.getChildsCourses())
+            }
+        }
+        return courses
+    }
+    
     func getProgrammForStudent(student: Student) -> [CourseProgramm] {
         // тут проверять направление студента и выдавать нужную ему программу
         // пока что программа для всех одна

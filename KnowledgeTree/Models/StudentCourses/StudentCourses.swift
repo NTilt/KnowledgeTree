@@ -33,4 +33,13 @@ extension StudentCourses {
     func getOpenCourses() -> [Course] {
         return openCourses
     }
+    
+    mutating func addOpenCourses(courses: [Course]) {
+        for course in courses {
+            if !openCourses.contains(course) {
+                self.openCourses.append(course)
+            }
+        }
+        
+    }
 }

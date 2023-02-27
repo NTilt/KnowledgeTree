@@ -18,7 +18,7 @@ class StudentDocument: ObservableObject {
         self.student = student
         var allCourses: [Course] = []
         var openCourses: [Course] = []
-        var dataBase = DataBase()
+        let dataBase = DataBase()
         let programmForStudent = dataBase.getProgrammForStudent(student: student)
         
         for courseProgramm in programmForStudent {
@@ -40,6 +40,11 @@ extension StudentDocument {
     
     func getAllCourses() -> [Course] {
         studentCourses.getAllCourses()
+    }
+    
+    func openNewCoursesByTitle(title: String) {
+        let courses = dataBase.getCourseFromTitle(title: title)
+        self.studentCourses.addOpenCourses(courses: courses)
     }
     
 }

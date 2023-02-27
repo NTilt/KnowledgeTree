@@ -19,10 +19,10 @@ struct StudentHomeView: View {
     @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
     //@ObservedObject var universityDocument = UniversityDocument()
-    @ObservedObject var studentDocument: StudentDocument
+    @StateObject var studentDocument: StudentDocument
     
     private var openCourses: [Course] {
-        studentDocument.getOpenCourses()
+        return studentDocument.getOpenCourses()
     }
     
     private var allCourses: [Course] {
@@ -131,7 +131,7 @@ struct StudentHomeView: View {
     
     var coursesView: some View {
         TabView {
-            ForEach(Array(allCourses.enumerated()), id: \.offset) { index, course in
+            ForEach(Array(openCourses.enumerated()), id: \.offset) { index, course in
                 GeometryReader { proxy in
                     let minX = proxy.frame(in: .global).minX
                     FeaturedItem(course: course)

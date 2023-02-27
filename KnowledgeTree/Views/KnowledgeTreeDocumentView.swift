@@ -10,6 +10,7 @@ import SwiftUI
 struct KnowledgeTreeDocumentView: View {
     
     @ObservedObject var document: KnowledgeTreeDocument
+    @ObservedObject var studentDocument: StudentDocument
     @Namespace var namespave
     @State var show = false
     @State private var steadyZoomScale: CGFloat = 1
@@ -65,7 +66,7 @@ struct KnowledgeTreeDocumentView: View {
                                 VertexView(vertex: vertex)
                                     .onTapGesture {
                                         document.action(vertex)
-                                        
+                                        studentDocument.openNewCoursesByTitle(title: vertexName)
                                     }
 //                                    .onLongPressGesture {
 //                                        currentVertexName = vertexName
