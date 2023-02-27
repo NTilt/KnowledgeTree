@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     @State var pageIndex: Int = 0
     @State var currentVertexName: String? = nil
-    @StateObject var storage: Storage
+    @EnvironmentObject var storage: Storage
     
     var body: some View {
         if pageIndex == 0 {

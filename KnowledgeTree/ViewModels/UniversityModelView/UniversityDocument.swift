@@ -24,6 +24,10 @@ class UniversityDocument: ObservableObject {
 
 extension UniversityDocument {
     
+    func getProgramm() -> [CourseProgramm] {
+        dataBase.fullProgramm
+    }
+    
     func getCoursesForGroup(groupNumber: Int) -> [Course] {
         return studyModel.getCoursesByGroup(by: groupNumber)
     }

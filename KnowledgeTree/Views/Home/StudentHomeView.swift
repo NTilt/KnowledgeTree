@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct StudentHomeView: View {
     
     @State var hasScrolled = false
     @Namespace var namespace
@@ -19,6 +19,7 @@ struct HomeView: View {
     @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
     @ObservedObject var universityDocument = UniversityDocument()
+    @ObservedObject var studentDocument: StudentDocument
     
     private var courses: [Course] {
         var courses: [Course] = []
@@ -170,9 +171,9 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct StudentHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        StudentHomeView(studentDocument: StudentDocument(student: DataBase().studentNikita))
             .environmentObject(AppModel())
     }
 }

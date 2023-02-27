@@ -64,8 +64,13 @@ struct NavigationBar: View {
                         .strokeStyle(cornerRadius: 18)
                     }
                     .sheet(isPresented: $showAccount) {
-                        let studentModel = UserModelView(email: appModel.email)
-                        AccountView(userModel: studentModel)
+                        let userModel = UserModelView(email: appModel.email)
+                        if appModel.getAccessLevel() == .student {
+                            StudentAccountView(userModel: userModel)
+                        }
+                        else {
+                            TeacherAccountView(userModel: userModel)
+                        }
                     }
             }
             .frame(maxWidth: .infinity, alignment: .trailing)

@@ -12,23 +12,23 @@ struct ContentView: View {
     @AppStorage("selectedTeacherTab") var selectedTeacherTab: TeacherTab = .home
     @AppStorage("showModal") var showModal = false
     @EnvironmentObject var appModel: AppModel
-    @State var pageIndex: Int = 0
-    @State var currentVertexName: String? = nil
     @EnvironmentObject var storage: Storage
+    @EnvironmentObject var dataBase: DataBase
     
     var body: some View {
         let userModel = UserModelView(email: appModel.email)
+        let user = userModel.getUser()
         ZStack(alignment: .bottom) {
             if appModel.accessLevel == .teacher {
                 switch selectedTeacherTab {
                 case .home:
-                    HomeView()
+                    TeacherHomeView()
                 case .edit:
-                    HomeView()
+                    TeacherHomeView()
                 case .rating:
-                    HomeView()
+                    TeacherHomeView()
                 case .profile:
-                    AccountView(userModel: userModel)
+                    TeacherAccountView(userModel: userModel)
                 }
                 TeacherTabBar()
                     .offset(y: appModel.showDetail ? 200 : 0)
@@ -37,13 +37,13 @@ struct ContentView: View {
             else {
                 switch selectedTab {
                 case .home:
-                    HomeView()
+                    StudentHomeView(studentDocument: StudentDocument(student: user as! Student))
                 case .study:
-                    MainView(storage: storage)
+                    MainView()
                 case .rating:
-                    HomeView()
+                    StudentHomeView(studentDocument: StudentDocument(student: user as! Student))
                 case .profile:
-                    AccountView(userModel: userModel)
+                    StudentAccountView(userModel: userModel)
                 }
                 TabBar()
                     .offset(y: appModel.showDetail ? 200 : 0)

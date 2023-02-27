@@ -11,18 +11,42 @@ import Foundation
 class Storage: ObservableObject {
     
     // String - название предмета, Document - список лекций у этого предмета
-    @Published var lectionStorage: [String: KnowledgeTreeDocument] = [:]
+    @Published var sectionStorage: [String: KnowledgeTreeDocument] = [:]
     
     // String - Название направления, Document - список предметов на направлении
-    @Published var sectionStorage: [String: KnowledgeTreeDocument] = [:]
+    @Published var courseStorage: [String: KnowledgeTreeDocument] = [:]
     
     //String - Название факультета, Document - список направлений на факультете
     @Published var facultyStorage: [String: KnowledgeTreeDocument] = [:]
     
+    @Published var groupNumber: Int? = 441
+    
+    private var universityModel = UniversityDocument()
+    
     init() {
-        lectionStorage = createLectionStorage()
+        sectionStorage = createLectionStorage()
         facultyStorage = createFacultyStorage()
-        sectionStorage = createSectionStorage()
+        courseStorage = createDocumentFromProgramm()
+    }
+    
+    func createDocumentFromProgramm() -> [String: KnowledgeTreeDocument] {
+        let programm = universityModel.getProgramm()
+        var storage: [String: KnowledgeTreeDocument] = [:]
+        var model = KnowledgeTreeModel()
+        model.createVertexesFromProgramm(programm: programm)
+        let document = KnowledgeTreeDocument(model)
+        storage["МОАИС"] = document
+        return storage
+    }
+    
+    func createCoursesFromGroup(from group: Int) -> [String: KnowledgeTreeDocument] {
+        var storage: [String: KnowledgeTreeDocument] = [:]
+        let courses = universityModel.getCoursesForGroup(groupNumber: group)
+        var model = KnowledgeTreeModel()
+        model.createVertexesFromCourses(courses: courses)
+        let document = KnowledgeTreeDocument(model)
+        storage["МОАИС"] = document
+        return storage
     }
     
     func createLectionStorage() -> [String: KnowledgeTreeDocument] {
@@ -85,7 +109,7 @@ class Storage: ObservableObject {
     }
     
     func getLectionByCourse(by course: String) -> KnowledgeTreeDocument {
-        return lectionStorage[course]!
+        return sectionStorage[course]!
     }
     
     func getSectionByFaculty(by faculty: String) -> KnowledgeTreeDocument {
@@ -93,7 +117,7 @@ class Storage: ObservableObject {
     }
     
     func getSubjectsBySection(by section: String) -> KnowledgeTreeDocument {
-        return sectionStorage[section]!
+        return courseStorage[section]!
     }
     
     func update() {

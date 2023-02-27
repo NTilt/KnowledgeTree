@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ProgressDataBase {
+class ProgressDataBase: ObservableObject {
     var dataBase = DataBase()
     private lazy var studentsProgress: [StudentProgress] = [
         StudentProgress(student: dataBase.studentNikita, courseProgress: [
@@ -26,7 +26,7 @@ struct ProgressDataBase {
 
 extension ProgressDataBase {
     
-    mutating func getStudentProgress(student: Student) -> StudentProgress? {
+    func getStudentProgress(student: Student) -> StudentProgress? {
         for progress in studentsProgress {
             if progress.getStudent() == student {
                 return progress
@@ -35,7 +35,7 @@ extension ProgressDataBase {
         return nil
     }
     
-    mutating func getProgressByStudentEmail(email: String) -> StudentProgress? {
+    func getProgressByStudentEmail(email: String) -> StudentProgress? {
         for progress in studentsProgress {
             if progress.getStudent().getEmail() == email {
                 return progress

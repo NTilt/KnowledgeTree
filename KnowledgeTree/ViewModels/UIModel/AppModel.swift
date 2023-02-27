@@ -20,6 +20,10 @@ extension AppModel {
     func setGroupNumber(number: Int) {
         groupNumber = number
     }
+    
+    func getAccessLevel() -> AccessLevel {
+        return accessLevel
+    }
 }
 
 

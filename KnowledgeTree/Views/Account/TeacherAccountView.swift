@@ -1,5 +1,5 @@
 //
-//  AccountView.swift
+//  TeacherAccountView.swift
 //  KnowledgeTree
 //
 //  Created by Никита Ясеник on 20.02.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AccountView: View {
+struct TeacherAccountView: View {
     @AppStorage("isLogged") var isLogged = true
     var userModel: UserModelView
     @Environment(\.dismiss) var dismiss
@@ -77,7 +77,7 @@ struct AccountView: View {
     
     var menu: some View {
         Section {
-            NavigationLink(destination: HomeView()) {
+            NavigationLink(destination: TeacherHomeView()) {
                 Label("Настройки", systemImage: "gear")
             }
             Label("Помощь", systemImage: "questionmark")
@@ -102,9 +102,10 @@ struct AccountView: View {
     }
 }
 
-struct AccountView_Previews: PreviewProvider {
+struct TeacherAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountView(userModel: UserModelView(email: "yasenikns@sgu.ru"))
+        TeacherAccountView(userModel: UserModelView(email: "yasenikns@sgu.ru"))
     }
 }
+
 
