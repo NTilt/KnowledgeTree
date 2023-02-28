@@ -12,7 +12,6 @@ class StudentDocument: ObservableObject {
     @Published var student: Student
     @Published private(set) var studentCourses: StudentCourses
     @Published private(set) var dataBase = DataBase()
-    @Published private(set) var progressDataBase = ProgressDataBase()
     
     init(student: Student) {
         self.student = student

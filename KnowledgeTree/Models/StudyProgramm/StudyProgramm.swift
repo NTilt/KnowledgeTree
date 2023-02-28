@@ -33,7 +33,7 @@ extension StudyProgramm {
         return courseProgramm.getCourse()
     }
     
-    func getSections() -> [CourseSection] {
+    func getAllSections() -> [CourseSection] {
         return courseProgramm.getCourse().sections
     }
 }

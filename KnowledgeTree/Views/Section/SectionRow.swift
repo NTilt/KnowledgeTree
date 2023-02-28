@@ -13,6 +13,7 @@ struct SectionRow: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
+            //Image(systemName: "lock.circle")
             Image(section.icon)
                 .resizable()
                 .frame(width: 36, height: 36)

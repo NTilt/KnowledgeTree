@@ -133,7 +133,6 @@ struct StudentHomeView: View {
         TabView {
             ForEach(Array(openCourses.enumerated()), id: \.offset) { index, course in
                 GeometryReader { proxy in
-                    let title = course.title
                     let minX = proxy.frame(in: .global).minX
                     FeaturedItem(course: course)
                         .padding(.vertical, 40)
@@ -167,11 +166,6 @@ struct StudentHomeView: View {
                 .frame(width: 700, height: 600)
                 .offset(x: 300, y: -50)
         )
-        .sheet(isPresented: $showCourse) {
-            if let course = studentDocument.getOpenCourseByTitle(title: currentCourseTitle) {
-                CourseView(course: course, namespace: namespace, show: $showCourse)
-            }
-        }
     }
 }
 

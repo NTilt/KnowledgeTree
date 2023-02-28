@@ -22,12 +22,7 @@ struct TeacherHomeView: View {
     
     private var courses: [Course] {
         var courses: [Course] = []
-        if model.accessLevel == .student {
-            courses.append(contentsOf: universityDocument.getCoursesForStudent(studentEmail: model.email))
-        }
-        else {
-            courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
-        }
+        courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
         return courses
     }
     
