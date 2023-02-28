@@ -17,6 +17,7 @@ class StudentDocument: ObservableObject {
         self.student = student
         var allCourses: [Course] = []
         var openCourses: [Course] = []
+        var sectionsProgress: [StudentSectionProgress] = []
         let dataBase = DataBase()
         let programmForStudent = dataBase.getProgrammForStudent(student: student)
         
@@ -27,11 +28,31 @@ class StudentDocument: ObservableObject {
             }
         }
         
-        self.studentCourses = StudentCourses(student: student, allCourses: allCourses, openCourses: openCourses)
+        for course in openCourses {
+            var openSectionsForCourse: [CourseSection] = []
+            if let sections = dataBase.getSectionProgrammsByCourse(course: course) {
+                for item in sections {
+                    if item.getSectionCategory() == .base {
+                        openSectionsForCourse.append(item.getSection())
+                    }
+                }
+            }
+            let item = StudentSectionProgress(course: course, openSections: openSectionsForCourse)
+            sectionsProgress.append(item)
+        }
+        self.studentCourses = StudentCourses(student: student, allCourses: allCourses, openCourses: openCourses, sectionProgress: sectionsProgress)
     }
 }
 
 extension StudentDocument {
+    
+    func isSectionOpenForCourse(for course: Course, section: CourseSection) -> Bool {
+        studentCourses.isSectionOpenForCourse(for: course, section: section)
+    }
+    
+    func getSectionProgress() -> [StudentSectionProgress] {
+        studentCourses.getSectionProgress()
+    }
     
     func getOpenCourses() -> [Course] {
         studentCourses.getOpenCourses()

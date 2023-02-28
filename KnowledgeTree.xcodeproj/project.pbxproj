@@ -17,6 +17,7 @@
 		111FDB36299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FDB35299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift */; };
 		11388AC429ADE10A00F1FC70 /* SectionProgramm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11388AC329ADE10A00F1FC70 /* SectionProgramm.swift */; };
 		11388AC729ADE2AC00F1FC70 /* StudyProgramm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11388AC629ADE2AC00F1FC70 /* StudyProgramm.swift */; };
+		11388ACD29AE125C00F1FC70 /* StudentSectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11388ACC29AE125C00F1FC70 /* StudentSectionProgress.swift */; };
 		1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE129813A7500BD2FFE /* LaunchView.swift */; };
 		1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180E13B29A738E200577003 /* TeacherTabBar.swift */; };
 		118F2B4029A3B40400FAFF9C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B3F29A3B40400FAFF9C /* SectionView.swift */; };
@@ -91,6 +92,7 @@
 		111FDB35299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeTreeErrors.swift; sourceTree = "<group>"; };
 		11388AC329ADE10A00F1FC70 /* SectionProgramm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgramm.swift; sourceTree = "<group>"; };
 		11388AC629ADE2AC00F1FC70 /* StudyProgramm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyProgramm.swift; sourceTree = "<group>"; };
+		11388ACC29AE125C00F1FC70 /* StudentSectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSectionProgress.swift; sourceTree = "<group>"; };
 		1156DFE02981391500BD2FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1156DFE129813A7500BD2FFE /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		1180E13B29A738E200577003 /* TeacherTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabBar.swift; sourceTree = "<group>"; };
@@ -270,6 +272,14 @@
 			path = Vertex;
 			sourceTree = "<group>";
 		};
+		11388ACB29AE121600F1FC70 /* StudentProgress */ = {
+			isa = PBXGroup;
+			children = (
+				11388ACC29AE125C00F1FC70 /* StudentSectionProgress.swift */,
+			);
+			path = StudentProgress;
+			sourceTree = "<group>";
+		};
 		118F2B3E29A3B3F300FAFF9C /* Section */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +416,7 @@
 		11B5B84A29241A07009CC3D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				11388ACB29AE121600F1FC70 /* StudentProgress */,
 				11388AC529ADE27500F1FC70 /* StudyProgramm */,
 				11A9AE5729ACC2DF00733E99 /* StudentCourses */,
 				11FABBD229A79B33005FE9C7 /* StudyGroup */,
@@ -666,6 +677,7 @@
 				118F2B4E29A3B61D00FAFF9C /* SignUpView.swift in Sources */,
 				118F2B4029A3B40400FAFF9C /* SectionView.swift in Sources */,
 				118F2B4529A3B55B00FAFF9C /* StudentAccountView.swift in Sources */,
+				11388ACD29AE125C00F1FC70 /* StudentSectionProgress.swift in Sources */,
 				118F2B6029A3B81C00FAFF9C /* Tab.swift in Sources */,
 				118F2B8329A3C04C00FAFF9C /* CourseItem.swift in Sources */,
 				11B5B85A29241D8F009CC3D4 /* RightSector.swift in Sources */,

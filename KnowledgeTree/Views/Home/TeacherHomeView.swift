@@ -22,7 +22,7 @@ struct TeacherHomeView: View {
     
     private var courses: [Course] {
         var courses: [Course] = []
-        courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
+//        courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
         return courses
     }
     
@@ -62,12 +62,12 @@ struct TeacherHomeView: View {
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)
             })
-            .overlay {
-                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled)
-            }
-            if show {
-                detail
-            }
+//            .overlay {
+//                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled)
+//            }
+//            if show {
+//                detail
+//            }
             
         }
         .statusBarHidden(!showStatusBar)
@@ -84,17 +84,17 @@ struct TeacherHomeView: View {
         }
     }
     
-    var detail: some View {
-        ForEach(courses) { course in
-            if course.id == selectedID {
-                CourseView(course: course, namespace: namespace, show: $show)
-                    .zIndex(1)
-                    .transition(.asymmetric(
-                        insertion: .opacity.animation(.easeInOut(duration: 0.1)),
-                    removal: .opacity.animation(.easeInOut(duration: 0.3).delay(0.2))))
-            }
-        }
-    }
+//    var detail: some View {
+//        ForEach(courses) { course in
+//            if course.id == selectedID {
+//                CourseView(course: course, namespace: namespace, show: $show)
+//                    .zIndex(1)
+//                    .transition(.asymmetric(
+//                        insertion: .opacity.animation(.easeInOut(duration: 0.1)),
+//                    removal: .opacity.animation(.easeInOut(duration: 0.3).delay(0.2))))
+//            }
+//        }
+//    }
     
     var cards: some View {
         ForEach(courses) { course in
@@ -159,9 +159,9 @@ struct TeacherHomeView: View {
                 .frame(width: 700, height: 600)
                 .offset(x: 300, y: -50)
         )
-        .sheet(isPresented: $showCourse) {
-            CourseView(course: courses[selectedIndex], namespace: namespace, show: $showCourse)
-        }
+//        .sheet(isPresented: $showCourse) {
+//            CourseView(course: courses[selectedIndex], namespace: namespace, show: $showCourse)
+//        }
     }
 }
 

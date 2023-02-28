@@ -38,6 +38,14 @@ struct CourseSection : Identifiable {
     }
 }
 
+
+extension CourseSection: Equatable {
+    static func == (lhs: CourseSection, rhs: CourseSection) -> Bool {
+        return lhs.title == rhs.title
+    }
+}
+
+
 var courseSections = [
     CourseSection(title: "Основы С++", subtitle: "7 разделов - 30 часов", text: "Вы познакомитесь с основными возможностями языка С++", image: "c++_course", background: "Background 1", icon: "c++_icon"),
     CourseSection(title: "C# для начинающих", subtitle: "23 модуля - 18 часов", text: "Научитесь создавать простые консольные приложения на языке С++", image: "c#_course", background: "Background 1", icon: "c#_icon"),

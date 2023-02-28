@@ -66,7 +66,7 @@ struct StudentHomeView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay {
-                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled)
+                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, studentDocument: studentDocument)
             }
             if show {
                 detail
@@ -90,7 +90,7 @@ struct StudentHomeView: View {
     var detail: some View {
         ForEach(allCourses) { course in
             if course.id == selectedID {
-                CourseView(course: course, namespace: namespace, show: $show)
+                CourseView(course: course, namespace: namespace, show: $show, studentDocument: studentDocument)
                     .zIndex(1)
                     .transition(.asymmetric(
                         insertion: .opacity.animation(.easeInOut(duration: 0.1)),

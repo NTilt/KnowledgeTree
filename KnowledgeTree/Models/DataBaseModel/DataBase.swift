@@ -89,6 +89,15 @@ class DataBase: ObservableObject {
 
 extension DataBase {
     
+    func getSectionProgrammsByCourse(course: Course) -> [SectionProgramm]? {
+        for item in fullProgramm {
+            if item.getCourse() == course {
+                return item.getSectionProgramms()
+            }
+        }
+        return nil
+    }
+    
     func getCourseFromTitle(title: String) -> [Course] {
         var courses: [Course] = []
         for courseProgramm in fullProgramm {
