@@ -24,6 +24,19 @@ struct Course: Identifiable {
     
 }
 
+extension Course {
+    
+    func getSectionByTitle(title: String) -> CourseSection? {
+        for section in sections {
+            if section.title == title {
+                return section
+            }
+        }
+        return nil
+    }
+    
+}
+
 extension Course: Equatable {
     static func == (lhs: Course, rhs: Course) -> Bool {
         return lhs.title == rhs.title

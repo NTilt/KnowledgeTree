@@ -46,6 +46,19 @@ class StudentDocument: ObservableObject {
 
 extension StudentDocument {
     
+    func openNewSectionsByTitle(courseTitle: String, sectionTitle: String) {
+        if let course = dataBase.getCourseByTitle(title: courseTitle) {
+            if let sectionProgramm = dataBase.getSectionProgrammsByCourse(course: course) {
+                for item in sectionProgramm {
+                    if item.getSection().title == sectionTitle {
+                        studentCourses.openSectionForCourse(course: course, sections: item.getChildsSections())
+                    }
+                }
+                
+            }
+        }
+    }
+    
     func isSectionOpenForCourse(for course: Course, section: CourseSection) -> Bool {
         studentCourses.isSectionOpenForCourse(for: course, section: section)
     }
@@ -63,8 +76,20 @@ extension StudentDocument {
     }
     
     func openNewCoursesByTitle(title: String) {
-        let courses = dataBase.getCourseFromTitle(title: title)
+        let courses = dataBase.getChildsCourseFromTitle(title: title)
         self.studentCourses.addOpenCourses(courses: courses)
+        // тут надо добавлять сразу лекции которые доступны изначально
+        for course in courses {
+            var openSectionsForCourse: [CourseSection] = []
+            if let sections = dataBase.getSectionProgrammsByCourse(course: course) {
+                for item in sections {
+                    if item.getSectionCategory() == .base {
+                        openSectionsForCourse.append(item.getSection())
+                    }
+                }
+            }
+            self.studentCourses.addSectionProgress(course: course, sections: openSectionsForCourse)
+        }
     }
     
     func getOpenCourseByTitle(title: String) -> Course? {

@@ -18,7 +18,7 @@ struct MainView: View {
         case 0:
             CourseKnowledgeSpaceView(document: storage.getSubjectsBySection(by: "МОАИС"), studentDocument: studentDocument, pageIndex: $pageIndex, currentVertexName: $currentVertexName)
         case 1:
-            SectionKnowledgeSpaceView(pageIndex: $pageIndex, currentVertexName: currentVertexName!, document: storage.getSectionByCourseTitle(by: currentVertexName!))
+            SectionKnowledgeSpaceView(pageIndex: $pageIndex, currentVertexName: currentVertexName!, document: storage.getSectionByCourseTitle(by: currentVertexName!), studentDocument: studentDocument)
         default:
             Color.clear
         }

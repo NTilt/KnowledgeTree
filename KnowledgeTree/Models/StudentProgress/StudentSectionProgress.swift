@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct StudentSectionProgress {
+class StudentSectionProgress: ObservableObject {
     
     private var course: Course
     private var openSections: [CourseSection]
@@ -20,6 +20,10 @@ struct StudentSectionProgress {
 }
 
 extension StudentSectionProgress {
+    
+    func addSectionToOpen(section: CourseSection) {
+        openSections.append(section)
+    }
     
     func getCourse() -> Course {
         return course

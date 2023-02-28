@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct StudentCourses {
+class StudentCourses: ObservableObject {
     
     private var student: Student
     private var allCourses: [Course]
     private var openCourses: [Course]
-    private var sectionProgress: [StudentSectionProgress]
+    @Published var sectionProgress: [StudentSectionProgress]
     
     init(student: Student, allCourses: [Course], openCourses: [Course], sectionProgress: [StudentSectionProgress]) {
         self.student = student
@@ -23,6 +23,21 @@ struct StudentCourses {
 }
 
 extension StudentCourses {
+    
+    func addSectionProgress(course: Course, sections: [CourseSection]) {
+        sectionProgress.append(StudentSectionProgress(course: course, openSections: sections))
+    }
+    
+    func openSectionForCourse(course: Course, sections: [CourseSection]) {
+        for item in sectionProgress {
+            if item.getCourse() == course {
+                for section in sections {
+                    item.addSectionToOpen(section: section)
+                }
+                
+            }
+        }
+    }
     
     func isSectionOpenForCourse(for course: Course, section: CourseSection) -> Bool {
         for item in sectionProgress {
@@ -53,7 +68,7 @@ extension StudentCourses {
         return openCourses
     }
     
-    mutating func addOpenCourses(courses: [Course]) {
+    func addOpenCourses(courses: [Course]) {
         for course in courses {
             if !openCourses.contains(course) {
                 self.openCourses.append(course)

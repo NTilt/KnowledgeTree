@@ -23,6 +23,7 @@ struct SectionKnowledgeSpaceView: View {
     @State var stateVertexOffset = CGSize.zero
     @GestureState var gestureVertexOffset = CGSize.zero
     @StateObject var document: KnowledgeTreeDocument
+    @StateObject var studentDocument: StudentDocument
     
     var body: some View {
         GeometryReader { reader in
@@ -47,6 +48,7 @@ struct SectionKnowledgeSpaceView: View {
                                 VertexView(vertex: vertex)
                                     .onTapGesture {
                                         document.action(vertex)
+                                        studentDocument.openNewSectionsByTitle(courseTitle: currentVertexName, sectionTitle: vertex.text)
                                     }.onLongPressGesture {
                                         pageIndex = pageIndex - 1
                                     }
