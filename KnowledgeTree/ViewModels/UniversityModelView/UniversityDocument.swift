@@ -24,8 +24,22 @@ class UniversityDocument: ObservableObject {
 
 extension UniversityDocument {
     
-    func getProgramm() -> [CourseProgramm] {
-        dataBase.fullProgramm
+    func getCourseProgramm() -> [CourseProgramm] {
+        var courseProgramm: [CourseProgramm] = []
+        for item in dataBase.fullProgramm {
+            courseProgramm.append(item.getCourseProgramm())
+        }
+        return courseProgramm
+    }
+    
+    func getSectionProgrammByCourseTitle(by title: String) -> [SectionProgramm] {
+        var sectionProgramm: [SectionProgramm] = []
+        for item in dataBase.fullProgramm {
+            if item.getCourse().title == title {
+                sectionProgramm.append(contentsOf: item.getSectionProgramms())
+            }
+        }
+        return sectionProgramm
     }
     
     func getCoursesForGroup(groupNumber: Int) -> [Course] {

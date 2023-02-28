@@ -63,7 +63,33 @@ struct KnowledgeTreeModel {
         vertexes.append(vertex)
     }
     
-    mutating func createVertexesFromProgramm(programm: [CourseProgramm]) {
+    mutating func createVertexesFromSectionProgramm(programm: [SectionProgramm]) {
+        var dict: [String: Int] = [:]
+        var index: Int = 0
+        for item in programm {
+            let titleSection = item.getSection().title
+            let isDraw = index == 0 ? true : false
+            var childList: [Int] = []
+            if dict[titleSection] == nil {
+                dict[titleSection] = index
+            }
+            for child in item.getChildsSections() {
+                if dict[child.title] == nil {
+                    index += 1
+                    dict[child.title] = index
+                    childList.append(index)
+                }
+                else {
+                    childList.append(dict[child.title]!)
+                }
+            }
+            let vertex = Vertex(isLocked: true, isDraw: isDraw, size: 5, text: titleSection, id: dict[titleSection]!, childList: childList)
+            vertexes.append(vertex)
+            childList = []
+        }
+    }
+    
+    mutating func createVertexesFromCourseProgramm(programm: [CourseProgramm]) {
         var dict: [String: Int] = [:]
         var index: Int = 0
         for item in programm {

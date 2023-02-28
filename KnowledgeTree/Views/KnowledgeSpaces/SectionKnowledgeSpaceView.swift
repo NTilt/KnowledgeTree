@@ -1,38 +1,35 @@
 //
-//  KnowledgeTreeDocumentView.swift
+//  NextView.swift
 //  KnowledgeTree
 //
-//  Created by Никита Ясеник on 15.11.2022.
+//  Created by Никита Ясеник on 13.01.2023.
 //
 
 import SwiftUI
 
-struct KnowledgeTreeDocumentView: View {
-    
-    @ObservedObject var document: KnowledgeTreeDocument
-    @ObservedObject var studentDocument: StudentDocument
-    @Namespace var namespave
-    @State var show = false
+struct SectionKnowledgeSpaceView: View {
+    @Binding var pageIndex: Int
+//    @State var spaceWidth: CGFloat = 5000
+//    @State var spaceHeight: CGFloat = 5000
     @State private var steadyZoomScale: CGFloat = 1
     @GestureState private var gestureZoomScale: CGFloat = 1
     var minimumZoomScale: CGFloat = 0
     var maximumZoomScale: CGFloat = 1.5
+    var currentVertexName: String
     private let minScale = 0.3
     private let maxScale = 1.0
     @AppStorage("scale") var scale = 1.0
     @State private var lastScale = 1.0
-    @Binding var pageIndex: Int
-    @Binding var currentVertexName: String?
     @State var stateVertexOffset = CGSize.zero
     @GestureState var gestureVertexOffset = CGSize.zero
-    
+    @StateObject var document: KnowledgeTreeDocument
     
     var body: some View {
         GeometryReader { reader in
             ZStack {
                 Color("Background")
                     .ignoresSafeArea()
-                knowledgeSpace
+                directionSpace
                     .position(position(in: reader))
                     .scaleEffect(scale)
             }
@@ -40,64 +37,47 @@ struct KnowledgeTreeDocumentView: View {
         }
         
     }
-    
-    
-//    var body: some View {
-//        ScrollView ([.horizontal, .vertical]) {
-//            ZStack {
-//                Color("Background")
-//                    //.ignoresSafeArea()
-//                knowledgeSpace
-//
-//                .scaleEffect(zoomScale)
-//                    //.frame(width: spaceWidth, height: spaceHeigth)
-//            }
-//            //.frame(width: spaceWidth, height: spaceHeigth)
-//            .gesture(zoomGesture())
-//        }
-//    }
-    
-    var knowledgeSpace: some View {
-        GeometryReader { reader in
+        
+        var directionSpace: some View {
+            GeometryReader { directionReader in
                 ZStack {
-                    ForEach(document.vertexes) { vertex in
-                        let vertexName = vertex.text
-                        if vertex.isDraw {
+                    if let document = document {
+                        ForEach(document.vertexes) { vertex in
+                            if vertex.isDraw {
                                 VertexView(vertex: vertex)
                                     .onTapGesture {
                                         document.action(vertex)
-                                        studentDocument.openNewCoursesByTitle(title: vertexName)
+                                    }.onLongPressGesture {
+                                        pageIndex = pageIndex - 1
                                     }
-//                                    .onLongPressGesture {
-//                                        currentVertexName = vertexName
-//                                        pageIndex = 1
-//                                    }
-                            if !vertex.isLocked {
-                                ForEach(vertex.childList, id: \.self) {index in
-                                    let vertexTo = document.getVertexFromIndex(from: index)
-                                    if vertexTo!.isDraw {
-                                        if vertex.location != nil {
-                                            let path = Path { path in
-                                                var vertexFromX = vertex.location!.0 + 5
-                                                var vertexFromY = vertex.location!.1 + 15
-                                                var vertexToX = (vertexTo?.location!.0)! - 1
-                                                var vertexToY = (vertexTo?.location!.1)! + 15
-                                                let quarter = getGeometricQuarter(vertex.location!, (vertexToX, vertexToY))
-                                                (vertexFromX, vertexFromY, vertexToX, vertexToY) = getCoordinates((vertexFromX, vertexFromY), (vertexToX, vertexToY), quarter)
-                                                path.move(to: convertVertexCoordinates((vertexFromX, vertexFromY), in: reader))
-                                                path.addLine(to: convertVertexCoordinates((vertexToX, vertexToY), in: reader))
-                                                        path.closeSubpath()
+                                if !vertex.isLocked {
+                                    ForEach(vertex.childList, id: \.self) {index in
+                                        let vertexTo = document.getVertexFromIndex(from: index)
+                                        if vertexTo!.isDraw {
+                                            if vertex.location != nil {
+                                                let path = Path { path in
+                                                    var vertexFromX = vertex.location!.0 + 5
+                                                    var vertexFromY = vertex.location!.1 + 15
+                                                    var vertexToX = (vertexTo?.location!.0)! - 1
+                                                    var vertexToY = (vertexTo?.location!.1)! + 15
+                                                    let quarter = getGeometricQuarter(vertex.location!, (vertexToX, vertexToY))
+                                                    (vertexFromX, vertexFromY, vertexToX, vertexToY) = getCoordinates((vertexFromX, vertexFromY), (vertexToX, vertexToY), quarter)
+                                                    path.move(to: convertVertexCoordinates((vertexFromX, vertexFromY), in: directionReader))
+                                                    path.addLine(to: convertVertexCoordinates((vertexToX, vertexToY), in: directionReader))
+                                                            path.closeSubpath()
+                                                }
+                                                path.fill(Color.red).overlay(path.stroke(Color.green.opacity(0.3), lineWidth: 10))
                                             }
-                                            path.fill(Color.red).overlay(path.stroke(Color.green.opacity(0.3), lineWidth: 10))
                                         }
                                     }
                                 }
                             }
                         }
+
                     }
+                }
             }
         }
-    }
     
     func getMinimumScaleAllowed() -> CGFloat {
         return max(scale, minScale)
@@ -174,5 +154,4 @@ struct KnowledgeTreeDocumentView: View {
         )
     }
 }
-
 

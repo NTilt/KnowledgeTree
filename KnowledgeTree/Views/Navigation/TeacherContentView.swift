@@ -17,7 +17,6 @@ struct TeacherContentView: View {
     
     var body: some View {
         let userModel = UserModelView(email: appModel.email)
-        let user = userModel.getUser()
         ZStack(alignment: .bottom) {
                 switch selectedTeacherTab {
                 case .home:

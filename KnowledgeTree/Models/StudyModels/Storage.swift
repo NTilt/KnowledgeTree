@@ -24,18 +24,29 @@ class Storage: ObservableObject {
     private var universityModel = UniversityDocument()
     
     init() {
-        sectionStorage = createLectionStorage()
+        sectionStorage = createSectionStorageForAllCourses()
         facultyStorage = createFacultyStorage()
         courseStorage = createDocumentFromProgramm()
     }
     
     func createDocumentFromProgramm() -> [String: KnowledgeTreeDocument] {
-        let programm = universityModel.getProgramm()
+        let programm = universityModel.getCourseProgramm()
         var storage: [String: KnowledgeTreeDocument] = [:]
         var model = KnowledgeTreeModel()
-        model.createVertexesFromProgramm(programm: programm)
+        model.createVertexesFromCourseProgramm(programm: programm)
         let document = KnowledgeTreeDocument(model)
         storage["МОАИС"] = document
+        return storage
+    }
+    
+    func createSectionStorageForAllCourses() -> [String: KnowledgeTreeDocument] {
+        var storage: [String: KnowledgeTreeDocument] = [:]
+        let courseProgramm = universityModel.getCourseProgramm()
+        for course in courseProgramm {
+            let courseTitle = course.getCourse().title
+            let document = createSectionsByCourseTitle(by: courseTitle)
+            storage[courseTitle] = document
+        }
         return storage
     }
     
@@ -108,8 +119,8 @@ class Storage: ObservableObject {
         return storage
     }
     
-    func getLectionByCourse(by course: String) -> KnowledgeTreeDocument {
-        return sectionStorage[course]!
+    func getSectionByCourseTitle(by title: String) -> KnowledgeTreeDocument {
+        return sectionStorage[title]!
     }
     
     func getSectionByFaculty(by faculty: String) -> KnowledgeTreeDocument {
@@ -118,6 +129,14 @@ class Storage: ObservableObject {
     
     func getSubjectsBySection(by section: String) -> KnowledgeTreeDocument {
         return courseStorage[section]!
+    }
+    
+    private func createSectionsByCourseTitle(by title: String) -> KnowledgeTreeDocument {
+        
+        let sectionProgramm = universityModel.getSectionProgrammByCourseTitle(by: title)
+        var model = KnowledgeTreeModel()
+        model.createVertexesFromSectionProgramm(programm: sectionProgramm)
+        return KnowledgeTreeDocument(model)
     }
     
     func update() {
