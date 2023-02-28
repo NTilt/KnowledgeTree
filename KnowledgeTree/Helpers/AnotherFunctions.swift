@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//тут в будущем исправить хард код
 func getLevel(count countDots: Int, _ magnification: Int) -> Int {
     if magnification == 3 {
         if countDots <= 11 {
@@ -31,7 +32,7 @@ func getLevel(count countDots: Int, _ magnification: Int) -> Int {
             return 3
         }
     }
-    print("НАПОМИНАЛКА ЧТО ХАРКОД!")
+    //print("НАПОМИНАЛКА ЧТО ХАРКОД!")
     return 1
 }
 

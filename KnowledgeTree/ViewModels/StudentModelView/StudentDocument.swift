@@ -47,4 +47,13 @@ extension StudentDocument {
         self.studentCourses.addOpenCourses(courses: courses)
     }
     
+    func getOpenCourseByTitle(title: String) -> Course? {
+        for item in getOpenCourses() {
+            if item.title == title {
+                return item
+            }
+        }
+        return nil
+    }
+    
 }
