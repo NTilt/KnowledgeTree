@@ -137,7 +137,7 @@ struct StudentHomeView: View {
                     FeaturedItem(course: course)
                         .padding(.vertical, 40)
                         .rotation3DEffect(.degrees(minX / -10), axis: (x: 1, y: 1, z: 0))
-                        .shadow(color: .green.opacity(isLiteMode ? 0 : 0.3), radius: 10, x: 0, y: 10)
+                        .shadow(color: .green.opacity(isLiteMode ? 0.3 : 0), radius: 10, x: 0, y: 10)
                         .blur(radius: abs(minX) / 40)
                         .overlay(
                             Image(course.image)

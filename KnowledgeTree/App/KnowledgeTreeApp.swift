@@ -18,8 +18,6 @@ struct KnowledgeTreeApp: App {
                 .environmentObject(model)
                 .environmentObject(storage)
                 .environmentObject(dataBase)
-//            ContentView()
-//                .environmentObject(model)
         }
     }
 }

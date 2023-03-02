@@ -18,6 +18,10 @@
 		11388AC429ADE10A00F1FC70 /* SectionProgramm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11388AC329ADE10A00F1FC70 /* SectionProgramm.swift */; };
 		11388AC729ADE2AC00F1FC70 /* StudyProgramm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11388AC629ADE2AC00F1FC70 /* StudyProgramm.swift */; };
 		11388ACD29AE125C00F1FC70 /* StudentSectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11388ACC29AE125C00F1FC70 /* StudentSectionProgress.swift */; };
+		1139B97929AF9A5800E29F1A /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139B97829AF9A5800E29F1A /* TestView.swift */; };
+		1139B97C29B084D700E29F1A /* TestCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139B97B29B084D700E29F1A /* TestCellView.swift */; };
+		1139B97E29B094B400E29F1A /* ButtonNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139B97D29B094B400E29F1A /* ButtonNext.swift */; };
+		1139B98029B09AFB00E29F1A /* ButtonBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139B97F29B09AFA00E29F1A /* ButtonBack.swift */; };
 		1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE129813A7500BD2FFE /* LaunchView.swift */; };
 		1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180E13B29A738E200577003 /* TeacherTabBar.swift */; };
 		118F2B4029A3B40400FAFF9C /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B3F29A3B40400FAFF9C /* SectionView.swift */; };
@@ -93,6 +97,10 @@
 		11388AC329ADE10A00F1FC70 /* SectionProgramm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProgramm.swift; sourceTree = "<group>"; };
 		11388AC629ADE2AC00F1FC70 /* StudyProgramm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyProgramm.swift; sourceTree = "<group>"; };
 		11388ACC29AE125C00F1FC70 /* StudentSectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSectionProgress.swift; sourceTree = "<group>"; };
+		1139B97829AF9A5800E29F1A /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		1139B97B29B084D700E29F1A /* TestCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellView.swift; sourceTree = "<group>"; };
+		1139B97D29B094B400E29F1A /* ButtonNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNext.swift; sourceTree = "<group>"; };
+		1139B97F29B09AFA00E29F1A /* ButtonBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBack.swift; sourceTree = "<group>"; };
 		1156DFE02981391500BD2FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1156DFE129813A7500BD2FFE /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		1180E13B29A738E200577003 /* TeacherTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabBar.swift; sourceTree = "<group>"; };
@@ -280,6 +288,25 @@
 			path = StudentProgress;
 			sourceTree = "<group>";
 		};
+		1139B97729AF9A3000E29F1A /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				1139B97A29B084B500E29F1A /* Components */,
+				1139B97829AF9A5800E29F1A /* TestView.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		1139B97A29B084B500E29F1A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1139B97B29B084D700E29F1A /* TestCellView.swift */,
+				1139B97D29B094B400E29F1A /* ButtonNext.swift */,
+				1139B97F29B09AFA00E29F1A /* ButtonBack.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		118F2B3E29A3B3F300FAFF9C /* Section */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +464,7 @@
 		11B5B84C29241A55009CC3D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1139B97729AF9A3000E29F1A /* Test */,
 				11388ACA29ADF4D600F1FC70 /* Vertex */,
 				11388AC829ADF45100F1FC70 /* KnowledgeSpaces */,
 				118F2B8B29A3C0AD00FAFF9C /* Navigation */,
@@ -640,6 +668,7 @@
 				11B5B86829241F7D009CC3D4 /* CourseKnowledgeSpaceView.swift in Sources */,
 				11A9AE5C29ACC4C300733E99 /* StudentDocument.swift in Sources */,
 				1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */,
+				1139B98029B09AFB00E29F1A /* ButtonBack.swift in Sources */,
 				11FABBD429A79B41005FE9C7 /* StudyGroup.swift in Sources */,
 				118F2B9129A3C0AD00FAFF9C /* StudentContentView.swift in Sources */,
 				11B5B85C29241DBC009CC3D4 /* Square.swift in Sources */,
@@ -665,6 +694,7 @@
 				11388AC429ADE10A00F1FC70 /* SectionProgramm.swift in Sources */,
 				118F2B4B29A3B5E600FAFF9C /* SearchView.swift in Sources */,
 				118F2B5929A3B77800FAFF9C /* Animations.swift in Sources */,
+				1139B97C29B084D700E29F1A /* TestCellView.swift in Sources */,
 				11FABBCC29A73ED1005FE9C7 /* User.swift in Sources */,
 				11B5B86429241EAE009CC3D4 /* AnotherFunctions.swift in Sources */,
 				118F2B5529A3B74B00FAFF9C /* Styles.swift in Sources */,
@@ -681,6 +711,7 @@
 				118F2B6029A3B81C00FAFF9C /* Tab.swift in Sources */,
 				118F2B8329A3C04C00FAFF9C /* CourseItem.swift in Sources */,
 				11B5B85A29241D8F009CC3D4 /* RightSector.swift in Sources */,
+				1139B97E29B094B400E29F1A /* ButtonNext.swift in Sources */,
 				118F2B8A29A3C09400FAFF9C /* CircularView.swift in Sources */,
 				11A9AE6229AD097500733E99 /* TeacherContentView.swift in Sources */,
 				11B5B86029241E08009CC3D4 /* LeftSector.swift in Sources */,
@@ -692,6 +723,7 @@
 				11E78FE8299B92BD00DBC344 /* Speciality.swift in Sources */,
 				111FDB2B299CFFA50013F9D7 /* UserSecurity.swift in Sources */,
 				11B5B86C292420CC009CC3D4 /* KnowledgeSpace.swift in Sources */,
+				1139B97929AF9A5800E29F1A /* TestView.swift in Sources */,
 				118F2B6529A3B85F00FAFF9C /* Course.swift in Sources */,
 				11B5B85829241D65009CC3D4 /* Location.swift in Sources */,
 				11B5B86229241E28009CC3D4 /* UpperSector.swift in Sources */,
