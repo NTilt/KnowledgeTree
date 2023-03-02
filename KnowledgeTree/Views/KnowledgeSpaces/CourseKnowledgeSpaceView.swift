@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct KnowledgeTreeDocumentView: View {
+struct CourseKnowledgeSpaceView: View {
     
     @ObservedObject var document: KnowledgeTreeDocument
     @ObservedObject var studentDocument: StudentDocument
@@ -68,10 +68,10 @@ struct KnowledgeTreeDocumentView: View {
                                         document.action(vertex)
                                         studentDocument.openNewCoursesByTitle(title: vertexName)
                                     }
-//                                    .onLongPressGesture {
-//                                        currentVertexName = vertexName
-//                                        pageIndex = 1
-//                                    }
+                                    .onLongPressGesture {
+                                        currentVertexName = vertexName
+                                        pageIndex = 1
+                                    }
                             if !vertex.isLocked {
                                 ForEach(vertex.childList, id: \.self) {index in
                                     let vertexTo = document.getVertexFromIndex(from: index)

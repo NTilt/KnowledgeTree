@@ -67,20 +67,21 @@ class DataBase: ObservableObject {
         self.group421
     ]
     
-    var fullProgramm: [CourseProgramm] = [
-        CourseProgramm(course: courseCplusPlus,
-                       childCourses: [
-                        courseGeom,
-                        courseCSharp,
-                        courseSwift,
-                        courseJava]),
-        CourseProgramm(course: courseCSharp, childCourses: [courseDataBase], category: .advanced),
-        CourseProgramm(course: courseGeom, childCourses: [courseMath], category: .advanced),
-        CourseProgramm(course: courseMath, childCourses: [courseMachineLearning], category: .advanced),
-        CourseProgramm(course: courseSwift, childCourses: [], category: .advanced),
-        CourseProgramm(course: courseJava, childCourses: [], category: .advanced),
-        CourseProgramm(course: courseDataBase, childCourses: [], category: .advanced),
-        CourseProgramm(course: courseMachineLearning, childCourses: [], category: .advanced),
+    var fullProgramm: [StudyProgramm] = [
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseCplusPlus,
+                                                     childCourses: [
+                                                      courseGeom,
+                                                      courseCSharp,
+                                                      courseSwift,
+                                                      courseJava]),
+                      sectionProgramm: sectionProgramm),
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseCSharp, childCourses: [courseDataBase], category: .advanced), sectionProgramm: sectionProgramm),
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseGeom, childCourses: [courseMath], category: .advanced), sectionProgramm: sectionProgramm),
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseMath, childCourses: [courseMachineLearning], category: .advanced), sectionProgramm: sectionProgramm),
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseSwift, childCourses: [], category: .advanced), sectionProgramm: sectionProgramm),
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseJava, childCourses: [], category: .advanced), sectionProgramm: sectionProgramm),
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseDataBase, childCourses: [], category: .advanced), sectionProgramm: sectionProgramm),
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseMachineLearning, childCourses: [], category: .advanced), sectionProgramm: sectionProgramm)
         
     ]
     
@@ -88,11 +89,29 @@ class DataBase: ObservableObject {
 
 extension DataBase {
     
-    func getCourseFromTitle(title: String) -> [Course] {
+    func getCourseByTitle(title: String) -> Course? {
+        for item in fullProgramm {
+            if item.getCourse().title == title {
+                return item.getCourse()
+            }
+        }
+        return nil
+    }
+    
+    func getSectionProgrammsByCourse(course: Course) -> [SectionProgramm]? {
+        for item in fullProgramm {
+            if item.getCourse() == course {
+                return item.getSectionProgramms()
+            }
+        }
+        return nil
+    }
+    
+    func getChildsCourseFromTitle(title: String) -> [Course] {
         var courses: [Course] = []
         for courseProgramm in fullProgramm {
             if courseProgramm.getCourse().title == title {
-                courses.append(contentsOf: courseProgramm.getChildsCourses())
+                courses.append(contentsOf: courseProgramm.getCourseProgramm().getChildsCourses())
             }
         }
         return courses
@@ -101,7 +120,11 @@ extension DataBase {
     func getProgrammForStudent(student: Student) -> [CourseProgramm] {
         // тут проверять направление студента и выдавать нужную ему программу
         // пока что программа для всех одна
-        return fullProgramm
+        var courseProgramm: [CourseProgramm] = []
+        for item in fullProgramm {
+            courseProgramm.append(item.getCourseProgramm())
+        }
+        return courseProgramm
     }
     
     func getStudentsByGroup(by groupNumber: Int) -> [Student] {

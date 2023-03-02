@@ -12,7 +12,6 @@ class UniversityDocument: ObservableObject {
     
     @Published private(set) var studyModel: StudyItemModel
     @Published private(set) var dataBase = DataBase()
-    private(set) var progressDataBase = ProgressDataBase()
     
     init() {
         studyModel = StudyItemModel()
@@ -24,8 +23,22 @@ class UniversityDocument: ObservableObject {
 
 extension UniversityDocument {
     
-    func getProgramm() -> [CourseProgramm] {
-        dataBase.fullProgramm
+    func getCourseProgramm() -> [CourseProgramm] {
+        var courseProgramm: [CourseProgramm] = []
+        for item in dataBase.fullProgramm {
+            courseProgramm.append(item.getCourseProgramm())
+        }
+        return courseProgramm
+    }
+    
+    func getSectionProgrammByCourseTitle(by title: String) -> [SectionProgramm] {
+        var sectionProgramm: [SectionProgramm] = []
+        for item in dataBase.fullProgramm {
+            if item.getCourse().title == title {
+                sectionProgramm.append(contentsOf: item.getSectionProgramms())
+            }
+        }
+        return sectionProgramm
     }
     
     func getCoursesForGroup(groupNumber: Int) -> [Course] {
@@ -34,15 +47,5 @@ extension UniversityDocument {
     
     func getCoursesForTeacher(teacherEmail: String) -> [Course] {
         return studyModel.getCoursesByTeacherEmail(by: teacherEmail)
-    }
-    
-    func getCoursesForStudent(studentEmail: String) -> [Course] {
-        var courses: [Course] = []
-        if let studentProgress = progressDataBase.getProgressByStudentEmail(email: studentEmail) {
-            for courseProgress in studentProgress.getCourseProgress() {
-                courses.append(courseProgress.getCourse())
-            }
-        }
-        return courses
     }
 }

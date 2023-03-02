@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NextView: View {
+struct SectionKnowledgeSpaceView: View {
     @Binding var pageIndex: Int
 //    @State var spaceWidth: CGFloat = 5000
 //    @State var spaceHeight: CGFloat = 5000
@@ -22,7 +22,8 @@ struct NextView: View {
     @State private var lastScale = 1.0
     @State var stateVertexOffset = CGSize.zero
     @GestureState var gestureVertexOffset = CGSize.zero
-    @StateObject var storage: Storage
+    @StateObject var document: KnowledgeTreeDocument
+    @StateObject var studentDocument: StudentDocument
     
     var body: some View {
         GeometryReader { reader in
@@ -41,16 +42,15 @@ struct NextView: View {
         var directionSpace: some View {
             GeometryReader { directionReader in
                 ZStack {
-                    if let document = storage.getSubjectsBySection(by: currentVertexName) {
+                    if let document = document {
                         ForEach(document.vertexes) { vertex in
                             if vertex.isDraw {
                                 VertexView(vertex: vertex)
                                     .onTapGesture {
                                         document.action(vertex)
-                                        storage.update()
+                                        studentDocument.openNewSectionsByTitle(courseTitle: currentVertexName, sectionTitle: vertex.text)
                                     }.onLongPressGesture {
                                         pageIndex = pageIndex - 1
-                                        
                                     }
                                 if !vertex.isLocked {
                                     ForEach(vertex.childList, id: \.self) {index in

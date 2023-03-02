@@ -16,9 +16,9 @@ struct StudentHomeView: View {
     @State var selectedID = UUID()
     @State var showCourse = false
     @State var selectedIndex = 0
+    @State var currentCourseTitle = ""
     @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
-    //@ObservedObject var universityDocument = UniversityDocument()
     @StateObject var studentDocument: StudentDocument
     
     private var openCourses: [Course] {
@@ -66,7 +66,7 @@ struct StudentHomeView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay {
-                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled)
+                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, studentDocument: studentDocument)
             }
             if show {
                 detail
@@ -90,7 +90,7 @@ struct StudentHomeView: View {
     var detail: some View {
         ForEach(allCourses) { course in
             if course.id == selectedID {
-                CourseView(course: course, namespace: namespace, show: $show)
+                CourseView(course: course, namespace: namespace, show: $show, studentDocument: studentDocument)
                     .zIndex(1)
                     .transition(.asymmetric(
                         insertion: .opacity.animation(.easeInOut(duration: 0.1)),
@@ -137,7 +137,7 @@ struct StudentHomeView: View {
                     FeaturedItem(course: course)
                         .padding(.vertical, 40)
                         .rotation3DEffect(.degrees(minX / -10), axis: (x: 1, y: 1, z: 0))
-                        .shadow(color: .green.opacity(isLiteMode ? 0 : 0.3), radius: 10, x: 0, y: 10)
+                        .shadow(color: .green.opacity(isLiteMode ? 0.3 : 0), radius: 10, x: 0, y: 10)
                         .blur(radius: abs(minX) / 40)
                         .overlay(
                             Image(course.image)
@@ -148,9 +148,13 @@ struct StudentHomeView: View {
                                 .offset(x: minX / 2)
                         )
                         .onTapGesture {
-                            showCourse = true
-                            selectedIndex = index
-                        }
+                            withAnimation(.spring()) {
+                                show.toggle()
+                                model.showDetail.toggle()
+                                showStatusBar = false
+                                selectedID = course.id
+                            }
+                    }
                 }
             }
         }
@@ -162,9 +166,6 @@ struct StudentHomeView: View {
                 .frame(width: 700, height: 600)
                 .offset(x: 300, y: -50)
         )
-        .sheet(isPresented: $showCourse) {
-            CourseView(course: courses[selectedIndex], namespace: namespace, show: $showCourse)
-        }
     }
 }
 

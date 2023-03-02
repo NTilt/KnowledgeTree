@@ -82,7 +82,6 @@ struct SignInView: View {
                 Button {
                     authModelView.signIn(inputEmail: email, inputPassword: password) { (result) in
                         switch result {
-                            
                         case .success(_):
                             let groupNumber = authModelView.getGroupNumberByEmail(by: email)
                             model.email = email

@@ -17,6 +17,7 @@ struct CourseView: View {
     @State var viewState: CGSize = .zero
     @State var isDraggable = true
     @State var showSection = false
+    @StateObject var studentDocument: StudentDocument
     
     
     
@@ -117,11 +118,14 @@ struct CourseView: View {
         VStack(alignment: .leading) {
             ForEach(Array(course.sections.enumerated()), id: \.offset) { index, section in
                 if index != 0 { Divider() }
-                
-                SectionRow(section: section)
+                let isOpen = studentDocument.isSectionOpenForCourse(for: course, section: section)
+                SectionRow(section: section, isOpen: isOpen)
                     .onTapGesture {
-                        showSection = true
-                        sectionIndex = index
+                        if isOpen {
+                            
+                            showSection = true
+                            sectionIndex = index
+                        }
                     }
             }
         }
@@ -170,7 +174,7 @@ struct CourseView: View {
                     .offset(y: scrollY > 0 ? scrollY * -0.8 : 0)
             )
             .background(
-                Image("sectionBackground")
+                Image(course.sectionImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .matchedGeometryEffect(id: "background\(course.id)", in: namespace)
@@ -238,7 +242,7 @@ struct CourseView: View {
 struct CourseView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        CourseView(course: fullCourses[0], namespace: namespace, show: .constant(true))
+        CourseView(course: fullCourses[0], namespace: namespace, show: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita))
             .environmentObject(AppModel())
     }
 }

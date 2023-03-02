@@ -12,12 +12,12 @@ class StudentDocument: ObservableObject {
     @Published var student: Student
     @Published private(set) var studentCourses: StudentCourses
     @Published private(set) var dataBase = DataBase()
-    @Published private(set) var progressDataBase = ProgressDataBase()
     
     init(student: Student) {
         self.student = student
         var allCourses: [Course] = []
         var openCourses: [Course] = []
+        var sectionsProgress: [StudentSectionProgress] = []
         let dataBase = DataBase()
         let programmForStudent = dataBase.getProgrammForStudent(student: student)
         
@@ -28,11 +28,44 @@ class StudentDocument: ObservableObject {
             }
         }
         
-        self.studentCourses = StudentCourses(student: student, allCourses: allCourses, openCourses: openCourses)
+        for course in openCourses {
+            var openSectionsForCourse: [CourseSection] = []
+            if let sections = dataBase.getSectionProgrammsByCourse(course: course) {
+                for item in sections {
+                    if item.getSectionCategory() == .base {
+                        openSectionsForCourse.append(item.getSection())
+                    }
+                }
+            }
+            let item = StudentSectionProgress(course: course, openSections: openSectionsForCourse)
+            sectionsProgress.append(item)
+        }
+        self.studentCourses = StudentCourses(student: student, allCourses: allCourses, openCourses: openCourses, sectionProgress: sectionsProgress)
     }
 }
 
 extension StudentDocument {
+    
+    func openNewSectionsByTitle(courseTitle: String, sectionTitle: String) {
+        if let course = dataBase.getCourseByTitle(title: courseTitle) {
+            if let sectionProgramm = dataBase.getSectionProgrammsByCourse(course: course) {
+                for item in sectionProgramm {
+                    if item.getSection().title == sectionTitle {
+                        studentCourses.openSectionForCourse(course: course, sections: item.getChildsSections())
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    func isSectionOpenForCourse(for course: Course, section: CourseSection) -> Bool {
+        studentCourses.isSectionOpenForCourse(for: course, section: section)
+    }
+    
+    func getSectionProgress() -> [StudentSectionProgress] {
+        studentCourses.getSectionProgress()
+    }
     
     func getOpenCourses() -> [Course] {
         studentCourses.getOpenCourses()
@@ -43,8 +76,29 @@ extension StudentDocument {
     }
     
     func openNewCoursesByTitle(title: String) {
-        let courses = dataBase.getCourseFromTitle(title: title)
+        let courses = dataBase.getChildsCourseFromTitle(title: title)
         self.studentCourses.addOpenCourses(courses: courses)
+        // тут надо добавлять сразу лекции которые доступны изначально
+        for course in courses {
+            var openSectionsForCourse: [CourseSection] = []
+            if let sections = dataBase.getSectionProgrammsByCourse(course: course) {
+                for item in sections {
+                    if item.getSectionCategory() == .base {
+                        openSectionsForCourse.append(item.getSection())
+                    }
+                }
+            }
+            self.studentCourses.addSectionProgress(course: course, sections: openSectionsForCourse)
+        }
+    }
+    
+    func getOpenCourseByTitle(title: String) -> Course? {
+        for item in getOpenCourses() {
+            if item.title == title {
+                return item
+            }
+        }
+        return nil
     }
     
 }
