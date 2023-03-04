@@ -8,36 +8,68 @@
 import SwiftUI
 
 struct ActivitiesView: View {
+    
+    @State var hasScrolled = false
+    @State var lection: Bool = false
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
             ScrollView {
+                scrollDetection
                 lectionSections
                     .padding([.top], 40)
             }
+            
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)
             })
-            .overlay(NavigationBar(title: "Активность", hasScrolled: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita)))
-            .background(Image("Blob2").offset(x: 200, y: -600))
-            
+            .overlay(content: {
+                ActivityNavigationBar(hasScrolled: $hasScrolled)
+            })
         }
         
     }
     
     var lectionSections: some View {
         LazyVGrid(columns: columns, spacing: 40) {
-            ForEach(lections) { lection in
-                LectionItem(lection: lection)
+            ForEach(activities) { activity in
+                ActivityItem(activity: activity)
+                    .onTapGesture {
+                        switch activity.type {
+                        case .lection:
+                            lection = true
+                        case .laboratoryWork:
+                            lection = true
+                        case .testWork:
+                            lection = true
+                        case .practice:
+                            lection = true
+                        }
+                    }
             }
         }
-//        VStack(alignment: .leading, spacing: 56) {
-//            HStack(alignment: .top, spacing: 16) {
-//                LectionItem(lection: lections[0])
-//                LectionItem(lection: lections[1])
-//            }
-//        }
+        .sheet(isPresented: $lection) {
+            TestView()
+        }
+    }
+    
+    var scrollDetection: some View {
+        GeometryReader { proxy in
+            Color.clear.preference(key: ScrollPreferenceKey.self, value: proxy.frame(in: .named("scroll")).minY)
+        }
+        .frame(height: 0)
+        .onPreferenceChange(ScrollPreferenceKey.self, perform: { value in
+            withAnimation(.easeInOut) {
+                if value < 0 {
+                    hasScrolled = true
+                } else {
+                    hasScrolled = false
+                }
+            }
+        })
     }
 }
 

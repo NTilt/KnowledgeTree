@@ -132,8 +132,9 @@ struct CourseView: View {
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
         .strokeStyle(cornerRadius: 30)
         .padding(20)
-        .sheet(isPresented: $showSection) {
-            SectionView(section: courseSections[sectionIndex])
+        .fullScreenCover(isPresented: $showSection) {
+            ActivitiesView()
+            //SectionView(section: courseSections[sectionIndex])
         }
     }
     
