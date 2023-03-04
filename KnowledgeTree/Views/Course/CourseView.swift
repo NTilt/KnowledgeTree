@@ -10,7 +10,7 @@ import SwiftUI
 struct CourseView: View {
     var course: Course
     var namespace: Namespace.ID
-    @State var sectionIndex = 0
+    @State var section = cPlusPlusSections[0]
     @Binding var show: Bool
     @State var appear = [false, false, false]
     @EnvironmentObject var model: AppModel
@@ -22,38 +22,40 @@ struct CourseView: View {
     
     
     var body: some View {
-        ZStack {
-            ScrollView {
-                cover
+        NavigationView {
+            ZStack {
+                ScrollView {
+                    cover
+                    
+                    content
+                        .offset(y: 120)
+                        .padding(.bottom, 200)
+                        .opacity(appear[2] ? 1 : 0)
+                }
+                .coordinateSpace(name: "scroll")
+                .onAppear {
+                    model.showDetail = true
+                }
+//                .onDisappear {
+//                    model.showDetail = false
+//                }
+                .background(Color("Background"))
+                .mask(RoundedRectangle(cornerRadius: viewState.width / 3, style: .continuous))
+                .shadow(color: .black.opacity(0.3), radius: 30, x: 0, y: 10)
+                .scaleEffect(viewState.width / -500 + 1)
+                .background(.black.opacity(viewState.width / 500))
+                .background(.ultraThinMaterial)
+                .gesture(isDraggable ? drag : nil)
+                .ignoresSafeArea()
                 
-                content
-                    .offset(y: 120)
-                    .padding(.bottom, 200)
-                    .opacity(appear[2] ? 1 : 0)
+                button
             }
-            .coordinateSpace(name: "scroll")
             .onAppear {
-                model.showDetail = true
+                fadeIn()
             }
-            .onDisappear {
-                model.showDetail = false
+            .onChange(of: show) { newValue in
+                fadeOut()
             }
-            .background(Color("Background"))
-            .mask(RoundedRectangle(cornerRadius: viewState.width / 3, style: .continuous))
-            .shadow(color: .black.opacity(0.3), radius: 30, x: 0, y: 10)
-            .scaleEffect(viewState.width / -500 + 1)
-            .background(.black.opacity(viewState.width / 500))
-            .background(.ultraThinMaterial)
-            .gesture(isDraggable ? drag : nil)
-            .ignoresSafeArea()
-            
-            button
-        }
-        .onAppear {
-            fadeIn()
-        }
-        .onChange(of: show) { newValue in
-            fadeOut()
         }
     }
     
@@ -119,22 +121,23 @@ struct CourseView: View {
             ForEach(Array(course.sections.enumerated()), id: \.offset) { index, section in
                 if index != 0 { Divider() }
                 let isOpen = studentDocument.isSectionOpenForCourse(for: course, section: section)
-                SectionRow(section: section, isOpen: isOpen)
-                    .onTapGesture {
-                        if isOpen {
-                            
-                            showSection = true
-                            sectionIndex = index
-                        }
-                    }
+                SectionRow(section: section, isOpen: isOpen, studentDocument: studentDocument)
+//                    .onTapGesture {
+//                        if isOpen {
+//                            self.section = section
+//                            showSection = true
+//                            model.currentSectionTitle = section.title
+//                        }
+//                    }
             }
         }
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
         .strokeStyle(cornerRadius: 30)
         .padding(20)
-        .sheet(isPresented: $showSection) {
-            SectionView(section: courseSections[sectionIndex])
-        }
+//        .fullScreenCover(isPresented: $showSection) {
+//            ActivitiesView(studentDocument: studentDocument)
+//            //SectionView(section: courseSections[sectionIndex])
+//        }
     }
     
     var button: some View {

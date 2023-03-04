@@ -11,6 +11,9 @@ struct SectionRow: View {
     
     var section: CourseSection = courseSections[0]
     var isOpen: Bool
+    @State private var isActive = false
+    @ObservedObject var studentDocument: StudentDocument
+    @EnvironmentObject var model: AppModel
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
@@ -53,12 +56,23 @@ struct SectionRow: View {
             }
         }
         .padding(20)
+        .onTapGesture {
+            if isOpen {
+                isActive = true
+                model.currentSectionTitle = section.title
+            }
+        }
+        .background(
+            NavigationLink(destination: ActivitiesView(studentDocument: studentDocument), isActive: $isActive, label: {
+                EmptyView()
+            })
+        )
     }
 }
 
 struct SectionRow_Previews: PreviewProvider {
     static var previews: some View {
-        SectionRow(isOpen: true)
+        SectionRow(isOpen: true, studentDocument: StudentDocument(student: DataBase().studentNikita))
     }
 }
 

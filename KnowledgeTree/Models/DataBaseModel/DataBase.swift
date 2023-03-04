@@ -89,6 +89,18 @@ class DataBase: ObservableObject {
 
 extension DataBase {
     
+//    func getActivitiesBySectionTitle(courseTitle: String, sectiontitle: String) -> [ActivityType] {
+//        var activities: [ActivityType] = []
+//        guard let course = getCourseByTitle(title: courseTitle) else {return activities}
+//        guard let sections = getSectionProgrammsByCourse(course: course) else {return activities}
+//        for item in sections {
+//            if item.getSection().title == sectiontitle {
+//                activities.append(contentsOf: item.getActivities())
+//            }
+//        }
+//        return activities
+//    }
+    
     func getCourseByTitle(title: String) -> Course? {
         for item in fullProgramm {
             if item.getCourse().title == title {

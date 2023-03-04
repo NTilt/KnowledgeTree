@@ -46,6 +46,14 @@ class StudentDocument: ObservableObject {
 
 extension StudentDocument {
     
+    func getActivities(courseTitle: String, sectionTitle: String) -> [ActivityType] {
+        return studentCourses.getActivities(courseTitle: courseTitle, sectionTitle: sectionTitle)
+    }
+    
+    func doneActivity(courseTitle: String, sectionTitle: String, activityTitle: String) {
+        studentCourses.doneActivity(courseTitle: courseTitle, sectionTitle: sectionTitle, activityTitle: activityTitle)
+    }
+    
     func openNewSectionsByTitle(courseTitle: String, sectionTitle: String) {
         if let course = dataBase.getCourseByTitle(title: courseTitle) {
             if let sectionProgramm = dataBase.getSectionProgrammsByCourse(course: course) {

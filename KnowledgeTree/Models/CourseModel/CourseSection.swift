@@ -16,6 +16,7 @@ struct CourseSection : Identifiable {
     var background: String
     var icon: String
     var progress: CGFloat
+    var activities: [ActivityType] = []
     
     init(title: String, subtitle: String, text: String, image: String, background: String, icon: String, progress: CGFloat) {
         self.title = title
@@ -35,6 +36,17 @@ struct CourseSection : Identifiable {
         self.background = background
         self.icon = icon
         self.progress = 0
+    }
+    
+    init(title: String, subtitle: String, text: String, image: String, background: String, icon: String, activities: [ActivityType]) {
+        self.title = title
+        self.subtitle = subtitle
+        self.text = text
+        self.image = image
+        self.background = background
+        self.icon = icon
+        self.progress = 0
+        self.activities = activities
     }
 }
 

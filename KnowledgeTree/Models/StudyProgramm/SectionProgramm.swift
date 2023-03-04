@@ -31,6 +31,7 @@ struct SectionProgramm {
         self.childSections = childSections
         self.sectionCategory = category
     }
+    
 }
 
 extension SectionProgramm {
