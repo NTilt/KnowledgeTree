@@ -16,6 +16,12 @@ enum StudyActivityType {
     case practice
 }
 
+enum StudyActivityProgress {
+    case done
+    case inProgress
+    case notStarted
+}
+
 
 class ActivityType: Identifiable {
     let id = UUID()
@@ -23,17 +29,19 @@ class ActivityType: Identifiable {
     var subtitle: String
     var type: StudyActivityType
     var image: String
-    var color1: Color
-    var color2: Color
+    var progress: StudyActivityProgress
     
     
-    init(title: String, subtitle: String, image: String, type: StudyActivityType, color1: Color, color2: Color) {
+    init(title: String, subtitle: String, image: String, type: StudyActivityType, progress: StudyActivityProgress) {
         self.title = title
         self.subtitle = subtitle
         self.image = image
         self.type = type
-        self.color1 = color1
-        self.color2 = color2
+        self.progress = progress
+    }
+    
+    func done() {
+        self.progress = .done
     }
 }
 

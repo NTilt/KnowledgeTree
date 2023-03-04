@@ -20,7 +20,7 @@ class LaboratoryWork: ActivityType {
         
         self.logo = logo
         self.text = text
-        super.init(title: title, subtitle: subtitle, image: image, type: .laboratoryWork, color1: .yellow, color2: .orange)
+        super.init(title: title, subtitle: subtitle, image: image, type: .laboratoryWork, progress: .notStarted)
     }
 }
 

@@ -83,7 +83,7 @@ struct StudentHomeView: View {
                     showStatusBar = true
                 }
             }
-            
+
         }
     }
     
@@ -153,6 +153,7 @@ struct StudentHomeView: View {
                                 model.showDetail.toggle()
                                 showStatusBar = false
                                 selectedID = course.id
+                                model.currentCourseTitle = course.title
                             }
                     }
                 }

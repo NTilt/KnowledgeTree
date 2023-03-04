@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		110510C72971D5CF0046223E /* SectionKnowledgeSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110510C62971D5CF0046223E /* SectionKnowledgeSpaceView.swift */; };
 		110510C92971D6090046223E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110510C82971D6090046223E /* MainView.swift */; };
-		1113329129B348B70099D9B8 /* StudentActivityProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1113329029B348B70099D9B8 /* StudentActivityProgress.swift */; };
 		11137741292419630062FE61 /* KnowledgeTreeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11137740292419630062FE61 /* KnowledgeTreeApp.swift */; };
 		11137745292419650062FE61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11137744292419650062FE61 /* Assets.xcassets */; };
 		11137748292419650062FE61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11137747292419650062FE61 /* Preview Assets.xcassets */; };
@@ -95,7 +94,6 @@
 /* Begin PBXFileReference section */
 		110510C62971D5CF0046223E /* SectionKnowledgeSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionKnowledgeSpaceView.swift; sourceTree = "<group>"; };
 		110510C82971D6090046223E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1113329029B348B70099D9B8 /* StudentActivityProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentActivityProgress.swift; sourceTree = "<group>"; };
 		1113773D292419620062FE61 /* KnowledgeTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowledgeTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11137740292419630062FE61 /* KnowledgeTreeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeTreeApp.swift; sourceTree = "<group>"; };
 		11137744292419650062FE61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -300,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				11388ACC29AE125C00F1FC70 /* StudentSectionProgress.swift */,
-				1113329029B348B70099D9B8 /* StudentActivityProgress.swift */,
 			);
 			path = StudentProgress;
 			sourceTree = "<group>";
@@ -786,7 +783,6 @@
 				1183D48C29B0E9F4007F16D1 /* ActivityType.swift in Sources */,
 				11A9AE5629AC8F8900733E99 /* CourseProgramm.swift in Sources */,
 				11ED4B0129A666030041ED56 /* DataBaseCourseSection.swift in Sources */,
-				1113329129B348B70099D9B8 /* StudentActivityProgress.swift in Sources */,
 				11FABBD129A79A6E005FE9C7 /* StudyItem.swift in Sources */,
 				118F2B8429A3C04C00FAFF9C /* CourseView.swift in Sources */,
 				11B5B85229241C5A009CC3D4 /* VertexView.swift in Sources */,
@@ -928,8 +924,8 @@
 				INFOPLIST_FILE = KnowledgeTree/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -960,8 +956,8 @@
 				INFOPLIST_FILE = KnowledgeTree/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

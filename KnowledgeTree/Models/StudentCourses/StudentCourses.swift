@@ -24,6 +24,24 @@ class StudentCourses: ObservableObject {
 
 extension StudentCourses {
     
+    func getActivities(courseTitle: String, sectionTitle: String) -> [ActivityType] {
+        var activities: [ActivityType] = []
+        for item in sectionProgress {
+            if item.getCourse().title == courseTitle {
+                activities.append(contentsOf: item.getActivities(sectionTitle: sectionTitle))
+            }
+        }
+        return activities
+    }
+    
+    func doneActivity(courseTitle: String, sectionTitle: String, activityTitle: String) {
+        for item in sectionProgress {
+            if item.getCourse().title == courseTitle {
+                item.doneActivity(sectionTitle: sectionTitle, activityTitle: activityTitle)
+            }
+        }
+    }
+    
     func addSectionProgress(course: Course, sections: [CourseSection]) {
         sectionProgress.append(StudentSectionProgress(course: course, openSections: sections))
     }

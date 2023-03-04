@@ -14,9 +14,13 @@ class AppModel: ObservableObject {
     @Published var email: String = "yasenikns@sgu.ru"
     @Published var accessLevel: AccessLevel = .student
     @Published var groupNumber: Int? = 441
+    @Published var currentCourseTitle: String = ""
+    @Published var currentSectionTitle: String = ""
+    @Published var currentActivityTitle: String = ""
 }
 
 extension AppModel {
+    
     func setGroupNumber(number: Int) {
         groupNumber = number
     }

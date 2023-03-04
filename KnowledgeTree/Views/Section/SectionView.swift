@@ -10,7 +10,8 @@ import SwiftUI
 struct SectionView: View {
     
     @EnvironmentObject var model: AppModel
-    @Binding var lection: Lection
+    var lection: Lection
+    @StateObject var studentDocument: StudentDocument
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -43,8 +44,7 @@ struct SectionView: View {
     
     var buttonDone: some View {
         Button {
-            lection.color1 = .green
-            lection.color2 = Color("topGreen")
+            studentDocument.doneActivity(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle, activityTitle: lection.title)
             dismiss()
         } label: {
             Text("Изучено")
@@ -143,6 +143,6 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView(lection: .constant(lections[0]))
+        SectionView(lection: lections[0], studentDocument: StudentDocument(student: DataBase().studentNikita))
     }
 }

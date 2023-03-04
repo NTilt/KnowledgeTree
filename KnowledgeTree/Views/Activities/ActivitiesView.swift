@@ -10,56 +10,81 @@ import SwiftUI
 struct ActivitiesView: View {
     
     @State var hasScrolled = false
-    @State var isLection: Bool = false
-    @State var isPractice: Bool = false
-    @State var lection: Lection = lections[0]
-    @Binding var activities: [ActivityType]
+    @EnvironmentObject var model: AppModel
+    @ObservedObject var studentDocument: StudentDocument
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    
+    private var activities: [ActivityType] {
+        return studentDocument.getActivities(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle)
+    }
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        ZStack {
-            Color("Background").ignoresSafeArea()
-            ScrollView {
-                scrollDetection
-                lectionSections
-                    .padding([.top], 40)
+        NavigationView {
+            ZStack {
+                Color("Background").ignoresSafeArea()
+                ScrollView {
+                    scrollDetection
+                    lectionSections
+                        .padding([.top], 40)
+                }
+                
+                .safeAreaInset(edge: .top, content: {
+                    Color.clear.frame(height: 70)
+                })
+                .overlay(content: {
+                    ZStack{
+                        Color.clear
+                            .background(.ultraThinMaterial)
+                            .blur(radius: 10)
+                            .opacity(hasScrolled ? 1 : 0)
+                        HStack {
+                            buttonBack
+                                .padding([.leading, .top])
+                            Text("Активность")
+                                .animatableFont(size: hasScrolled ? 22 : 34, weight: .bold)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.trailing, 60)
+                                .padding(.top, 15)
+                                .offset(y: hasScrolled ? -4 : 0)
+                        }
+                        
+                    }
+                    .frame(height: hasScrolled ? 44 : 70)
+                    .frame(maxHeight: .infinity, alignment: .top)
+                })
             }
-            
-            .safeAreaInset(edge: .top, content: {
-                Color.clear.frame(height: 70)
-            })
-            .overlay(content: {
-                ActivityNavigationBar(hasScrolled: $hasScrolled)
-            })
+            .onAppear {
+                //print("asd")
+            }
         }
-        
+        .navigationBarBackButtonHidden()
     }
     
     var lectionSections: some View {
         LazyVGrid(columns: columns, spacing: 40) {
-            ForEach(self.activities) { activity in
-                ActivityItem(activity: activity)
-                    .onTapGesture {
-                        switch activity.type {
-                        case .lection:
-                            isLection = true
-                            lection = activity as! Lection
-                        case .laboratoryWork:
-                            isPractice = true
-                        case .testWork:
-                            isPractice = true
-                        case .practice:
-                            isPractice = true
-                        }
-                    }
+            ForEach(activities) { activity in
+                ActivityItem(activity: activity, studentDocument: studentDocument)
             }
         }
-        .sheet(isPresented: $isLection) {
-            SectionView(lection: $lection)
-        }
-        .sheet(isPresented: $isPractice) {
-            TestView()
+    }
+    
+    var buttonBack: some View {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            ZStack {
+                Image(systemName: "arrow.left")
+                    .foregroundColor(.white)
+                    .frame(width: 36, height: 36)
+                    .mask(Circle())
+                    .padding(12)
+                    .background(Color(UIColor.systemBackground).opacity(0.3))
+                    .mask(Circle())
+            }
+                
         }
     }
     
@@ -82,7 +107,8 @@ struct ActivitiesView: View {
 
 struct ActivitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivitiesView(activities: .constant(activities))
+        ActivitiesView(studentDocument: StudentDocument(student: DataBase().studentNikita))
+            .environmentObject(AppModel())
             .preferredColorScheme(.dark)
     }
 }
