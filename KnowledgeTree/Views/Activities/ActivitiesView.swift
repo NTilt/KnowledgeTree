@@ -57,7 +57,7 @@ struct ActivitiesView: View {
                 })
             }
             .onAppear {
-                //print("asd")
+                studentDocument.objectWillChange.send()
             }
         }
         .navigationBarBackButtonHidden()

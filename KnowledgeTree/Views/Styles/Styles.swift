@@ -27,5 +27,13 @@ extension View {
     func strokeStyle(cornerRadius: CGFloat = 30) -> some View {
         modifier(StrokeModifier(cornerRadius: cornerRadius))
     }
+    
+    public func gradientForeground(colors: [Color]) -> some View {
+        self
+            .overlay (
+                LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
+            )
+            .mask(self)
+    }
 }
 
