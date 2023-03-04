@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SectionView: View {
     
-    var section: CourseSection 
     @EnvironmentObject var model: AppModel
+    @Binding var lection: Lection
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -24,7 +24,6 @@ struct SectionView: View {
             }
             .background(Color("Background"))
             .ignoresSafeArea()
-            
             button
         }
     }
@@ -37,8 +36,24 @@ struct SectionView: View {
                 .font(.title).bold()
 
             Text("This course is unlike any other. We care about design and want to make sure that you get better at it in the process. It was written for designers and developers who are passionate about collaborating and building real apps for iOS and macOS. While it's not one codebase for all apps, you learn once and can apply the techniques and controls to all platforms with incredible quality, consistency and performance. It's beginner-friendly, but it's also packed with design tricks and efficient workflows for building great user interfaces and interactions. SwiftUI makes it super easy to animate and add gestures to your app. The code is lightweight and easy to understand, even for newcomers who come from React or Flutter.")
+            buttonDone
         }
         .padding(20)
+    }
+    
+    var buttonDone: some View {
+        Button {
+            lection.color1 = .green
+            lection.color2 = Color("topGreen")
+            dismiss()
+        } label: {
+            Text("Изучено")
+                .font(.title2)
+                .foregroundColor(.purple)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .padding(20)
+        .ignoresSafeArea()
     }
     
     var button: some View {
@@ -65,7 +80,7 @@ struct SectionView: View {
         .frame(height: 500)
         .foregroundStyle(.black)
         .background(
-            Image(section.image)
+            Image("")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .offset(y: 0)
@@ -91,14 +106,14 @@ struct SectionView: View {
     
     var overlayContent: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(section.title)
+            Text("Лекция 1")
                 .font(.largeTitle.weight(.bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text(section.subtitle.uppercased())
+            Text("Лекция".uppercased())
                 .font(.footnote.weight(.semibold))
             
-            Text(section.text)
+            Text("90 минут")
                 .font(.footnote)
             
             
@@ -128,6 +143,6 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView(section: courseSections[0])
+        SectionView(lection: .constant(lections[0]))
     }
 }

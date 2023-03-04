@@ -26,6 +26,7 @@ class ActivityType: Identifiable {
     var color1: Color
     var color2: Color
     
+    
     init(title: String, subtitle: String, image: String, type: StudyActivityType, color1: Color, color2: Color) {
         self.title = title
         self.subtitle = subtitle
@@ -42,6 +43,11 @@ var activities: [ActivityType] = [
     lection2,
     test2,
     work1,
+    work2
+]
+
+var activities1: [ActivityType] = [
+    lection2,
     work2
 ]
 

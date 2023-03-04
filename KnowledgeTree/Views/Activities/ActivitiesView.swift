@@ -10,7 +10,10 @@ import SwiftUI
 struct ActivitiesView: View {
     
     @State var hasScrolled = false
-    @State var lection: Bool = false
+    @State var isLection: Bool = false
+    @State var isPractice: Bool = false
+    @State var lection: Lection = lections[0]
+    @Binding var activities: [ActivityType]
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -35,23 +38,27 @@ struct ActivitiesView: View {
     
     var lectionSections: some View {
         LazyVGrid(columns: columns, spacing: 40) {
-            ForEach(activities) { activity in
+            ForEach(self.activities) { activity in
                 ActivityItem(activity: activity)
                     .onTapGesture {
                         switch activity.type {
                         case .lection:
-                            lection = true
+                            isLection = true
+                            lection = activity as! Lection
                         case .laboratoryWork:
-                            lection = true
+                            isPractice = true
                         case .testWork:
-                            lection = true
+                            isPractice = true
                         case .practice:
-                            lection = true
+                            isPractice = true
                         }
                     }
             }
         }
-        .sheet(isPresented: $lection) {
+        .sheet(isPresented: $isLection) {
+            SectionView(lection: $lection)
+        }
+        .sheet(isPresented: $isPractice) {
             TestView()
         }
     }
@@ -75,7 +82,7 @@ struct ActivitiesView: View {
 
 struct ActivitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivitiesView()
+        ActivitiesView(activities: .constant(activities))
             .preferredColorScheme(.dark)
     }
 }

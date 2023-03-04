@@ -10,7 +10,7 @@ import SwiftUI
 struct CourseView: View {
     var course: Course
     var namespace: Namespace.ID
-    @State var sectionIndex = 0
+    @State var activities: [ActivityType] = []
     @Binding var show: Bool
     @State var appear = [false, false, false]
     @EnvironmentObject var model: AppModel
@@ -122,9 +122,8 @@ struct CourseView: View {
                 SectionRow(section: section, isOpen: isOpen)
                     .onTapGesture {
                         if isOpen {
-                            
+                            activities = studentDocument.getSectionActivitiesByTitles(courseTitle: course.title, sectionTitle: section.title)
                             showSection = true
-                            sectionIndex = index
                         }
                     }
             }
@@ -133,7 +132,7 @@ struct CourseView: View {
         .strokeStyle(cornerRadius: 30)
         .padding(20)
         .fullScreenCover(isPresented: $showSection) {
-            ActivitiesView()
+            ActivitiesView(activities: $activities)
             //SectionView(section: courseSections[sectionIndex])
         }
     }

@@ -39,14 +39,15 @@ var cPlusPlusSections = [
 
 var sectionProgramm: [SectionProgramm] = [
     
-    SectionProgramm(section: section1, childSections: [section2, section3, section4], category: .base),
-    SectionProgramm(section: section2, childSections: [section5], category: .advanced),
-    SectionProgramm(section: section3, childSections: [], category: .advanced),
-    SectionProgramm(section: section4, childSections: [], category: .advanced),
-    SectionProgramm(section: section5, childSections: [section6, section7], category: .advanced),
-    SectionProgramm(section: section6, childSections: [], category: .advanced),
-    SectionProgramm(section: section7, childSections: [section8, section9], category: .advanced),
-    SectionProgramm(section: section8, childSections: [], category: .advanced),
-    SectionProgramm(section: section9, childSections: [], category: .advanced)
+    SectionProgramm(section: section1, childSections: [section2, section3, section4], category: .base, activities: activities),
+    SectionProgramm(section: section2, childSections: [section5], category: .advanced,
+                    activities: activities1),
+    SectionProgramm(section: section3, childSections: [], category: .advanced, activities: activities),
+    SectionProgramm(section: section4, childSections: [], category: .advanced, activities: activities),
+    SectionProgramm(section: section5, childSections: [section6, section7], category: .advanced, activities: activities),
+    SectionProgramm(section: section6, childSections: [], category: .advanced, activities: activities),
+    SectionProgramm(section: section7, childSections: [section8, section9], category: .advanced, activities: activities),
+    SectionProgramm(section: section8, childSections: [], category: .advanced, activities: activities),
+    SectionProgramm(section: section9, childSections: [], category: .advanced, activities: activities)
     
 ]

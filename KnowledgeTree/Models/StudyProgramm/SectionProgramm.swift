@@ -18,6 +18,7 @@ struct SectionProgramm {
     private var section: CourseSection
     private var childSections: [CourseSection]
     private var sectionCategory: SectionCategory
+    private var activities: [ActivityType] = []
     
     
     init(section: CourseSection, childSections: [CourseSection]) {
@@ -31,6 +32,14 @@ struct SectionProgramm {
         self.childSections = childSections
         self.sectionCategory = category
     }
+    
+    init(section: CourseSection, childSections: [CourseSection], category: SectionCategory, activities: [ActivityType]) {
+        self.section = section
+        self.childSections = childSections
+        self.sectionCategory = category
+        self.activities = activities
+    }
+    
 }
 
 extension SectionProgramm {
@@ -45,5 +54,9 @@ extension SectionProgramm {
     
     func getSectionCategory() -> SectionCategory {
         return sectionCategory
+    }
+    
+    func getActivities() -> [ActivityType] {
+        return activities
     }
 }
