@@ -23,7 +23,7 @@ struct TeacherContentView: View {
                 case .home:
                     TeacherHomeView(teacherDocument: teacherDocument)
                 case .edit:
-                    TeacherHomeView(teacherDocument: teacherDocument)
+                    EditView(teacherDocument: teacherDocument)
                 case .rating:
                     TeacherHomeView(teacherDocument: teacherDocument)
                 case .profile:

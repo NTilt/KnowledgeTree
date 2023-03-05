@@ -18,12 +18,12 @@ struct TeacherHomeView: View {
     @State var selectedIndex = 0
     @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
-    @ObservedObject var universityDocument = UniversityDocument()
+    //@ObservedObject var universityDocument = UniversityDocument()
     @StateObject var teacherDocument: TeacherDocument
     
     private var courses: [Course] {
         var courses: [Course] = []
-        courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
+        courses.append(contentsOf: teacherDocument.getTeacherCourses())
         return courses
     }
     
@@ -35,13 +35,13 @@ struct TeacherHomeView: View {
             ScrollView {
                 scrollDetection
                 
-                coursesView
+                //coursesView
                 
-                Text("Все курсы".uppercased())
-                    .font(.footnote.weight(.semibold))
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 20)
+//                Text("Все курсы".uppercased())
+//                    .font(.footnote.weight(.semibold))
+//                    .foregroundColor(.secondary)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                    .padding(.horizontal, 20)
                 
                 if !show {
                     cards
@@ -66,9 +66,9 @@ struct TeacherHomeView: View {
             .overlay {
                 NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, userDocument: teacherDocument)
             }
-//            if show {
-//                detail
-//            }
+            if show {
+                detail
+            }
             
         }
         .statusBarHidden(!showStatusBar)
@@ -85,21 +85,21 @@ struct TeacherHomeView: View {
         }
     }
     
-//    var detail: some View {
-//        ForEach(courses) { course in
-//            if course.id == selectedID {
-//                CourseView(course: course, namespace: namespace, show: $show)
-//                    .zIndex(1)
-//                    .transition(.asymmetric(
-//                        insertion: .opacity.animation(.easeInOut(duration: 0.1)),
-//                    removal: .opacity.animation(.easeInOut(duration: 0.3).delay(0.2))))
-//            }
-//        }
-//    }
+    var detail: some View {
+        ForEach(courses) { course in
+            if course.id == selectedID {
+                TeacherCourseView(course: course, namespace: namespace, show: $show)
+                    .zIndex(1)
+                    .transition(.asymmetric(
+                        insertion: .opacity.animation(.easeInOut(duration: 0.1)),
+                    removal: .opacity.animation(.easeInOut(duration: 0.3).delay(0.2))))
+            }
+        }
+    }
     
     var cards: some View {
         ForEach(courses) { course in
-            CourseItem(course: course, namespace: namespace, show: $show)
+            CourseItem(course: course, namespace: namespace, show: $show, isEdit: false)
                 .onTapGesture {
                     withAnimation(.openCard) {
                         show.toggle()

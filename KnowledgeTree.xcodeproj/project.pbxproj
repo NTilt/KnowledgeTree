@@ -25,6 +25,12 @@
 		11403B9429B4926B00420E65 /* TeacherNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403B9329B4926B00420E65 /* TeacherNavigationBar.swift */; };
 		11403B9629B4A6B000420E65 /* UserDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403B9529B4A6B000420E65 /* UserDocument.swift */; };
 		11403B9929B4AAEF00420E65 /* TeacherDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403B9829B4AAEF00420E65 /* TeacherDocument.swift */; };
+		11403B9B29B4C0F000420E65 /* LiquidMenuButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403B9A29B4C0F000420E65 /* LiquidMenuButtons.swift */; };
+		11403B9E29B4C2D100420E65 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403B9D29B4C2D100420E65 /* EditView.swift */; };
+		11403BA129B4C8E100420E65 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403BA029B4C8E100420E65 /* EditButton.swift */; };
+		11403BA329B4CC7D00420E65 /* TeacherCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403BA229B4CC7D00420E65 /* TeacherCourseView.swift */; };
+		11403BA529B4CD4500420E65 /* TeacherSectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403BA429B4CD4500420E65 /* TeacherSectionRow.swift */; };
+		11403BA729B4D07D00420E65 /* EditCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11403BA629B4D07D00420E65 /* EditCourseView.swift */; };
 		1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156DFE129813A7500BD2FFE /* LaunchView.swift */; };
 		1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180E13B29A738E200577003 /* TeacherTabBar.swift */; };
 		1183D48829B0E667007F16D1 /* ActivityNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183D48729B0E667007F16D1 /* ActivityNavigationBar.swift */; };
@@ -114,6 +120,12 @@
 		11403B9329B4926B00420E65 /* TeacherNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNavigationBar.swift; sourceTree = "<group>"; };
 		11403B9529B4A6B000420E65 /* UserDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDocument.swift; sourceTree = "<group>"; };
 		11403B9829B4AAEF00420E65 /* TeacherDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherDocument.swift; sourceTree = "<group>"; };
+		11403B9A29B4C0F000420E65 /* LiquidMenuButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidMenuButtons.swift; sourceTree = "<group>"; };
+		11403B9D29B4C2D100420E65 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		11403BA029B4C8E100420E65 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		11403BA229B4CC7D00420E65 /* TeacherCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherCourseView.swift; sourceTree = "<group>"; };
+		11403BA429B4CD4500420E65 /* TeacherSectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSectionRow.swift; sourceTree = "<group>"; };
+		11403BA629B4D07D00420E65 /* EditCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCourseView.swift; sourceTree = "<group>"; };
 		1156DFE02981391500BD2FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1156DFE129813A7500BD2FFE /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		1180E13B29A738E200577003 /* TeacherTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabBar.swift; sourceTree = "<group>"; };
@@ -330,6 +342,8 @@
 		11403B9229B4925000420E65 /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				11403BA229B4CC7D00420E65 /* TeacherCourseView.swift */,
+				11403BA429B4CD4500420E65 /* TeacherSectionRow.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -340,6 +354,24 @@
 				11403B9829B4AAEF00420E65 /* TeacherDocument.swift */,
 			);
 			path = TeacherModelView;
+			sourceTree = "<group>";
+		};
+		11403B9C29B4C2C600420E65 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				11403B9F29B4C8D300420E65 /* Components */,
+				11403B9D29B4C2D100420E65 /* EditView.swift */,
+				11403BA629B4D07D00420E65 /* EditCourseView.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		11403B9F29B4C8D300420E65 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				11403BA029B4C8E100420E65 /* EditButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		1183D48629B0E654007F16D1 /* Components */ = {
@@ -405,6 +437,7 @@
 				118F2B5829A3B77800FAFF9C /* Animations.swift */,
 				118F2B5A29A3B78600FAFF9C /* AngularButtonStyle.swift */,
 				118F2B5C29A3B7D200FAFF9C /* InputStyle.swift */,
+				11403B9A29B4C0F000420E65 /* LiquidMenuButtons.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -509,6 +542,7 @@
 		11B5B84C29241A55009CC3D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				11403B9C29B4C2C600420E65 /* Edit */,
 				11403B9229B4925000420E65 /* Teacher */,
 				11B7AC0F29B0AF5B0077E7AB /* Activities */,
 				1139B97729AF9A3000E29F1A /* Test */,
@@ -735,6 +769,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				118F2B5B29A3B78600FAFF9C /* AngularButtonStyle.swift in Sources */,
+				11403B9E29B4C2D100420E65 /* EditView.swift in Sources */,
 				11B5B86829241F7D009CC3D4 /* CourseKnowledgeSpaceView.swift in Sources */,
 				11A9AE5C29ACC4C300733E99 /* StudentDocument.swift in Sources */,
 				1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */,
@@ -744,6 +779,7 @@
 				11B5B85C29241DBC009CC3D4 /* Square.swift in Sources */,
 				11A9AE5E29ACCE7A00733E99 /* TeacherHomeView.swift in Sources */,
 				118F2B6829A3BA2200FAFF9C /* AppModel.swift in Sources */,
+				11403BA529B4CD4500420E65 /* TeacherSectionRow.swift in Sources */,
 				118F2B8829A3C07E00FAFF9C /* SectionRow.swift in Sources */,
 				118F2B9029A3C0AD00FAFF9C /* NavigationBar.swift in Sources */,
 				118F2B6A29A3BA4A00FAFF9C /* CourseSection.swift in Sources */,
@@ -756,12 +792,14 @@
 				118F2B4829A3B58500FAFF9C /* StudentHomeView.swift in Sources */,
 				110510C72971D5CF0046223E /* SectionKnowledgeSpaceView.swift in Sources */,
 				118F2B8529A3C04C00FAFF9C /* FeaturedItem.swift in Sources */,
+				11403B9B29B4C0F000420E65 /* LiquidMenuButtons.swift in Sources */,
 				118F2B6229A3B84000FAFF9C /* PreferenceKey.swift in Sources */,
 				111FDB36299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift in Sources */,
 				11B5B85629241D4A009CC3D4 /* Center.swift in Sources */,
 				11B7AC0C29B0A9370077E7AB /* Lection.swift in Sources */,
 				11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */,
 				118F2B5229A3B6E200FAFF9C /* SignInView.swift in Sources */,
+				11403BA329B4CC7D00420E65 /* TeacherCourseView.swift in Sources */,
 				118F2B5029A3B68F00FAFF9C /* ModalView.swift in Sources */,
 				11388AC429ADE10A00F1FC70 /* SectionProgramm.swift in Sources */,
 				118F2B4B29A3B5E600FAFF9C /* SearchView.swift in Sources */,
@@ -773,6 +811,7 @@
 				1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */,
 				118F2B5D29A3B7D200FAFF9C /* InputStyle.swift in Sources */,
 				11A9AE5929ACC2EF00733E99 /* StudentCourses.swift in Sources */,
+				11403BA129B4C8E100420E65 /* EditButton.swift in Sources */,
 				11E78FEB299B974400DBC344 /* DataBase.swift in Sources */,
 				11B7AC1129B0AF790077E7AB /* ActivitiesView.swift in Sources */,
 				11403B9629B4A6B000420E65 /* UserDocument.swift in Sources */,
@@ -801,6 +840,7 @@
 				11E78FE8299B92BD00DBC344 /* Speciality.swift in Sources */,
 				111FDB2B299CFFA50013F9D7 /* UserSecurity.swift in Sources */,
 				11B5B86C292420CC009CC3D4 /* KnowledgeSpace.swift in Sources */,
+				11403BA729B4D07D00420E65 /* EditCourseView.swift in Sources */,
 				1139B97929AF9A5800E29F1A /* TestView.swift in Sources */,
 				118F2B6529A3B85F00FAFF9C /* Course.swift in Sources */,
 				11B5B85829241D65009CC3D4 /* Location.swift in Sources */,

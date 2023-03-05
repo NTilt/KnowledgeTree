@@ -11,10 +11,32 @@ import Foundation
 class TeacherDocument: UserDocument {
     
     @Published var teacher: Teacher
+    @Published private(set) var teacherCourses: [Course]
     
     init(teacher: Teacher) {
         self.teacher = teacher
+        self.teacherCourses = []
         super.init(user: teacher as User)
+        let courses = dataBase.getCoursesByTeacher(teacher: teacher)
+        self.teacherCourses = courses
+    }
+    
+}
+
+extension TeacherDocument {
+    
+    func getCourseByTitle(title: String) -> Course {
+        for course in teacherCourses {
+            if course.title == title {
+                return course
+            }
+        }
+        
+        return courseJava
+    }
+    
+    func getTeacherCourses() -> [Course] {
+        return self.teacherCourses
     }
     
 }

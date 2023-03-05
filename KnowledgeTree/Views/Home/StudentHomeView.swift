@@ -101,7 +101,7 @@ struct StudentHomeView: View {
     
     var cards: some View {
         ForEach(allCourses) { course in
-            CourseItem(course: course, namespace: namespace, show: $show)
+            CourseItem(course: course, namespace: namespace, show: $show, isEdit: false)
                 .onTapGesture {
                     withAnimation(.openCard) {
                         show.toggle()

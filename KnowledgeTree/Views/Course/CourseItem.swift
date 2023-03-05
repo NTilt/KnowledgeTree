@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct CourseItem: View {
+    @State var isActive = false
     var course: Course = fullCourses[0]
+    @EnvironmentObject var model: AppModel
     var namespace: Namespace.ID
     @Binding var show: Bool
+    var isEdit: Bool
     
     var body: some View {
         VStack {
@@ -51,12 +54,46 @@ struct CourseItem: View {
         )
         .frame(height: 300)
         .padding(20)
+        .overlay {
+            if isEdit {
+                HStack {
+                    Spacer()
+                    Button {
+                        isActive = true
+                        model.showDetail.toggle()
+                    } label: {
+                        EditShape()
+                            .fill(Color("buttonNext").opacity(0.8))
+                            .frame(width: 25, height: 25)
+                            .overlay(EditShape().stroke(.white))
+                            .background(
+                                EditShape()
+                                    .fill(.angularGradient(colors: [.purple, .blue, .purple], center: .center, startAngle: .degrees(0), endAngle: .degrees(360)))
+                                    .blur(radius: 12)
+                            )
+                            .offset(x: 0)
+                            .frame(width: 45, height: 45)
+                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 46, style: .continuous))
+                            .strokeStyle(cornerRadius: 46)
+                            .shadow(color: Color("Shadow").opacity(0.2), radius: 30, x: 0, y: 30)
+                    }
+                    .background(
+                        NavigationLink(destination: EditCourseView(course: course), isActive: $isActive, label: {
+                            EmptyView()
+                        })
+                    )
+                        .padding(.bottom, 200)
+                        .padding(.trailing, 40)
+                }
+            }
+            
+        }
     }
 }
 
 struct CourseItem_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        CourseItem(namespace: namespace, show: .constant(true))
+        CourseItem(namespace: namespace, show: .constant(true), isEdit: true)
     }
 }
