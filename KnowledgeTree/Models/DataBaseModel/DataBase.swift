@@ -34,7 +34,7 @@ class DataBase: ObservableObject {
                                         directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
                                        urlToImage: nil)
     
-    private var teacherOlga = Teacher(name: "Ольга", secondName: "Матвеева", email: "teacher@sgu.ru", phone: "1231123123", experience: 20)
+    var teacherOlga = Teacher(name: "Ольга", secondName: "Матвеева", email: "teacher@sgu.ru", phone: "1231123123", experience: 20)
     
     private lazy var group441 = StudyGroup(groupNumber: 441, students: [self.studentNikita])
     private lazy var group421 = StudyGroup(groupNumber: 421, students: [self.studentSergey])

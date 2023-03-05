@@ -14,7 +14,7 @@ struct NavigationBar: View {
     @EnvironmentObject var appModel: AppModel
     @AppStorage("showModal") var showModal = false
     @AppStorage("isLogged") var isLogged = false
-    @StateObject var studentDocument: StudentDocument
+    @StateObject var userDocument: UserDocument
     
     var body: some View {
         ZStack {
@@ -41,7 +41,7 @@ struct NavigationBar: View {
                     .strokeStyle(cornerRadius: 14)
                 }
                 .sheet(isPresented: $showSearch) {
-                    SearchView(studentDocument: studentDocument)
+                    SearchView(userDocument: userDocument)
                 }
                 
                 Button {
@@ -87,6 +87,6 @@ struct NavigationBar: View {
 
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationBar(title: "Курсы", hasScrolled: .constant(false), studentDocument: StudentDocument(student: DataBase().studentNikita))
+        NavigationBar(title: "Курсы", hasScrolled: .constant(false), userDocument: StudentDocument(student: DataBase().studentNikita))
     }
 }

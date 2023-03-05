@@ -13,7 +13,7 @@ struct SearchView: View {
     @State var show = false
     @Namespace var namespace
     @State var selectedIndex = 0
-    @StateObject var studentDocument: StudentDocument
+    @StateObject var userDocument: UserDocument
     
     var body: some View {
         NavigationView {
@@ -41,7 +41,10 @@ struct SearchView: View {
             .navigationTitle("Поиск")
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $show) {
-                CourseView(course: courses[selectedIndex], namespace: namespace, show: $show, studentDocument: studentDocument)
+                if ((userDocument as? StudentDocument) != nil) {
+                    CourseView(course: courses[selectedIndex], namespace: namespace, show: $show, studentDocument: userDocument as! StudentDocument)
+                }
+                
             }
         }
     }
@@ -81,6 +84,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(studentDocument: StudentDocument(student: DataBase().studentNikita))
+        SearchView(userDocument: StudentDocument(student: DataBase().studentNikita))
     }
 }

@@ -14,17 +14,18 @@ struct TeacherContentView: View {
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var storage: Storage
     @EnvironmentObject var dataBase: DataBase
+    @StateObject var teacherDocument: TeacherDocument
     
     var body: some View {
         let userModel = UserModelView(email: appModel.email)
         ZStack(alignment: .bottom) {
                 switch selectedTeacherTab {
                 case .home:
-                    TeacherHomeView()
+                    TeacherHomeView(teacherDocument: teacherDocument)
                 case .edit:
-                    TeacherHomeView()
+                    TeacherHomeView(teacherDocument: teacherDocument)
                 case .rating:
-                    TeacherHomeView()
+                    TeacherHomeView(teacherDocument: teacherDocument)
                 case .profile:
                     TeacherAccountView(userModel: userModel)
                 }
@@ -40,7 +41,7 @@ struct TeacherContentView: View {
 
 struct TeacherContentView_Previews: PreviewProvider {
     static var previews: some View {
-        TeacherContentView()
+        TeacherContentView(teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
             .environmentObject(AppModel())
             .environmentObject(Storage())
     }

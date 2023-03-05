@@ -7,11 +7,10 @@
 
 import Foundation
 
-class StudentDocument: ObservableObject {
+class StudentDocument: UserDocument {
 
     @Published var student: Student
     @Published private(set) var studentCourses: StudentCourses
-    @Published private(set) var dataBase = DataBase()
     
     init(student: Student) {
         self.student = student
@@ -41,6 +40,7 @@ class StudentDocument: ObservableObject {
             sectionsProgress.append(item)
         }
         self.studentCourses = StudentCourses(student: student, allCourses: allCourses, openCourses: openCourses, sectionProgress: sectionsProgress)
+        super.init(user: student as User)
     }
 }
 

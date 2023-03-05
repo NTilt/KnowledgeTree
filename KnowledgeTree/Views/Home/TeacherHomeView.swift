@@ -19,10 +19,11 @@ struct TeacherHomeView: View {
     @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
     @ObservedObject var universityDocument = UniversityDocument()
+    @StateObject var teacherDocument: TeacherDocument
     
     private var courses: [Course] {
         var courses: [Course] = []
-//        courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
+        courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
         return courses
     }
     
@@ -62,9 +63,9 @@ struct TeacherHomeView: View {
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)
             })
-//            .overlay {
-//                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled)
-//            }
+            .overlay {
+                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, userDocument: teacherDocument)
+            }
 //            if show {
 //                detail
 //            }
@@ -167,7 +168,7 @@ struct TeacherHomeView: View {
 
 struct TeacherHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        TeacherHomeView()
+        TeacherHomeView(teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
             .environmentObject(AppModel())
     }
 }

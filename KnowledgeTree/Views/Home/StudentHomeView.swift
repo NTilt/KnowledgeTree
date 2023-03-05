@@ -66,7 +66,7 @@ struct StudentHomeView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay {
-                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, studentDocument: studentDocument)
+                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, userDocument: studentDocument)
             }
             if show {
                 detail
