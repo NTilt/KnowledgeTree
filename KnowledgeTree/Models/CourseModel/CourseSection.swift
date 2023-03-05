@@ -50,6 +50,23 @@ struct CourseSection : Identifiable {
     }
 }
 
+extension CourseSection {
+    func getSectionProgress() -> CGFloat {
+        let doneActivity = getDoneActivities()
+        return CGFloat(doneActivity.count) / CGFloat(self.activities.count)
+    }
+    
+    func getDoneActivities() -> [ActivityType] {
+        var doneActivity: [ActivityType] = []
+        for activity in self.activities {
+            if activity.progress == .done {
+                doneActivity.append(activity)
+            }
+        }
+        return doneActivity
+    }
+}
+
 
 extension CourseSection: Equatable {
     static func == (lhs: CourseSection, rhs: CourseSection) -> Bool {

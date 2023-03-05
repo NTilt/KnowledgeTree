@@ -25,9 +25,6 @@ struct SectionRow: View {
                     .padding(12)
                     .background(Color(UIColor.systemBackground).opacity(0.3))
                     .mask(Circle())
-                    .overlay {
-                        CircularView(value: section.progress)
-                    }
             }
             else {
                 Image(section.icon)
@@ -38,7 +35,7 @@ struct SectionRow: View {
                     .background(Color(UIColor.systemBackground).opacity(0.3))
                     .mask(Circle())
                     .overlay {
-                        CircularView(value: section.progress)
+                        CircularView(value: section.getSectionProgress())
                     }
             }
             VStack(alignment: .leading, spacing: 8) {
