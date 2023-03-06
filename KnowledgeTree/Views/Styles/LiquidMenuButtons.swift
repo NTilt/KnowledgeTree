@@ -19,6 +19,8 @@ struct LiquidMenuButtons: View {
     @State var offsetSeven: CGSize = .zero
     @State var offsetEight: CGSize = .zero
     @State private var isCollapsed: Bool = false
+    @AppStorage("selectedTeacherTab") var selectedTeacherTab: TeacherTab = .home
+    @EnvironmentObject var model: AppModel
     
     // - Body -
     var body: some View {
@@ -101,12 +103,17 @@ extension LiquidMenuButtons {
     }
     
     func HomeButton() -> some View {
-        ZStack {
-            Image(systemName: "house")
-                .resizable()
-                .frame(width: 25, height: 25)
+        Button {
+            selectedTeacherTab = .home
+            model.showDetail.toggle()
+        } label: {
+            ZStack {
+                Image(systemName: "house")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+            }
+            .frame(width: 65, height: 65)
         }
-        .frame(width: 65, height: 65)
     }
     
     func CancelButton() -> some View {

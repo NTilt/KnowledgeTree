@@ -69,6 +69,9 @@ struct EditCourseView: View {
             Text(course.title)
                 .font(.largeTitle.weight(.bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .onLongPressGesture {
+                    
+                }
             
             Text(course.subtitle.uppercased())
                 .font(.footnote.weight(.semibold))

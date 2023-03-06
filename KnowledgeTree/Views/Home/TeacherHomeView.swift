@@ -18,7 +18,6 @@ struct TeacherHomeView: View {
     @State var selectedIndex = 0
     @EnvironmentObject var model: AppModel
     @AppStorage("isLiteMode") var isLiteMode = true
-    //@ObservedObject var universityDocument = UniversityDocument()
     @StateObject var teacherDocument: TeacherDocument
     
     private var courses: [Course] {
