@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Course: Identifiable {
     let id = UUID()
-    var title: String
+    var title: String 
     var subtitle: String
     var text: String
     var image: String
@@ -33,6 +33,11 @@ extension Course {
             }
         }
         return nil
+    }
+    
+    
+    mutating func updateTitle(newTitle: String) {
+        self.title = newTitle
     }
     
 }

@@ -1,19 +1,20 @@
 //
-//  CourseItem.swift
+//  TeacherCourseItem.swift
 //  KnowledgeTree
 //
-//  Created by Никита Ясеник on 20.02.2023.
+//  Created by Никита Ясеник on 07.03.2023.
 //
 
 import SwiftUI
 
-struct CourseItem: View {
+struct TeacherCourseItem: View {
     @State var isActive = false
     var course: Course = fullCourses[0]
     @EnvironmentObject var model: AppModel
     var namespace: Namespace.ID
     @Binding var show: Bool
     var isEdit: Bool
+    @StateObject var teacherDocument: TeacherDocument
     
     var body: some View {
         VStack {
@@ -77,6 +78,13 @@ struct CourseItem: View {
                             .strokeStyle(cornerRadius: 46)
                             .shadow(color: Color("Shadow").opacity(0.2), radius: 30, x: 0, y: 30)
                     }
+                    .background(
+                        NavigationLink(destination: EditCourseView(course: course, courseTitle: course.title, courseSubTitle: course.subtitle, courseText: course.text, teacherDocument: teacherDocument), isActive: $isActive, label: {
+                            EmptyView()
+                        })
+                    )
+                        .padding(.bottom, 200)
+                        .padding(.trailing, 40)
                 }
             }
             
@@ -84,9 +92,10 @@ struct CourseItem: View {
     }
 }
 
-struct CourseItem_Previews: PreviewProvider {
+struct TeacherCourseItem_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        CourseItem(namespace: namespace, show: .constant(true), isEdit: true)
+        TeacherCourseItem(namespace: namespace, show: .constant(true), isEdit: true, teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
     }
 }
+

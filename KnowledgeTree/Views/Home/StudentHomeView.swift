@@ -66,7 +66,7 @@ struct StudentHomeView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay {
-                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, studentDocument: studentDocument)
+                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, userDocument: studentDocument)
             }
             if show {
                 detail
@@ -101,7 +101,7 @@ struct StudentHomeView: View {
     
     var cards: some View {
         ForEach(allCourses) { course in
-            CourseItem(course: course, namespace: namespace, show: $show)
+            CourseItem(course: course, namespace: namespace, show: $show, isEdit: false)
                 .onTapGesture {
                     withAnimation(.openCard) {
                         show.toggle()
