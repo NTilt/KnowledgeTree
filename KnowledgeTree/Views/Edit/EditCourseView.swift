@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditCourseView: View {
     
-    var course = courses[0]
+    var course = DataBase().courseSwift
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: AppModel
     @State var courseTitle: String

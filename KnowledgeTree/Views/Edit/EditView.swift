@@ -55,7 +55,7 @@ struct EditView: View {
                     Color.clear.frame(height: 70)
                 })
                 .overlay {
-                    NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, userDocument: teacherDocument)
+                    TeacherNavigationBar(title: "Курсы", hasScrolled: $hasScrolled, teacherDocument: teacherDocument)
                 }
                 if show {
                     detail

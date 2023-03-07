@@ -229,7 +229,7 @@ struct TeacherCourseView: View {
 struct TeacherCourseView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        TeacherCourseView(course: fullCourses[0], namespace: namespace, show: .constant(true))
+        TeacherCourseView(course: DataBase().courseSwift, namespace: namespace, show: .constant(true))
             .environmentObject(AppModel())
     }
 }

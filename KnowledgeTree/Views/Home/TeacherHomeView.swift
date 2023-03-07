@@ -63,7 +63,7 @@ struct TeacherHomeView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay {
-                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, userDocument: teacherDocument)
+                TeacherNavigationBar(title: "Курсы", hasScrolled: $hasScrolled, teacherDocument: teacherDocument)
             }
             if show {
                 detail
@@ -169,6 +169,7 @@ struct TeacherHomeView_Previews: PreviewProvider {
     static var previews: some View {
         TeacherHomeView(teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
             .environmentObject(AppModel())
+            .environmentObject(UniversityDocument())
     }
 }
 

@@ -24,10 +24,6 @@ extension AuthModelView {
     func getUserAccessLevel(by email: String) -> AccessLevel {
         return dataBase.getUserAccessLevelBy(email: email)
     }
-    
-    func getGroupNumberByEmail(by email: String) -> Int? {
-        return dataBase.getGroupNumberByEmail(email: email)
-    }
 }
 
 // MARK: for SignUP

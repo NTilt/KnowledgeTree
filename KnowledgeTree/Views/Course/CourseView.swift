@@ -245,7 +245,7 @@ struct CourseView: View {
 struct CourseView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        CourseView(course: fullCourses[0], namespace: namespace, show: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita))
+        CourseView(course: DataBase().courseSwift, namespace: namespace, show: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita))
             .environmentObject(AppModel())
     }
 }

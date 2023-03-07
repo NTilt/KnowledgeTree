@@ -11,6 +11,7 @@ struct ModalView: View {
     
     @EnvironmentObject var model: AppModel
     @EnvironmentObject var storage: Storage
+    @EnvironmentObject var universityDocument: UniversityDocument
     @State var viewState: CGSize = .zero
     @State var isDismissed = false
     @State var appear = [false, false, false]
@@ -49,20 +50,6 @@ struct ModalView: View {
                     .blur(radius: appear[2] ? 0 : 40)
                     .allowsHitTesting(false)
             )
-           
-//            Button {
-//                dismissModal()
-//            } label: {
-//                Image(systemName: "xmark")
-//                    .font(.body.weight(.bold))
-//                    .foregroundColor(.secondary)
-//                    .padding(8)
-//                    .background(.ultraThinMaterial, in: Circle())
-//            }
-//            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-//            .padding(20)
-//            .opacity(appear[1] ? 1 : 0)
-//            .offset(y: appear[1] ? 0 : -200)
         }
         .onAppear {
             withAnimation(.spring().delay(0.1)) {

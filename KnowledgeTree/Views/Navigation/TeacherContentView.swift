@@ -13,7 +13,7 @@ struct TeacherContentView: View {
     @AppStorage("showModal") var showModal = false
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var storage: Storage
-    @EnvironmentObject var dataBase: DataBase
+    @EnvironmentObject var universityDocument: UniversityDocument
     @StateObject var teacherDocument: TeacherDocument
     
     var body: some View {
@@ -44,6 +44,7 @@ struct TeacherContentView_Previews: PreviewProvider {
         TeacherContentView(teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
             .environmentObject(AppModel())
             .environmentObject(Storage())
+            .environmentObject(UniversityDocument())
     }
 }
 

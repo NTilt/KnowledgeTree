@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TeacherCourseItem: View {
     @State var isActive = false
-    var course: Course = fullCourses[0]
+    var course: Course = DataBase().courseSwift
     @EnvironmentObject var model: AppModel
     var namespace: Namespace.ID
     @Binding var show: Bool

@@ -7,18 +7,18 @@
 
 import Foundation
 
-class StudentDocument: UserDocument {
+class StudentDocument: ObservableObject {
 
-    @Published var student: Student
+    var student: Student
     @Published private(set) var studentCourses: StudentCourses
     
     init(student: Student) {
+        let universityModel = UniversityDocument()
         self.student = student
         var allCourses: [Course] = []
         var openCourses: [Course] = []
         var sectionsProgress: [StudentSectionProgress] = []
-        let dataBase = DataBase()
-        let programmForStudent = dataBase.getProgrammForStudent(student: student)
+        let programmForStudent = universityModel.getProgrammForStudent(student: student)
         
         for courseProgramm in programmForStudent {
             allCourses.append(courseProgramm.getCourse())
@@ -29,7 +29,7 @@ class StudentDocument: UserDocument {
         
         for course in openCourses {
             var openSectionsForCourse: [CourseSection] = []
-            if let sections = dataBase.getSectionProgrammsByCourse(course: course) {
+            if let sections = universityModel.getSectionProgrammsByCourse(course: course) {
                 for item in sections {
                     if item.getSectionCategory() == .base {
                         openSectionsForCourse.append(item.getSection())
@@ -40,7 +40,6 @@ class StudentDocument: UserDocument {
             sectionsProgress.append(item)
         }
         self.studentCourses = StudentCourses(student: student, allCourses: allCourses, openCourses: openCourses, sectionProgress: sectionsProgress)
-        super.init(user: student as User)
     }
 }
 
@@ -55,8 +54,9 @@ extension StudentDocument {
     }
     
     func openNewSectionsByTitle(courseTitle: String, sectionTitle: String) {
-        if let course = dataBase.getCourseByTitle(title: courseTitle) {
-            if let sectionProgramm = dataBase.getSectionProgrammsByCourse(course: course) {
+        let universityModel = UniversityDocument()
+        if let course = universityModel.getCourseByTitle(title: courseTitle) {
+            if let sectionProgramm = universityModel.getSectionProgrammsByCourse(course: course) {
                 for item in sectionProgramm {
                     if item.getSection().title == sectionTitle {
                         studentCourses.openSectionForCourse(course: course, sections: item.getChildsSections())
@@ -84,12 +84,13 @@ extension StudentDocument {
     }
     
     func openNewCoursesByTitle(title: String) {
-        let courses = dataBase.getChildsCourseFromTitle(title: title)
+        let universityModel = UniversityDocument()
+        let courses = universityModel.getChildsCourseFromTitle(title: title)
         self.studentCourses.addOpenCourses(courses: courses)
         // тут надо добавлять сразу лекции которые доступны изначально
         for course in courses {
             var openSectionsForCourse: [CourseSection] = []
-            if let sections = dataBase.getSectionProgrammsByCourse(course: course) {
+            if let sections = universityModel.getSectionProgrammsByCourse(course: course) {
                 for item in sections {
                     if item.getSectionCategory() == .base {
                         openSectionsForCourse.append(item.getSection())

@@ -1,20 +1,19 @@
 //
-//  SearchView.swift
+//  TeacherSearchView.swift
 //  KnowledgeTree
 //
-//  Created by Никита Ясеник on 20.02.2023.
+//  Created by Никита Ясеник on 08.03.2023.
 //
 
 import SwiftUI
 
-struct SearchView: View {
+struct TeacherSearchView: View {
     
     @State var text = ""
     @State var show = false
     @Namespace var namespace
     @State var selectedIndex = 0
     @EnvironmentObject var universityModel: UniversityDocument
-    @StateObject var studentDocument: StudentDocument
     
     var body: some View {
         NavigationView {
@@ -42,7 +41,7 @@ struct SearchView: View {
             .navigationTitle("Поиск")
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $show) {
-                CourseView(course: universityModel.courses[selectedIndex], namespace: namespace, show: $show, studentDocument: studentDocument)
+                TeacherCourseView(course: universityModel.courses[selectedIndex], namespace: namespace, show: $show)
                 
             }
         }
@@ -81,8 +80,9 @@ struct SearchView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
+
+struct TeacherSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(studentDocument: StudentDocument(student: DataBase().studentNikita))
+        TeacherSearchView()
     }
 }

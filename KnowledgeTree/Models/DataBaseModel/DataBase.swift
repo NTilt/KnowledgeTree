@@ -7,48 +7,41 @@
 
 import Foundation
 
-class DataBase: ObservableObject {
+struct DataBase {
     
-    private(set) var specialities: [Speciality] = [
+    // MARK: Specialities
+    
+    var specialities: [Speciality] = [
         Speciality(nameOfDirection: .MathematicalSupportAndAdministrationOfInformationSystems,
                    descriptionNameOfDirection: "Математическое обеспечение и администрирование информационных систем")
     ]
     
-    var studentNikita = Student(name: "Никита",
-                                        secondName: "Ясеник",
-                                        thirdName: "Сергеевич",
-                                        groupNumber: 441,
-                                        email: "yasenikns@sgu.ru",
-                                        phone: "89999999999",
-                                        numberRecordBook: "20192524",
-                                        directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
-                                       urlToImage: "yasenikNikita")
+    // MARK: Students
     
-    var studentSergey = Student(name: "Сергей",
-                                        secondName: "Сергеев",
-                                        thirdName: "Сергеевич",
-                                        groupNumber: 421,
-                                        email: "sergeyaa@sgu.ru",
-                                        phone: "89999999119",
-                                        numberRecordBook: "20191232",
-                                        directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems,
-                                       urlToImage: nil)
+    var studentNikita = Student(name: "Никита", secondName: "Ясеник", thirdName: "Сергеевич", groupNumber: 441,email: "yasenikns@sgu.ru", phone: "89999999999", numberRecordBook: "20192524", directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems, urlToImage: "yasenikNikita")
+    
+    var studentSergey = Student(name: "Сергей", secondName: "Сергеев", thirdName: "Сергеевич", groupNumber: 421, email: "sergeyaa@sgu.ru", phone: "89999999119", numberRecordBook: "20191232", directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems, urlToImage: nil)
+    
+    private lazy var students: [Student] = [studentNikita, studentSergey]
+    
+    // MARK: Teachers
     
     var teacherOlga = Teacher(name: "Ольга", secondName: "Матвеева", email: "teacher@sgu.ru", phone: "1231123123", experience: 20)
     
-    private lazy var group441 = StudyGroup(groupNumber: 441, students: [self.studentNikita])
-    private lazy var group421 = StudyGroup(groupNumber: 421, students: [self.studentSergey])
+    // MARK: Groups
     
+    lazy var group441 = StudyGroup(groupNumber: 441, students: [self.studentNikita])
+    lazy var group421 = StudyGroup(groupNumber: 421, students: [self.studentSergey])
     
-    private lazy var programmingSwift = StudyItem(course: courseSwift, teachers: [teacherOlga], listOfGroups: [group441, group421])
-    private lazy var programmingC = StudyItem(course: courseCplusPlus, teachers: [teacherOlga], listOfGroups: [group421])
-    private lazy var programmingJava = StudyItem(course: courseJava, teachers: [teacherOlga], listOfGroups: [group441])
+    private lazy var allGroups: [StudyGroup] = [group421, group441]
     
-    private lazy var studyItems: [StudyItem] = [
-        programmingSwift,
-        programmingC,
-        programmingJava
-    ]
+    //MARK: StudyItems
+    
+    lazy var programmingSwift = StudyItem(course: courseSwift, teachers: [self.teacherOlga], listOfGroups: [group441, group421])
+    lazy var programmingC = StudyItem(course: courseCplusPlus, teachers: [self.teacherOlga], listOfGroups: [group421])
+    lazy var programmingJava = StudyItem(course: courseJava, teachers: [self.teacherOlga], listOfGroups: [group441])
+    
+    private lazy var allStudyItems: [StudyItem] = [programmingC, programmingJava, programmingSwift]
     
     private lazy var users: [User] = [
         self.studentNikita,
@@ -56,18 +49,50 @@ class DataBase: ObservableObject {
         self.teacherOlga,
     ]
     
-    private(set) var personSecurity: [UserSecurity] = [
+    var personSecurity: [UserSecurity] = [
         UserSecurity(email: "yasenikns@sgu.ru", password: "1234", accessLevel: .student),
         UserSecurity(email: "sergeyaa@sgu.ru", password: "4321", accessLevel: .student),
         UserSecurity(email: "teacher@sgu.ru", password: "12345", accessLevel: .teacher)
     ]
     
-    private lazy var groups: [StudyGroup] = [
-        self.group441,
-        self.group421
+    var courseMachineLearning = Course(title: "Машинное обучение и анализ данных", subtitle: "27 модулей - 44 часа", text: "Машинное обучение и анализ данных", image: "machineLearning_course", background: "Background 1", icon: "machineLearning_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground1")
+
+    var courseDataBase = Course(title: "Базы данных", subtitle: "14 модулей - 20 часов", text: "Базы данных", image: "database_course", background: "Background 12", icon: "database_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground12")
+
+    var courseMath = Course(title: "Математический анализ", subtitle: "35 модулей - 55 часов", text: "Математический анализ", image: "math_course", background: "Background 6", icon: "math_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground6")
+
+    var courseGeom = Course(title: "Алгебра и геометрия", subtitle: "40 модулей - 40 часов", text: "Алгебра и геометрия", image: "geom_course", background: "Background 9", icon: "geom_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground9")
+
+    var courseCSharp = Course(title: "C# для начинающих", subtitle: "23 модуля - 18 часов", text: "Научитесь создавать простые консольные приложения на языке С++", image: "c#_course", background: "Background 1", icon: "c#_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground1")
+
+    var courseJava = Course(title: "Java", subtitle: "14 модулей - 15 часов", text: "Познакомьтесь с языком Java и откройте для себя новые парадигмы программирования", image: "java_course", background: "Background 10", icon: "java_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground10")
+
+    var courseSwift = Course(title: "SwiftUI", subtitle: "25 модулей - 25 часов", text: "Узнайте, как проектировать мобильные приложения под iOS", image: "swiftui_course", background: "Background 11", icon: "swiftui_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground11")
+
+    var courseCplusPlus = Course(
+        title: "C++ для начинающих",
+        subtitle: "20 модулей - 15 часов",
+        text: "Научитесь создавать простые консольные приложения на языке С++",
+        image: "c++_course",
+        background: "Background 7",
+        icon: "c++_icon",
+        sections: cPlusPlusSections,
+        sectionImage: "SectionBackground7"
+    )
+    
+    private lazy var allCourses: [Course] = [
+        
+        courseCplusPlus,
+        courseCSharp,
+        courseGeom,
+        courseMath,
+        courseSwift,
+        courseJava,
+        courseDataBase,
+        courseMachineLearning,
     ]
     
-    var fullProgramm: [StudyProgramm] = [
+    private lazy var fullProgramm: [StudyProgramm] = [
         StudyProgramm(courseProgramm: CourseProgramm(course: courseCplusPlus,
                                                      childCourses: [
                                                       courseGeom,
@@ -89,91 +114,34 @@ class DataBase: ObservableObject {
 
 extension DataBase {
     
-    func getCoursesByTeacher(teacher: Teacher) -> [Course] {
-        var courses: [Course] = []
-        for item in studyItems {
-            if item.getTeachers().contains(teacher) {
-                courses.append(item.getCourse())
-            }
-        }
-        return courses
+    mutating func getAllGroups() -> [StudyGroup] {
+        return self.allGroups
     }
     
-    func getCourseByTitle(title: String) -> Course? {
-        for item in fullProgramm {
-            if item.getCourse().title == title {
-                return item.getCourse()
-            }
-        }
-        return nil
+    mutating func getAllStudyItems() -> [StudyItem] {
+        return self.allStudyItems
     }
     
-    func getSectionProgrammsByCourse(course: Course) -> [SectionProgramm]? {
-        for item in fullProgramm {
-            if item.getCourse() == course {
-                return item.getSectionProgramms()
-            }
-        }
-        return nil
+    mutating func getAllCourses() -> [Course] {
+        return self.allCourses
     }
     
-    func getChildsCourseFromTitle(title: String) -> [Course] {
-        var courses: [Course] = []
-        for courseProgramm in fullProgramm {
-            if courseProgramm.getCourse().title == title {
-                courses.append(contentsOf: courseProgramm.getCourseProgramm().getChildsCourses())
-            }
-        }
-        return courses
+    mutating func getFullStudyProgramm() -> [StudyProgramm] {
+        return self.fullProgramm
     }
     
-    func getProgrammForStudent(student: Student) -> [CourseProgramm] {
-        // тут проверять направление студента и выдавать нужную ему программу
-        // пока что программа для всех одна
-        var courseProgramm: [CourseProgramm] = []
-        for item in fullProgramm {
-            courseProgramm.append(item.getCourseProgramm())
-        }
-        return courseProgramm
+    mutating func getAllStudents() -> [Student] {
+        return self.students
     }
     
-    func getStudentsByGroup(by groupNumber: Int) -> [Student] {
-        var students: [Student] = []
-        for group in groups {
-            if group.getGroupNumber() == groupNumber {
-                students.append(contentsOf: group.getStudents())
-            }
-        }
-        return students
+    mutating func getAllUsers() -> [User] {
+        return self.users
     }
     
-    func getGroupNumberByEmail(email: String) -> Int? {
-        for user in users {
-            if let student = user as? Student {
-                if student.getEmail() == email {
-                    return student.getGroupNumber()
-                }
-            }
-        }
-        return nil
-    }
-    
-    func getStudyItems() -> [StudyItem] {
-        return studyItems
-    }
-    
-    func getStudentsByGroupNumber(by number: Int) -> [Student] {
-        var listOfStudents: [Student] = []
-        for user in users {
-            if let student = user as? Student {
-                if student.getGroupNumber() == number {
-                    listOfStudents.append(student)
-                }
-            }
-        }
-        return listOfStudents
-    }
-    
+}
+
+extension DataBase {
+
     func getUserAccessLevelBy(email: String) -> AccessLevel {
         for user in personSecurity {
             if user.getEmail() == email {
@@ -182,11 +150,11 @@ extension DataBase {
         }
         return .base
     }
-    
+
     func isEmailCorrect(_ email: String) -> Bool {
         return email.contains("@sgu.ru") ? true : false
     }
-    
+
     func isEmalAlreadyExists(_ email: String) -> Bool {
         for user in personSecurity {
             if user.getEmail() == email {
@@ -195,16 +163,8 @@ extension DataBase {
         }
         return false
     }
-    
-    func getUserByEmail(by email: String) -> User? {
-        for user in users {
-            if user.getEmail() == email {
-                return user
-            }
-        }
-        return nil
-    }
-    
+
+
     func getUserSecurityByEmail(by email: String) -> UserSecurity? {
         for user in personSecurity {
             if user.getEmail() == email {
@@ -213,7 +173,7 @@ extension DataBase {
         }
         return nil
     }
-    
+
     func getPasswordForUser(for email: String) -> String? {
         for userSecurity in personSecurity {
             if userSecurity.getEmail() == email {
@@ -222,54 +182,29 @@ extension DataBase {
         }
         return nil
     }
-    
-    func createStudent(
-        name: String,
-        secondName: String,
-        thirdName: String?,
-        groupNumber: Int,
-        email: String,
-        phone: String,
-        numberRecordBook: String,
-        directionOfStudy: DirectionsName
-    ) {
-        let student = Student(name: name,
-                              secondName: secondName,
-                              thirdName: thirdName,
-                              groupNumber: groupNumber,
-                              email: email,
-                              phone: phone,
-                              numberRecordBook: numberRecordBook,
-                              directionOfStudy: directionOfStudy)
-        guard studentInBase(student: student) == false else {
-            return
-        }
-        users.append(student)
-        
-    }
-    
-    func studentInBase(student: Student) -> Bool {
-        let numberRecordBookNewStudent = student.getNumberRecordBook()
-        for studentInBase in users {
-            if let student = studentInBase as? Student {
-                let numberRecordBookStudentInBase = student.getNumberRecordBook()
-                if numberRecordBookStudentInBase == numberRecordBookNewStudent {
-                    return true
-                }
-            }
-        }
-        return false
-    }
-    
-    func getStudentByRecordBook(by numberRecordBook: String) -> Student? {
-        for studentInBase in users {
-            if let student = studentInBase as? Student {
-                if student.getNumberRecordBook() == numberRecordBook {
-                    return student
-                }
-            }
-            
-        }
-        return nil
-    }
+
+//    func createStudent(
+//        name: String,
+//        secondName: String,
+//        thirdName: String?,
+//        groupNumber: Int,
+//        email: String,
+//        phone: String,
+//        numberRecordBook: String,
+//        directionOfStudy: DirectionsName
+//    ) {
+//        let student = Student(name: name,
+//                              secondName: secondName,
+//                              thirdName: thirdName,
+//                              groupNumber: groupNumber,
+//                              email: email,
+//                              phone: phone,
+//                              numberRecordBook: numberRecordBook,
+//                              directionOfStudy: directionOfStudy)
+//        guard studentInBase(student: student) == false else {
+//            return
+//        }
+//        users.append(student)
+//
+//    }
 }

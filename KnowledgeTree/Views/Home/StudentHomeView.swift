@@ -66,7 +66,7 @@ struct StudentHomeView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay {
-                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, userDocument: studentDocument)
+                StudentNavigationBar(title: "Курсы", hasScrolled: $hasScrolled, studentDocument: studentDocument)
             }
             if show {
                 detail
@@ -89,7 +89,7 @@ struct StudentHomeView: View {
     
     var detail: some View {
         ForEach(allCourses) { course in
-            if course.id == selectedID {
+            if course.title == model.currentCourseTitle {
                 CourseView(course: course, namespace: namespace, show: $show, studentDocument: studentDocument)
                     .zIndex(1)
                     .transition(.asymmetric(
@@ -108,6 +108,7 @@ struct StudentHomeView: View {
                         model.showDetail.toggle()
                         showStatusBar = false
                         selectedID = course.id
+                        model.currentCourseTitle = course.title
                     }
             }
         }

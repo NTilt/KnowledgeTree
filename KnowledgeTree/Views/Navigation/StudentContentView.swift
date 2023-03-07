@@ -13,7 +13,6 @@ struct StudentContentView: View {
     @AppStorage("showModal") var showModal = false
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var storage: Storage
-    @EnvironmentObject var dataBase: DataBase
     @StateObject var studentDocument: StudentDocument
     
     var body: some View {

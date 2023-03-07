@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeaturedItem: View {
-    var course: Course = courses[0]
+    var course: Course = DataBase().courseSwift
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             Spacer()

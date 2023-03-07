@@ -8,17 +8,16 @@
 import Foundation
 
 
-class TeacherDocument: UserDocument {
+class TeacherDocument: ObservableObject {
     
     @Published var teacher: Teacher
     @Published private(set) var teacherCourses: [Course]
     
     init(teacher: Teacher) {
+        let universityModel = UniversityDocument()
         self.teacher = teacher
         self.teacherCourses = []
-        super.init(user: teacher as User)
-        let courses = universityDocument.getCoursesForTeacher(teacherEmail: teacher.getEmail())
-        self.teacherCourses = courses
+        self.teacherCourses = universityModel.getCoursesForTeacher(teacherEmail: teacher.getEmail())
     }
     
 }
@@ -31,8 +30,7 @@ extension TeacherDocument {
                 return course
             }
         }
-        
-        return courseJava
+        return DataBase().courseJava
     }
     
     func getTeacherCourses() -> [Course] {
