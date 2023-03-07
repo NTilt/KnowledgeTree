@@ -91,7 +91,7 @@ struct EditView: View {
     
     var cards: some View {
         ForEach(courses) { course in
-            CourseItem(course: course, namespace: namespace, show: $show, isEdit: true)
+            TeacherCourseItem(course: course, namespace: namespace, show: $show, isEdit: true, teacherDocument: teacherDocument)
                 .onTapGesture {
                     withAnimation(.openCard) {
                         show.toggle()

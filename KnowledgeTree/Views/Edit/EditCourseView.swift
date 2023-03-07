@@ -12,11 +12,20 @@ struct EditCourseView: View {
     var course = courses[0]
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: AppModel
+    @State var courseTitle: String
+    @State var courseSubTitle: String
+    @State var courseText: String
+    @State var editCourseTitle = false
+    @State var editCourseSubTitle = false
+    @State var editCourseText = false
+    @FocusState var fieldIsFocused: Bool
+    @StateObject var teacherDocument: TeacherDocument
     
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
+                
             VStack {
                 overlayContent
                     .padding(.top, 60)
@@ -43,6 +52,9 @@ struct EditCourseView: View {
             
         }
         .navigationBarBackButtonHidden()
+        .onTapGesture {
+            fieldIsFocused = false
+        }
         
     }
     
@@ -66,18 +78,68 @@ struct EditCourseView: View {
     
     var overlayContent: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(course.title)
-                .font(.largeTitle.weight(.bold))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .onLongPressGesture {
+            if editCourseTitle {
+                TextEditor(text: $courseTitle)
+                    .foregroundColor(Color("topGreen").opacity(0.5))
+                    .scrollContentBackground(.hidden)
+                    .autocorrectionDisabled()
+                    .font(.largeTitle.weight(.bold))
+                    .frame(maxWidth: .infinity, maxHeight: 100)
+                    .onLongPressGesture {
+                        editCourseTitle = false
+                    }
+                    .focused($fieldIsFocused)
                     
-                }
+            }
+            else {
+                Text(courseTitle)
+                    .font(.largeTitle.weight(.bold))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .onLongPressGesture {
+                        editCourseTitle = true
+                    }
+            }
             
-            Text(course.subtitle.uppercased())
-                .font(.footnote.weight(.semibold))
+            if editCourseSubTitle {
+                TextEditor(text: $courseSubTitle)
+                    .foregroundColor(Color("topGreen").opacity(0.5))
+                    .scrollContentBackground(.hidden)
+                    .autocorrectionDisabled()
+                    .font(.footnote.weight(.semibold))
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .onLongPressGesture {
+                        editCourseSubTitle = false
+                    }
+                    .focused($fieldIsFocused)
+            }
+            else {
+                Text(courseSubTitle)
+                    .font(.footnote.weight(.semibold))
+                    .onLongPressGesture {
+                        editCourseSubTitle = true
+                    }
+            }
+            if editCourseText {
+                TextEditor(text: $courseText)
+                    .foregroundColor(Color("topGreen").opacity(0.5))
+                    .scrollContentBackground(.hidden)
+                    .autocorrectionDisabled()
+                    .font(.footnote)
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .onLongPressGesture {
+                        editCourseText = false
+                        
+                    }
+                    .focused($fieldIsFocused)
+            }
+            else {
+                Text(courseText)
+                    .font(.footnote)
+                    .onLongPressGesture {
+                        editCourseText = true
+                    }
+            }
             
-            Text(course.text)
-                .font(.footnote)
             
             
             Divider()
@@ -110,7 +172,7 @@ struct EditCourseView: View {
 
 struct EditCourseView_Previews: PreviewProvider {
     static var previews: some View {
-        EditCourseView()
+        EditCourseView(courseTitle: "123", courseSubTitle: "123", courseText: "123", teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
             .preferredColorScheme(.dark)
     }
 }

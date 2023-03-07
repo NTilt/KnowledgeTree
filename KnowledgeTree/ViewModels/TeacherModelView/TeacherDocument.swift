@@ -17,7 +17,7 @@ class TeacherDocument: UserDocument {
         self.teacher = teacher
         self.teacherCourses = []
         super.init(user: teacher as User)
-        let courses = dataBase.getCoursesByTeacher(teacher: teacher)
+        let courses = universityDocument.getCoursesForTeacher(teacherEmail: teacher.getEmail())
         self.teacherCourses = courses
     }
     

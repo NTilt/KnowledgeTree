@@ -39,7 +39,6 @@ struct StudyItem: Identifiable {
 struct StudyItemModel  {
     private var studyItems = [StudyItem]()
     
-    
     mutating func createStudyItem(course: Course,
                                   teachers: [Teacher],
                                   groups: [StudyGroup]) {

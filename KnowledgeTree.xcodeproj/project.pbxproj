@@ -63,6 +63,8 @@
 		118F2B8F29A3C0AD00FAFF9C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B8C29A3C0AD00FAFF9C /* TabBar.swift */; };
 		118F2B9029A3C0AD00FAFF9C /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B8D29A3C0AD00FAFF9C /* NavigationBar.swift */; };
 		118F2B9129A3C0AD00FAFF9C /* StudentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B8E29A3C0AD00FAFF9C /* StudentContentView.swift */; };
+		1192F25B29B6477400C681C6 /* EditTextFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1192F25A29B6477300C681C6 /* EditTextFieldsView.swift */; };
+		1192F25D29B737F900C681C6 /* TeacherCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1192F25C29B737F900C681C6 /* TeacherCourseItem.swift */; };
 		11A8977229AB5F56006F609C /* UniversityDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8977129AB5F56006F609C /* UniversityDocument.swift */; };
 		11A9AE5629AC8F8900733E99 /* CourseProgramm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AE5529AC8F8900733E99 /* CourseProgramm.swift */; };
 		11A9AE5929ACC2EF00733E99 /* StudentCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AE5829ACC2EF00733E99 /* StudentCourses.swift */; };
@@ -159,6 +161,8 @@
 		118F2B8C29A3C0AD00FAFF9C /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		118F2B8D29A3C0AD00FAFF9C /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		118F2B8E29A3C0AD00FAFF9C /* StudentContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentContentView.swift; sourceTree = "<group>"; };
+		1192F25A29B6477300C681C6 /* EditTextFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextFieldsView.swift; sourceTree = "<group>"; };
+		1192F25C29B737F900C681C6 /* TeacherCourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherCourseItem.swift; sourceTree = "<group>"; };
 		11A8977129AB5F56006F609C /* UniversityDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDocument.swift; sourceTree = "<group>"; };
 		11A9AE5529AC8F8900733E99 /* CourseProgramm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgramm.swift; sourceTree = "<group>"; };
 		11A9AE5829ACC2EF00733E99 /* StudentCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCourses.swift; sourceTree = "<group>"; };
@@ -370,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				11403BA029B4C8E100420E65 /* EditButton.swift */,
+				1192F25A29B6477300C681C6 /* EditTextFieldsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				118F2B8129A3C04C00FAFF9C /* CourseView.swift */,
 				118F2B8229A3C04C00FAFF9C /* FeaturedItem.swift */,
 				11B7AC0D29B0AAF80077E7AB /* ActivityItem.swift */,
+				1192F25C29B737F900C681C6 /* TeacherCourseItem.swift */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -773,6 +779,7 @@
 				11B5B86829241F7D009CC3D4 /* CourseKnowledgeSpaceView.swift in Sources */,
 				11A9AE5C29ACC4C300733E99 /* StudentDocument.swift in Sources */,
 				1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */,
+				1192F25D29B737F900C681C6 /* TeacherCourseItem.swift in Sources */,
 				1139B98029B09AFB00E29F1A /* ButtonBack.swift in Sources */,
 				11FABBD429A79B41005FE9C7 /* StudyGroup.swift in Sources */,
 				118F2B9129A3C0AD00FAFF9C /* StudentContentView.swift in Sources */,
@@ -780,6 +787,7 @@
 				11A9AE5E29ACCE7A00733E99 /* TeacherHomeView.swift in Sources */,
 				118F2B6829A3BA2200FAFF9C /* AppModel.swift in Sources */,
 				11403BA529B4CD4500420E65 /* TeacherSectionRow.swift in Sources */,
+				1192F25B29B6477400C681C6 /* EditTextFieldsView.swift in Sources */,
 				118F2B8829A3C07E00FAFF9C /* SectionRow.swift in Sources */,
 				118F2B9029A3C0AD00FAFF9C /* NavigationBar.swift in Sources */,
 				118F2B6A29A3BA4A00FAFF9C /* CourseSection.swift in Sources */,
@@ -994,7 +1002,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1026,7 +1034,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
