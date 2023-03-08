@@ -101,6 +101,9 @@
 		11FABBCE29A74794005FE9C7 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBCD29A74794005FE9C7 /* Teacher.swift */; };
 		11FABBD129A79A6E005FE9C7 /* StudyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBD029A79A6E005FE9C7 /* StudyItem.swift */; };
 		11FABBD429A79B41005FE9C7 /* StudyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBD329A79B41005FE9C7 /* StudyGroup.swift */; };
+		11FD406B29B877C6005186AD /* CourseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD406A29B877C6005186AD /* CourseResult.swift */; };
+		11FD406D29B88082005186AD /* ActivityResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD406C29B88082005186AD /* ActivityResult.swift */; };
+		11FD406F29B89A05005186AD /* SectionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD406E29B89A05005186AD /* SectionResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -200,6 +203,9 @@
 		11FABBCD29A74794005FE9C7 /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		11FABBD029A79A6E005FE9C7 /* StudyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyItem.swift; sourceTree = "<group>"; };
 		11FABBD329A79B41005FE9C7 /* StudyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroup.swift; sourceTree = "<group>"; };
+		11FD406A29B877C6005186AD /* CourseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseResult.swift; sourceTree = "<group>"; };
+		11FD406C29B88082005186AD /* ActivityResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityResult.swift; sourceTree = "<group>"; };
+		11FD406E29B89A05005186AD /* SectionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -530,6 +536,7 @@
 		11B5B84A29241A07009CC3D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				11FD406929B877AC005186AD /* Results */,
 				11B7AC0A29B0A9280077E7AB /* Activities */,
 				11388ACB29AE121600F1FC70 /* StudentProgress */,
 				11388AC529ADE27500F1FC70 /* StudyProgramm */,
@@ -707,6 +714,16 @@
 			path = StudyGroup;
 			sourceTree = "<group>";
 		};
+		11FD406929B877AC005186AD /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				11FD406A29B877C6005186AD /* CourseResult.swift */,
+				11FD406C29B88082005186AD /* ActivityResult.swift */,
+				11FD406E29B89A05005186AD /* SectionResult.swift */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -800,9 +817,11 @@
 				11A8977229AB5F56006F609C /* UniversityDocument.swift in Sources */,
 				118F2B4329A3B4A800FAFF9C /* BlobView.swift in Sources */,
 				1183D48E29B0F245007F16D1 /* LaboratoryWork.swift in Sources */,
+				11FD406D29B88082005186AD /* ActivityResult.swift in Sources */,
 				11E78FE4299B90B600DBC344 /* Student.swift in Sources */,
 				118F2B4829A3B58500FAFF9C /* StudentHomeView.swift in Sources */,
 				110510C72971D5CF0046223E /* SectionKnowledgeSpaceView.swift in Sources */,
+				11FD406F29B89A05005186AD /* SectionResult.swift in Sources */,
 				118F2B8529A3C04C00FAFF9C /* FeaturedItem.swift in Sources */,
 				11403B9B29B4C0F000420E65 /* LiquidMenuButtons.swift in Sources */,
 				118F2B6229A3B84000FAFF9C /* PreferenceKey.swift in Sources */,
@@ -866,6 +885,7 @@
 				11FABBD129A79A6E005FE9C7 /* StudyItem.swift in Sources */,
 				118F2B8429A3C04C00FAFF9C /* CourseView.swift in Sources */,
 				11B5B85229241C5A009CC3D4 /* VertexView.swift in Sources */,
+				11FD406B29B877C6005186AD /* CourseResult.swift in Sources */,
 				11FABBCE29A74794005FE9C7 /* Teacher.swift in Sources */,
 				111FDB33299D09C60013F9D7 /* AuthModelView.swift in Sources */,
 				1183D48829B0E667007F16D1 /* ActivityNavigationBar.swift in Sources */,

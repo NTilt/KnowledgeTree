@@ -64,7 +64,7 @@ struct ModalView: View {
         }
         .fullScreenCover(isPresented: $isLogged) {
             if user is Student {
-                StudentContentView(studentDocument: StudentDocument(student: user as! Student))
+                StudentContentView(studentDocument: StudentDocument(student: user as! Student, universityDocument: universityDocument))
             }
             else {
                 TeacherContentView()

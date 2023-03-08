@@ -12,6 +12,7 @@ struct StudentAccountView: View {
     var userModel: UserModelView
     @Environment(\.dismiss) var dismiss
     @AppStorage("isLiteMode") var isLiteMode = true
+    @EnvironmentObject var universityDocument: UniversityDocument
     
     var body: some View {
         NavigationView {
@@ -77,7 +78,7 @@ struct StudentAccountView: View {
     
     var menu: some View {
         Section {
-            NavigationLink(destination: StudentHomeView(studentDocument: StudentDocument(student: userModel.getUser() as! Student))) {
+            NavigationLink(destination: StudentHomeView(studentDocument: StudentDocument(student: userModel.getUser() as! Student, universityDocument: universityDocument))) {
                 Label("Настройки", systemImage: "gear")
             }
             Label("Помощь", systemImage: "questionmark")

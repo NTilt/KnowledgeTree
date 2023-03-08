@@ -18,6 +18,7 @@ struct StudentHomeView: View {
     @State var selectedIndex = 0
     @State var currentCourseTitle = ""
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var universityDocument: UniversityDocument
     @AppStorage("isLiteMode") var isLiteMode = true
     @StateObject var studentDocument: StudentDocument
     
@@ -173,7 +174,7 @@ struct StudentHomeView: View {
 
 struct StudentHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        StudentHomeView(studentDocument: StudentDocument(student: DataBase().studentNikita))
+        StudentHomeView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
     }
 }

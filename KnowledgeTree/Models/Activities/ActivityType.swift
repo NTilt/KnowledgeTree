@@ -45,6 +45,12 @@ class ActivityType: Identifiable {
     }
 }
 
+extension ActivityType {
+    static func == (lhs: ActivityType, rhs: ActivityType) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 var activities: [ActivityType] = [
     lection1,
     test1,

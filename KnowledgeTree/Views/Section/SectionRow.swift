@@ -14,6 +14,7 @@ struct SectionRow: View {
     @State private var isActive = false
     @ObservedObject var studentDocument: StudentDocument
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var universityDocument: UniversityDocument
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
@@ -47,7 +48,7 @@ struct SectionRow: View {
                 Text(section.text)
                     .font(.caption.weight(.medium))
                     .foregroundColor(.secondary)
-                ProgressView(value: section.progress)
+                ProgressView(value: section.getSectionProgress())
                     .accentColor(.white)
                     .frame(maxWidth: 132 )
             }
@@ -60,7 +61,7 @@ struct SectionRow: View {
             }
         }
         .background(
-            NavigationLink(destination: ActivitiesView(studentDocument: studentDocument), isActive: $isActive, label: {
+            NavigationLink(destination: ActivitiesView(studentDocument: studentDocument, activities: universityDocument.getStudentActivities(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle, student: studentDocument.student)), isActive: $isActive, label: {
                 EmptyView()
             })
         )
@@ -69,7 +70,7 @@ struct SectionRow: View {
 
 struct SectionRow_Previews: PreviewProvider {
     static var previews: some View {
-        SectionRow(isOpen: true, studentDocument: StudentDocument(student: DataBase().studentNikita))
+        SectionRow(isOpen: true, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
     }
 }
 

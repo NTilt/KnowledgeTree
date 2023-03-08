@@ -40,9 +40,8 @@ struct StudentContentView: View {
 
 struct StudentContentView_Previews: PreviewProvider {
     static var previews: some View {
-        StudentContentView(studentDocument: StudentDocument(student: DataBase().studentNikita))
+        StudentContentView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
-            .environmentObject(Storage())
     }
 }
 

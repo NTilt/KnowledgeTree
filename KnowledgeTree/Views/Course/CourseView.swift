@@ -14,6 +14,7 @@ struct CourseView: View {
     @Binding var show: Bool
     @State var appear = [false, false, false]
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var universityDocument: UniversityDocument
     @State var viewState: CGSize = .zero
     @State var isDraggable = true
     @State var showSection = false
@@ -120,7 +121,7 @@ struct CourseView: View {
         VStack(alignment: .leading) {
             ForEach(Array(course.sections.enumerated()), id: \.offset) { index, section in
                 if index != 0 { Divider() }
-                let isOpen = studentDocument.isSectionOpenForCourse(for: course, section: section)
+                let isOpen = universityDocument.haveAccessStudentForSection(course: course, section: section, student: studentDocument.student)
                 SectionRow(section: section, isOpen: isOpen, studentDocument: studentDocument)
 //                    .onTapGesture {
 //                        if isOpen {
@@ -245,7 +246,7 @@ struct CourseView: View {
 struct CourseView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        CourseView(course: DataBase().courseSwift, namespace: namespace, show: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita))
+        CourseView(course: DataBase().courseSwift, namespace: namespace, show: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
     }
 }

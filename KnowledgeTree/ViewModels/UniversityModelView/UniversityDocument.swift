@@ -13,6 +13,9 @@ class UniversityDocument: ObservableObject {
     private var dataBase = DataBase()
     
     @Published private(set) var studyModel: StudyItemModel
+    @Published private var courseResultModel: CourseResultModel
+    @Published private(set) var sectionResultModel: SectionResultModel
+    @Published private(set) var activityResultModel: ActivityResultModel
     @Published var groups: [StudyGroup] = []
     @Published var courses: [Course] = []
     @Published var fullProgramm: [StudyProgramm] = []
@@ -22,15 +25,85 @@ class UniversityDocument: ObservableObject {
     
     init() {
         self.studyModel = StudyItemModel(studyItems: dataBase.getAllStudyItems())
+        self.courseResultModel = CourseResultModel(results: dataBase.getAllCourseResults())
+        self.sectionResultModel = SectionResultModel(courses: dataBase.getAllCourses())
+        self.activityResultModel = ActivityResultModel(courses: dataBase.getAllCourses())
         self.groups = dataBase.getAllGroups()
         self.fullProgramm = dataBase.getFullStudyProgramm()
         self.courses = dataBase.getAllCourses()
         self.users = dataBase.getAllUsers()
         self.students = dataBase.getAllStudents()
+        
+        
     }
 }
 
 extension UniversityDocument {
+    
+    func getStudentActivities(courseTitle: String, sectionTitle: String, student: Student) -> [ActivityType] {
+        guard let course = getCourseByTitle(title: courseTitle) else { return []}
+        var activitiesOfSection: [ActivityType] = []
+        for section in course.sections {
+            if section.title == sectionTitle {
+                activitiesOfSection.append(contentsOf: section.activities)
+            }
+        }
+        
+        for activity in activitiesOfSection {
+            if let studentProgress = activityResultModel.getActivityResultByStudent(by: student, activity: activity) {
+                activity.progress = studentProgress
+            }
+        }
+        
+        return activitiesOfSection
+    }
+    
+    func studentDoneSection(courseTitle: String, sectionTitle: String, student: Student) {
+        guard let course = getCourseByTitle(title: courseTitle) else { return }
+        guard let sections = getSectionProgrammsByCourse(course: course) else { return }
+        var sectionsForAppend: [CourseSection] = []
+        for item in sections {
+            if item.getSection().title == sectionTitle {
+                sectionsForAppend.append(contentsOf: item.getChildsSections())
+            }
+        }
+        for section in sectionsForAppend {
+            sectionResultModel.addStudentToSection(section: section, student: student)
+        }
+        
+    }
+    
+    func studentDoneCourse(courseTitle: String, student: Student) {
+        let courses = getChildsCourseFromTitle(title: courseTitle)
+        addStudentToCourses(student: student, courses: courses)
+    }
+    
+    func addStudentToCourses(student: Student, courses: [Course]) {
+        for course in courses {
+            courseResultModel.addStudentToCourse(course: course, student: student)
+        }
+    }
+    
+    private func getStudentByEmail(by email: String) -> Student? {
+        for student in students {
+            if student.getEmail() == email {
+                return student
+            }
+        }
+        return nil
+    }
+    
+    func haveAccessStudentForSection(course: Course, section: CourseSection, student: Student) -> Bool {
+        guard courseResultModel.checkStudentInCourse(student: student, course: course) != nil else { return false }
+        guard let studentHaveAccessForSection = sectionResultModel.checkStudentInSection(student: student, section: section) else { return false }
+        return studentHaveAccessForSection
+    }
+    
+    func getOpenCoursesForStudent(email: String) -> [Course]? {
+        guard let student = getStudentByEmail(by: email) else { return nil }
+        let courses = courseResultModel.getAllOpenCoursesForStudent(for: student)
+        return courses
+    }
     
     func getCourseByTitle(title: String) -> Course? {
         for course in courses {

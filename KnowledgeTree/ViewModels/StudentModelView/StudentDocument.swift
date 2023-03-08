@@ -10,28 +10,20 @@ import Foundation
 class StudentDocument: ObservableObject {
 
     var student: Student
+    private var universityDocument: UniversityDocument
     @Published private(set) var studentCourses: StudentCourses
     
-    init(student: Student) {
-        let universityModel = UniversityDocument()
+    init(student: Student, universityDocument: UniversityDocument) {
+        self.universityDocument = universityDocument
         self.student = student
-        var allCourses: [Course] = []
-        var openCourses: [Course] = []
+        let allCourses: [Course] = universityDocument.courses
+        let openCourses: [Course] = universityDocument.getOpenCoursesForStudent(email: student.getEmail()) ?? []
         var sectionsProgress: [StudentSectionProgress] = []
-        let programmForStudent = universityModel.getProgrammForStudent(student: student)
-        
-        for courseProgramm in programmForStudent {
-            allCourses.append(courseProgramm.getCourse())
-            if courseProgramm.getCourseCategory() == .base {
-                openCourses.append(courseProgramm.getCourse())
-            }
-        }
-        
         for course in openCourses {
             var openSectionsForCourse: [CourseSection] = []
-            if let sections = universityModel.getSectionProgrammsByCourse(course: course) {
+            if let sections = universityDocument.getSectionProgrammsByCourse(course: course) {
                 for item in sections {
-                    if item.getSectionCategory() == .base {
+                    if universityDocument.haveAccessStudentForSection(course: course, section: item.getSection(), student: student) {
                         openSectionsForCourse.append(item.getSection())
                     }
                 }
@@ -46,7 +38,7 @@ class StudentDocument: ObservableObject {
 extension StudentDocument {
     
     func getActivities(courseTitle: String, sectionTitle: String) -> [ActivityType] {
-        return studentCourses.getActivities(courseTitle: courseTitle, sectionTitle: sectionTitle)
+        return universityDocument.getStudentActivities(courseTitle: courseTitle, sectionTitle: sectionTitle, student: student)
     }
     
     func doneActivity(courseTitle: String, sectionTitle: String, activityTitle: String) {
@@ -54,9 +46,8 @@ extension StudentDocument {
     }
     
     func openNewSectionsByTitle(courseTitle: String, sectionTitle: String) {
-        let universityModel = UniversityDocument()
-        if let course = universityModel.getCourseByTitle(title: courseTitle) {
-            if let sectionProgramm = universityModel.getSectionProgrammsByCourse(course: course) {
+        if let course = universityDocument.getCourseByTitle(title: courseTitle) {
+            if let sectionProgramm = universityDocument.getSectionProgrammsByCourse(course: course) {
                 for item in sectionProgramm {
                     if item.getSection().title == sectionTitle {
                         studentCourses.openSectionForCourse(course: course, sections: item.getChildsSections())
@@ -84,13 +75,12 @@ extension StudentDocument {
     }
     
     func openNewCoursesByTitle(title: String) {
-        let universityModel = UniversityDocument()
-        let courses = universityModel.getChildsCourseFromTitle(title: title)
+        let courses = universityDocument.getChildsCourseFromTitle(title: title)
         self.studentCourses.addOpenCourses(courses: courses)
         // тут надо добавлять сразу лекции которые доступны изначально
         for course in courses {
             var openSectionsForCourse: [CourseSection] = []
-            if let sections = universityModel.getSectionProgrammsByCourse(course: course) {
+            if let sections = universityDocument.getSectionProgrammsByCourse(course: course) {
                 for item in sections {
                     if item.getSectionCategory() == .base {
                         openSectionsForCourse.append(item.getSection())

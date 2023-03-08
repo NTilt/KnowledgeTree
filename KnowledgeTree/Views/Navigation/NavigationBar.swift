@@ -87,6 +87,6 @@ struct StudentNavigationBar: View {
 
 struct StudentNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        StudentNavigationBar(title: "Курсы", hasScrolled: .constant(false), studentDocument: StudentDocument(student: DataBase().studentNikita))
+        StudentNavigationBar(title: "Курсы", hasScrolled: .constant(false), studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
     }
 }

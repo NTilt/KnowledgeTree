@@ -13,11 +13,7 @@ struct ActivitiesView: View {
     @EnvironmentObject var model: AppModel
     @ObservedObject var studentDocument: StudentDocument
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    
-    private var activities: [ActivityType] {
-        return studentDocument.getActivities(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle)
-    }
+    var activities: [ActivityType]
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -107,7 +103,7 @@ struct ActivitiesView: View {
 
 struct ActivitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivitiesView(studentDocument: StudentDocument(student: DataBase().studentNikita))
+        ActivitiesView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()), activities: [lection1])
             .environmentObject(AppModel())
             .preferredColorScheme(.dark)
     }

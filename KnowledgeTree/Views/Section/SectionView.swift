@@ -194,7 +194,7 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView(lection: lections[0], studentDocument: StudentDocument(student: DataBase().studentNikita))
+        SectionView(lection: lections[0], studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .preferredColorScheme(.dark)
     }
 }

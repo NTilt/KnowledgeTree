@@ -109,10 +109,25 @@ struct DataBase {
         StudyProgramm(courseProgramm: CourseProgramm(course: courseMachineLearning, childCourses: [], category: .advanced), sectionProgramm: sectionProgramm)
         
     ]
+    //можно сделать автоматически из полной программы (при старте приложения)
+    private lazy var courseResults: [CourseResult] = [
+        CourseResult(id: 0, course: courseCplusPlus, admittedStudents: [studentNikita, studentSergey]),
+        CourseResult(id: 1, course: courseSwift, admittedStudents: []),
+        CourseResult(id: 2, course: courseGeom, admittedStudents: []),
+        CourseResult(id: 3, course: courseMath, admittedStudents: []),
+        CourseResult(id: 4, course: courseCSharp, admittedStudents: []),
+        CourseResult(id: 5, course: courseMachineLearning, admittedStudents: []),
+        CourseResult(id: 6, course: courseDataBase, admittedStudents: []),
+        CourseResult(id: 7, course: courseJava, admittedStudents: [])
+    ]
     
 }
 
 extension DataBase {
+    
+    mutating func getAllCourseResults() -> [CourseResult] {
+        return courseResults
+    }
     
     mutating func getAllGroups() -> [StudyGroup] {
         return self.allGroups

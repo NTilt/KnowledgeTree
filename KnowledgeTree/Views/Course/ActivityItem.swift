@@ -78,6 +78,6 @@ struct ActivityItem: View {
 
 struct LectionItem_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityItem(activity: activities[1], studentDocument: StudentDocument(student: DataBase().studentNikita))
+        ActivityItem(activity: activities[1], studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
     }
 }
