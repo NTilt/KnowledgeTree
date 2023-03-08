@@ -12,8 +12,13 @@ struct ActivitiesView: View {
     @State var hasScrolled = false
     @EnvironmentObject var model: AppModel
     @ObservedObject var studentDocument: StudentDocument
+    @EnvironmentObject var universityModel: UniversityDocument
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    var activities: [ActivityType]
+
+    
+    private var activities: [ActivityType] {
+        return universityModel.getStudentActivities(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle, student: studentDocument.student)
+    }
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -103,7 +108,7 @@ struct ActivitiesView: View {
 
 struct ActivitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivitiesView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()), activities: [lection1])
+        ActivitiesView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
             .preferredColorScheme(.dark)
     }

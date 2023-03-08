@@ -10,6 +10,7 @@ import SwiftUI
 struct SectionRow: View {
     
     var section: CourseSection = courseSections[0]
+    @Binding var progress: Float
     var isOpen: Bool
     @State private var isActive = false
     @ObservedObject var studentDocument: StudentDocument
@@ -36,7 +37,7 @@ struct SectionRow: View {
                     .background(Color(UIColor.systemBackground).opacity(0.3))
                     .mask(Circle())
                     .overlay {
-                        CircularView(value: section.getSectionProgress())
+                        CircularView(value: CGFloat(progress))
                     }
             }
             VStack(alignment: .leading, spacing: 8) {
@@ -48,12 +49,15 @@ struct SectionRow: View {
                 Text(section.text)
                     .font(.caption.weight(.medium))
                     .foregroundColor(.secondary)
-                ProgressView(value: section.getSectionProgress())
+                ProgressView(value: progress)
                     .accentColor(.white)
                     .frame(maxWidth: 132 )
             }
         }
         .padding(20)
+        .onAppear {
+            progress = universityDocument.getSectionProgressForStudent(course: universityDocument.getCourseByTitle(title: model.currentCourseTitle)!, sectionTitle: section.title, student: studentDocument.student)
+        }
         .onTapGesture {
             if isOpen {
                 isActive = true
@@ -61,7 +65,7 @@ struct SectionRow: View {
             }
         }
         .background(
-            NavigationLink(destination: ActivitiesView(studentDocument: studentDocument, activities: universityDocument.getStudentActivities(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle, student: studentDocument.student)), isActive: $isActive, label: {
+            NavigationLink(destination: ActivitiesView(studentDocument: studentDocument), isActive: $isActive, label: {
                 EmptyView()
             })
         )
@@ -70,7 +74,7 @@ struct SectionRow: View {
 
 struct SectionRow_Previews: PreviewProvider {
     static var previews: some View {
-        SectionRow(isOpen: true, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
+        SectionRow(progress: .constant(0.4), isOpen: true, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
     }
 }
 

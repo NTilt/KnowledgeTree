@@ -40,6 +40,18 @@ class UniversityDocument: ObservableObject {
 
 extension UniversityDocument {
     
+    func getSectionProgressForStudent(course: Course, sectionTitle: String, student: Student) -> Float {
+        var activities: [ActivityType] = []
+        for section in course.sections {
+            if section.title == sectionTitle {
+                activities.append(contentsOf: section.activities)
+            }
+        }
+        let countDone = activityResultModel.getCountStudentDoneByActivities(activities: activities, student: student)
+        print(Float(countDone) / Float(activities.count))
+        return Float(countDone) / Float(activities.count)
+    }
+    
     func getStudentActivities(courseTitle: String, sectionTitle: String, student: Student) -> [ActivityType] {
         guard let course = getCourseByTitle(title: courseTitle) else { return []}
         var activitiesOfSection: [ActivityType] = []
@@ -52,10 +64,15 @@ extension UniversityDocument {
         for activity in activitiesOfSection {
             if let studentProgress = activityResultModel.getActivityResultByStudent(by: student, activity: activity) {
                 activity.progress = studentProgress
+            } else {
+                activity.progress = .notStarted
             }
         }
-        
         return activitiesOfSection
+    }
+    
+    func studentDoneActivity(activity: ActivityType, student: Student) {
+        activityResultModel.addStudentToActivityResult(student: student, activity: activity, studentProgress: .done)
     }
     
     func studentDoneSection(courseTitle: String, sectionTitle: String, student: Student) {

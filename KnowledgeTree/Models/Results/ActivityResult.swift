@@ -102,32 +102,46 @@ struct ActivityResultModel {
         self.uniqueId = results.isEmpty ? 0 : results.last!.id + 1
     }
     
+    func getCountStudentDoneByActivities(activities: [ActivityType], student: Student) -> Int {
+        var count = 0
+        for activity in activities {
+            for result in results {
+                if result.getActivity() == activity {
+                    if result.getDoneStudents().contains(where: {$0 == student}) {
+                        count += 1
+                    }
+                }
+            }
+        }
+        return count
+    }
+    
     mutating func addStudentToActivityResult(student: Student, activity: ActivityType, studentProgress: StudyActivityProgress) {
         guard let result = getActivityResultByActivity(by: activity) else { return }
         guard let index = index(of: result) else { return }
         results[index].addStudent(student: student, studentProgress: studentProgress)
     }
     
-    mutating func getAllNotStartedStudentsByActivity(by activity: ActivityType) -> [Student]? {
+    func getAllNotStartedStudentsByActivity(by activity: ActivityType) -> [Student]? {
         guard let result = getActivityResultByActivity(by: activity) else { return nil }
         guard let index = index(of: result) else { return nil }
         return results[index].getNotStartedStudents()
     }
     
-    mutating func getAllInProgressStudentsByActivity(by activity: ActivityType) -> [Student]? {
+    func getAllInProgressStudentsByActivity(by activity: ActivityType) -> [Student]? {
         guard let result = getActivityResultByActivity(by: activity) else { return nil }
         guard let index = index(of: result) else { return nil }
         return results[index].getInProgressStudents()
     }
         
     
-    mutating func getAllDoneStudentByActivity(by activity: ActivityType) -> [Student]? {
+    func getAllDoneStudentByActivity(by activity: ActivityType) -> [Student]? {
         guard let result = getActivityResultByActivity(by: activity) else { return nil }
         guard let index = index(of: result) else { return nil }
         return results[index].getDoneStudents()
     }
     
-    mutating func getActivityResultByActivity(by activity: ActivityType) -> ActivityResult? {
+    func getActivityResultByActivity(by activity: ActivityType) -> ActivityResult? {
         for result in results {
             if result.getActivity() == activity {
                 return result
@@ -136,7 +150,7 @@ struct ActivityResultModel {
         return nil
     }
     
-    mutating func getActivityResultByStudent(by student: Student, activity: ActivityType) -> StudyActivityProgress? {
+    func getActivityResultByStudent(by student: Student, activity: ActivityType) -> StudyActivityProgress? {
         guard let result = getActivityResultByActivity(by: activity) else { return nil }
         guard let index = index(of: result) else { return nil }
         return results[index].getProgressByStudent(by: student)
