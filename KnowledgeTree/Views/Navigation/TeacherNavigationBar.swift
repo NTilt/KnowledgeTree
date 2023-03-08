@@ -1,12 +1,13 @@
 //
-//  StudentNavigationBar.swift
+//  TeacherNavigationBar.swift
 //  KnowledgeTree
 //
-//  Created by Никита Ясеник on 20.02.2023.
+//  Created by Никита Ясеник on 08.03.2023.
 //
+
 import SwiftUI
 
-struct StudentNavigationBar: View {
+struct TeacherNavigationBar: View {
     var title: String = ""
     @Binding var hasScrolled: Bool
     @State var showSearch = false
@@ -14,7 +15,6 @@ struct StudentNavigationBar: View {
     @EnvironmentObject var appModel: AppModel
     @AppStorage("showModal") var showModal = false
     @AppStorage("isLogged") var isLogged = false
-    @StateObject var studentDocument: StudentDocument
     
     var body: some View {
         ZStack {
@@ -41,7 +41,7 @@ struct StudentNavigationBar: View {
                     .strokeStyle(cornerRadius: 14)
                 }
                 .sheet(isPresented: $showSearch) {
-                    SearchView(studentDocument: studentDocument)
+                    TeacherSearchView()
                 }
                 
                 Button {
@@ -85,8 +85,8 @@ struct StudentNavigationBar: View {
     }
 }
 
-struct StudentNavigationBar_Previews: PreviewProvider {
+struct TeacherNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        StudentNavigationBar(title: "Курсы", hasScrolled: .constant(false), studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
+        TeacherNavigationBar(title: "Курсы", hasScrolled: .constant(false))
     }
 }

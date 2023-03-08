@@ -1,11 +1,12 @@
 //
-//  DataBaseCourseSection.swift
+//  CourseSectionDB.swift
 //  KnowledgeTree
 //
-//  Created by Никита Ясеник on 22.02.2023.
+//  Created by Никита Ясеник on 08.03.2023.
 //
 
 import Foundation
+
 
 var section1 = CourseSection(title: "Основы С++", subtitle: "7 разделов - 30 часов", text: "Вы познакомитесь с основными возможностями языка С++", image: "c++_course", background: "Background 1", icon: "c++_icon", activities: activities)
 

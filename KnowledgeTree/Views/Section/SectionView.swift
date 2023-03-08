@@ -12,6 +12,7 @@ struct SectionView: View {
     @EnvironmentObject var model: AppModel
     var lection: Lection
     @StateObject var studentDocument: StudentDocument
+    @EnvironmentObject var universityDocument: UniversityDocument
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -65,7 +66,8 @@ struct SectionView: View {
     
     var buttonDone: some View {
         Button {
-            studentDocument.doneActivity(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle, activityTitle: lection.title)
+//            studentDocument.doneActivity(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle, activityTitle: lection.title)
+            universityDocument.studentDoneActivity(activity: lection, student: studentDocument.student)
             dismiss()
         } label: {
             Text("Изучено")
@@ -194,7 +196,7 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView(lection: lections[0], studentDocument: StudentDocument(student: DataBase().studentNikita))
+        SectionView(lection: lections[0], studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .preferredColorScheme(.dark)
     }
 }

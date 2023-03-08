@@ -10,10 +10,10 @@ import Foundation
 class UserModelView: ObservableObject {
     
     private var user: User?
-    private var dataBase = DataBase()
     
     init(email: String) {
-        self.user = dataBase.getUserByEmail(by: email)
+        let universityModel = UniversityDocument()
+        self.user = universityModel.getUserByEmail(by: email)
     }
 }
 

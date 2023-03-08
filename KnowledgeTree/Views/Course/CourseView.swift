@@ -11,15 +11,15 @@ struct CourseView: View {
     var course: Course
     var namespace: Namespace.ID
     @State var section = cPlusPlusSections[0]
+    @State var progress: Float = 0
     @Binding var show: Bool
     @State var appear = [false, false, false]
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var universityDocument: UniversityDocument
     @State var viewState: CGSize = .zero
     @State var isDraggable = true
     @State var showSection = false
     @StateObject var studentDocument: StudentDocument
-    
-    
     
     var body: some View {
         NavigationView {
@@ -35,6 +35,7 @@ struct CourseView: View {
                 .coordinateSpace(name: "scroll")
                 .onAppear {
                     model.showDetail = true
+                    
                 }
 //                .onDisappear {
 //                    model.showDetail = false
@@ -116,19 +117,13 @@ struct CourseView: View {
         isDraggable = false
     }
     
+    
     var content: some View {
         VStack(alignment: .leading) {
             ForEach(Array(course.sections.enumerated()), id: \.offset) { index, section in
                 if index != 0 { Divider() }
-                let isOpen = studentDocument.isSectionOpenForCourse(for: course, section: section)
-                SectionRow(section: section, isOpen: isOpen, studentDocument: studentDocument)
-//                    .onTapGesture {
-//                        if isOpen {
-//                            self.section = section
-//                            showSection = true
-//                            model.currentSectionTitle = section.title
-//                        }
-//                    }
+                let isOpen = universityDocument.haveAccessStudentForSection(course: course, section: section, student: studentDocument.student)
+                SectionRow(section: section, progress: $progress, isOpen: isOpen, studentDocument: studentDocument)
             }
         }
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
@@ -245,7 +240,7 @@ struct CourseView: View {
 struct CourseView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        CourseView(course: fullCourses[0], namespace: namespace, show: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita))
+        CourseView(course: DataBase().courseSwift, namespace: namespace, show: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
     }
 }

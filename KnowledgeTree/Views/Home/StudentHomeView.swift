@@ -18,6 +18,7 @@ struct StudentHomeView: View {
     @State var selectedIndex = 0
     @State var currentCourseTitle = ""
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var universityDocument: UniversityDocument
     @AppStorage("isLiteMode") var isLiteMode = true
     @StateObject var studentDocument: StudentDocument
     
@@ -66,7 +67,7 @@ struct StudentHomeView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay {
-                NavigationBar(title: "Курсы", hasScrolled: $hasScrolled, userDocument: studentDocument)
+                StudentNavigationBar(title: "Курсы", hasScrolled: $hasScrolled, studentDocument: studentDocument)
             }
             if show {
                 detail
@@ -89,7 +90,7 @@ struct StudentHomeView: View {
     
     var detail: some View {
         ForEach(allCourses) { course in
-            if course.id == selectedID {
+            if course.title == model.currentCourseTitle {
                 CourseView(course: course, namespace: namespace, show: $show, studentDocument: studentDocument)
                     .zIndex(1)
                     .transition(.asymmetric(
@@ -108,6 +109,7 @@ struct StudentHomeView: View {
                         model.showDetail.toggle()
                         showStatusBar = false
                         selectedID = course.id
+                        model.currentCourseTitle = course.title
                     }
             }
         }
@@ -172,7 +174,7 @@ struct StudentHomeView: View {
 
 struct StudentHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        StudentHomeView(studentDocument: StudentDocument(student: DataBase().studentNikita))
+        StudentHomeView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
     }
 }

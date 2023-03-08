@@ -20,6 +20,7 @@ struct SignInView: View {
     @State var circleY: CGFloat = 150
     @EnvironmentObject var model: AppModel
     @EnvironmentObject var storage: Storage
+    @EnvironmentObject var universityModel: UniversityDocument
     @State var showIconPassword = false
     @State var showIconEmail = false
     @ObservedObject private var authModelView = AuthModelView()
@@ -83,7 +84,7 @@ struct SignInView: View {
                     authModelView.signIn(inputEmail: email, inputPassword: password) { (result) in
                         switch result {
                         case .success(_):
-                            let groupNumber = authModelView.getGroupNumberByEmail(by: email)
+                            let groupNumber = universityModel.getGroupNumberByEmail(email: email)
                             model.email = email
                             model.accessLevel = authModelView.getUserAccessLevel(by: email)
                             model.groupNumber = groupNumber
