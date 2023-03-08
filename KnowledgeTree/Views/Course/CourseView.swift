@@ -11,7 +11,6 @@ struct CourseView: View {
     var course: Course
     var namespace: Namespace.ID
     @State var section = cPlusPlusSections[0]
-    @State var progress: Float = 0
     @Binding var show: Bool
     @State var appear = [false, false, false]
     @EnvironmentObject var model: AppModel
@@ -123,7 +122,8 @@ struct CourseView: View {
             ForEach(Array(course.sections.enumerated()), id: \.offset) { index, section in
                 if index != 0 { Divider() }
                 let isOpen = universityDocument.haveAccessStudentForSection(course: course, section: section, student: studentDocument.student)
-                SectionRow(section: section, progress: $progress, isOpen: isOpen, studentDocument: studentDocument)
+                let progress = universityDocument.getSectionProgressForStudent(course: course, sectionTitle: section.title, student: studentDocument.student)
+                SectionRow(section: section, progress: progress, isOpen: isOpen, studentDocument: studentDocument)
             }
         }
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))

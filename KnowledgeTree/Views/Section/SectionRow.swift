@@ -10,7 +10,7 @@ import SwiftUI
 struct SectionRow: View {
     
     var section: CourseSection = courseSections[0]
-    @Binding var progress: Float
+    var progress: Float
     var isOpen: Bool
     @State private var isActive = false
     @ObservedObject var studentDocument: StudentDocument
@@ -55,9 +55,6 @@ struct SectionRow: View {
             }
         }
         .padding(20)
-        .onAppear {
-            progress = universityDocument.getSectionProgressForStudent(course: universityDocument.getCourseByTitle(title: model.currentCourseTitle)!, sectionTitle: section.title, student: studentDocument.student)
-        }
         .onTapGesture {
             if isOpen {
                 isActive = true
@@ -74,7 +71,7 @@ struct SectionRow: View {
 
 struct SectionRow_Previews: PreviewProvider {
     static var previews: some View {
-        SectionRow(progress: .constant(0.4), isOpen: true, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
+        SectionRow(progress: 0.4, isOpen: true, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
     }
 }
 
