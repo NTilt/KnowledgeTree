@@ -34,11 +34,22 @@ class UniversityDocument: ObservableObject {
         self.users = dataBase.getAllUsers()
         self.students = dataBase.getAllStudents()
         
-        
+        for student in students {
+            if let openCourses = getOpenCoursesForStudent(email: student.getEmail()) {
+                for course in openCourses {
+                    sectionResultModel.addStudentToSection(section: course.sections[0], student: student)
+                }
+            }
+            
+        }
     }
 }
 
 extension UniversityDocument {
+    
+    func addStudentToCourse(student: Student, course: Course) {
+        courseResultModel.addStudentToCourse(course: course, student: student)
+    }
     
     func getSectionProgressForStudent(course: Course, sectionTitle: String, student: Student) -> Float {
         var activities: [ActivityType] = []
@@ -48,7 +59,6 @@ extension UniversityDocument {
             }
         }
         let countDone = activityResultModel.getCountStudentDoneByActivities(activities: activities, student: student)
-        print(Float(countDone) / Float(activities.count))
         return Float(countDone) / Float(activities.count)
     }
     
@@ -93,6 +103,9 @@ extension UniversityDocument {
     func studentDoneCourse(courseTitle: String, student: Student) {
         let courses = getChildsCourseFromTitle(title: courseTitle)
         addStudentToCourses(student: student, courses: courses)
+        for course in courses {
+            sectionResultModel.addStudentToSection(section: course.sections[0], student: student)
+        }
     }
     
     func addStudentToCourses(student: Student, courses: [Course]) {

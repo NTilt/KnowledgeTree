@@ -8,6 +8,8 @@
 import Foundation
 
 
+var section1Geom = CourseSection(title: "Основы Геометрии", subtitle: "7 разделов - 30 часов", text: "Вы познакомитесь с основными возможностями геометрии", image: "geom_course", background: "Background 1", icon: "c++_icon", activities: activities)
+
 var section1 = CourseSection(title: "Основы С++", subtitle: "7 разделов - 30 часов", text: "Вы познакомитесь с основными возможностями языка С++", image: "c++_course", background: "Background 1", icon: "c++_icon", activities: activities)
 
 var section2 = CourseSection(title: "Git, базовые алгоритмы", subtitle: "11 разделов - 30 часов", text: "Изучите возможности версионирования кода", image: "c++_course", background: "Background 1", icon: "git_icon", activities: activities1)
@@ -36,6 +38,20 @@ var cPlusPlusSections = [
     section7,
     section8,
     section9
+]
+
+var GeomSections = [
+    section1Geom,
+    section2,
+    section3,
+    section4,
+]
+
+var sectionProgrammGeom: [SectionProgramm] = [
+    SectionProgramm(section: section1Geom, childSections: [section2], category: .base),
+    SectionProgramm(section: section2, childSections: [section3], category: .advanced),
+    SectionProgramm(section: section3, childSections: [section4], category: .advanced),
+    SectionProgramm(section: section4, childSections: [], category: .advanced),
 ]
 
 var sectionProgramm: [SectionProgramm] = [

@@ -37,9 +37,9 @@ struct StudentHomeView: View {
             
             ScrollView {
                 scrollDetection
-                
-                coursesView
-                
+                if !openCourses.isEmpty {
+                    coursesView
+                }
                 Text("Все курсы".uppercased())
                     .font(.footnote.weight(.semibold))
                     .foregroundColor(.secondary)

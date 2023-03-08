@@ -61,7 +61,7 @@ struct DataBase {
 
     var courseMath = Course(title: "Математический анализ", subtitle: "35 модулей - 55 часов", text: "Математический анализ", image: "math_course", background: "Background 6", icon: "math_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground6")
 
-    var courseGeom = Course(title: "Алгебра и геометрия", subtitle: "40 модулей - 40 часов", text: "Алгебра и геометрия", image: "geom_course", background: "Background 9", icon: "geom_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground9")
+    var courseGeom = Course(title: "Алгебра и геометрия", subtitle: "40 модулей - 40 часов", text: "Алгебра и геометрия", image: "geom_course", background: "Background 9", icon: "geom_icon", sections: GeomSections, sectionImage: "SectionBackground9")
 
     var courseCSharp = Course(title: "C# для начинающих", subtitle: "23 модуля - 18 часов", text: "Научитесь создавать простые консольные приложения на языке С++", image: "c#_course", background: "Background 1", icon: "c#_icon", sections: cPlusPlusSections, sectionImage: "SectionBackground1")
 
@@ -101,7 +101,7 @@ struct DataBase {
                                                       courseJava]),
                       sectionProgramm: sectionProgramm),
         StudyProgramm(courseProgramm: CourseProgramm(course: courseCSharp, childCourses: [courseDataBase], category: .advanced), sectionProgramm: sectionProgramm),
-        StudyProgramm(courseProgramm: CourseProgramm(course: courseGeom, childCourses: [courseMath], category: .advanced), sectionProgramm: sectionProgramm),
+        StudyProgramm(courseProgramm: CourseProgramm(course: courseGeom, childCourses: [courseMath], category: .advanced), sectionProgramm: sectionProgrammGeom),
         StudyProgramm(courseProgramm: CourseProgramm(course: courseMath, childCourses: [courseMachineLearning], category: .advanced), sectionProgramm: sectionProgramm),
         StudyProgramm(courseProgramm: CourseProgramm(course: courseSwift, childCourses: [], category: .advanced), sectionProgramm: sectionProgramm),
         StudyProgramm(courseProgramm: CourseProgramm(course: courseJava, childCourses: [], category: .advanced), sectionProgramm: sectionProgramm),

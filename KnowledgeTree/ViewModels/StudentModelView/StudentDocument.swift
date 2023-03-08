@@ -20,6 +20,7 @@ class StudentDocument: ObservableObject {
         let openCourses: [Course] = universityDocument.getOpenCoursesForStudent(email: student.getEmail()) ?? []
         var sectionsProgress: [StudentSectionProgress] = []
         for course in openCourses {
+            
             var openSectionsForCourse: [CourseSection] = []
             if let sections = universityDocument.getSectionProgrammsByCourse(course: course) {
                 for item in sections {
@@ -36,14 +37,6 @@ class StudentDocument: ObservableObject {
 }
 
 extension StudentDocument {
-    
-//    func getActivities(courseTitle: String, sectionTitle: String) -> [ActivityType] {
-//        return universityDocument.getStudentActivities(courseTitle: courseTitle, sectionTitle: sectionTitle, student: student)
-//    }
-    
-//    func doneActivity(courseTitle: String, sectionTitle: String, activityTitle: String) {
-//        studentCourses.doneActivity(courseTitle: courseTitle, sectionTitle: sectionTitle, activityTitle: activityTitle)
-//    }
     
     func openNewSectionsByTitle(courseTitle: String, sectionTitle: String) {
         if let course = universityDocument.getCourseByTitle(title: courseTitle) {

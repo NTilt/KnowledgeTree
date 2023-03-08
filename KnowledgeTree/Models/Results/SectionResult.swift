@@ -49,8 +49,7 @@ struct SectionResultModel {
         uniqueId = 0
         for course in courses {
             for (index, section) in course.sections.enumerated() {
-                let students = index == 0 ? [DataBase().studentNikita, DataBase().studentSergey] : []
-                let result = SectionResult(id: uniqueId, section: section, admittedStudents: students)
+                let result = SectionResult(id: uniqueId, section: section, admittedStudents: [])
                 uniqueId += 1
                 results.append(result)
             }
