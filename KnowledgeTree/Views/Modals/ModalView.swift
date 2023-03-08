@@ -67,7 +67,7 @@ struct ModalView: View {
                 StudentContentView(studentDocument: StudentDocument(student: user as! Student))
             }
             else {
-                TeacherContentView(teacherDocument: TeacherDocument(teacher: user as! Teacher))
+                TeacherContentView()
             }
         }
     }

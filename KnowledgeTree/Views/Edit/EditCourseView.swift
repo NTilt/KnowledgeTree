@@ -12,6 +12,7 @@ struct EditCourseView: View {
     var course = DataBase().courseSwift
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var universityDocument: UniversityDocument
     @State var courseTitle: String
     @State var courseSubTitle: String
     @State var courseText: String
@@ -19,7 +20,7 @@ struct EditCourseView: View {
     @State var editCourseSubTitle = false
     @State var editCourseText = false
     @FocusState var fieldIsFocused: Bool
-    @StateObject var teacherDocument: TeacherDocument
+    lazy var oldCourseTitle: String = courseTitle
     
     var body: some View {
         ZStack {
@@ -87,6 +88,7 @@ struct EditCourseView: View {
                     .frame(maxWidth: .infinity, maxHeight: 100)
                     .onLongPressGesture {
                         editCourseTitle = false
+                        universityDocument.changeCourseInStudyItem(course: course, title: courseTitle)
                     }
                     .focused($fieldIsFocused)
                     
@@ -172,7 +174,7 @@ struct EditCourseView: View {
 
 struct EditCourseView_Previews: PreviewProvider {
     static var previews: some View {
-        EditCourseView(courseTitle: "123", courseSubTitle: "123", courseText: "123", teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
+        EditCourseView(courseTitle: "123", courseSubTitle: "123", courseText: "123")
             .preferredColorScheme(.dark)
     }
 }

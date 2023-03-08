@@ -17,12 +17,13 @@ struct TeacherHomeView: View {
     @State var showCourse = false
     @State var selectedIndex = 0
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var universityDocument: UniversityDocument
     @AppStorage("isLiteMode") var isLiteMode = true
-    @StateObject var teacherDocument: TeacherDocument
+    //@StateObject var teacherDocument: TeacherDocument
     
     private var courses: [Course] {
         var courses: [Course] = []
-        courses.append(contentsOf: teacherDocument.getTeacherCourses())
+        courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
         return courses
     }
     
@@ -63,7 +64,7 @@ struct TeacherHomeView: View {
                 Color.clear.frame(height: 70)
             })
             .overlay {
-                TeacherNavigationBar(title: "Курсы", hasScrolled: $hasScrolled, teacherDocument: teacherDocument)
+                TeacherNavigationBar(title: "Курсы", hasScrolled: $hasScrolled)
             }
             if show {
                 detail
@@ -159,15 +160,12 @@ struct TeacherHomeView: View {
                 .frame(width: 700, height: 600)
                 .offset(x: 300, y: -50)
         )
-//        .sheet(isPresented: $showCourse) {
-//            CourseView(course: courses[selectedIndex], namespace: namespace, show: $showCourse)
-//        }
     }
 }
 
 struct TeacherHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        TeacherHomeView(teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
+        TeacherHomeView()
             .environmentObject(AppModel())
             .environmentObject(UniversityDocument())
     }

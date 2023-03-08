@@ -182,29 +182,4 @@ extension DataBase {
         }
         return nil
     }
-
-//    func createStudent(
-//        name: String,
-//        secondName: String,
-//        thirdName: String?,
-//        groupNumber: Int,
-//        email: String,
-//        phone: String,
-//        numberRecordBook: String,
-//        directionOfStudy: DirectionsName
-//    ) {
-//        let student = Student(name: name,
-//                              secondName: secondName,
-//                              thirdName: thirdName,
-//                              groupNumber: groupNumber,
-//                              email: email,
-//                              phone: phone,
-//                              numberRecordBook: numberRecordBook,
-//                              directionOfStudy: directionOfStudy)
-//        guard studentInBase(student: student) == false else {
-//            return
-//        }
-//        users.append(student)
-//
-//    }
 }

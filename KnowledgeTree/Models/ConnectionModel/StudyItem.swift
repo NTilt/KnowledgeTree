@@ -34,10 +34,42 @@ struct StudyItem: Identifiable {
     func getListOfGroups() -> [StudyGroup] {
         return listOfGroups
     }
+    
+    mutating func changeCourse(title: String) {
+        course.title = title
+    }
 }
 
 struct StudyItemModel  {
     private var studyItems = [StudyItem]()
+    
+    init(studyItems: [StudyItem] = [StudyItem]()) {
+        self.studyItems = studyItems
+    }
+    
+    func getItemByCourse(course: Course) -> StudyItem? {
+        for item in studyItems {
+            if item.getCourse() == course {
+                return item
+            }
+        }
+        return nil
+    }
+    
+    mutating func changeCourse(studyItem: StudyItem, title: String) {
+        if let itemIndex = index(of: studyItem) {
+            studyItems[itemIndex].changeCourse(title: title)
+        }
+    }
+    
+    func index(of item: StudyItem) -> Int? {
+        for index in 0..<studyItems.count {
+            if studyItems[index].id == item.id {
+                return index
+            }
+        }
+        return nil
+    }
     
     mutating func createStudyItem(course: Course,
                                   teachers: [Teacher],

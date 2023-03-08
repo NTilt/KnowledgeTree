@@ -15,28 +15,38 @@ class UniversityDocument: ObservableObject {
     @Published private(set) var studyModel: StudyItemModel
     @Published var groups: [StudyGroup] = []
     @Published var courses: [Course] = []
-    @Published var studyItems: [StudyItem] = []
     @Published var fullProgramm: [StudyProgramm] = []
     @Published var students: [Student] = []
     var users: [User] = []
     
     
     init() {
-        self.studyModel = StudyItemModel()
+        self.studyModel = StudyItemModel(studyItems: dataBase.getAllStudyItems())
         self.groups = dataBase.getAllGroups()
         self.fullProgramm = dataBase.getFullStudyProgramm()
         self.courses = dataBase.getAllCourses()
         self.users = dataBase.getAllUsers()
-        self.studyItems = dataBase.getAllStudyItems()
         self.students = dataBase.getAllStudents()
-        for item in studyItems {
-            studyModel.addStudyItem(item: item)
-        }
-        
     }
 }
 
 extension UniversityDocument {
+    
+    func getCourseByTitle(title: String) -> Course? {
+        for course in courses {
+            if course.title == title {
+                return course
+            }
+        }
+        return nil
+    }
+    
+    func changeCourseInStudyItem(course: Course, title: String) {
+        if let item = studyModel.getItemByCourse(course: course) {
+            print("Change done")
+            studyModel.changeCourse(studyItem: item, title: title)
+        }
+    }
     
     func getUserByEmail(by email: String) -> User? {
         for user in users {
@@ -88,13 +98,7 @@ extension UniversityDocument {
     }
     
     func getCoursesByTeacher(teacher: Teacher) -> [Course] {
-        var courses: [Course] = []
-        for item in studyItems {
-            if item.getTeachers().contains(teacher) {
-                courses.append(item.getCourse())
-            }
-        }
-        return courses
+        return studyModel.getCoursesByTeacherEmail(by: teacher.getEmail())
     }
     
     func getStudentsByGroup(by groupNumber: Int) -> [Student] {
@@ -115,15 +119,6 @@ extension UniversityDocument {
                 }
             }
             return courses
-    }
-    
-    func getCourseByTitle(title: String) -> Course? {
-        for item in fullProgramm {
-            if item.getCourse().title == title {
-                return item.getCourse()
-            }
-        }
-        return nil
     }
     
     func getSectionProgrammsByCourse(course: Course) -> [SectionProgramm]? {

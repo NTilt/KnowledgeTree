@@ -18,11 +18,11 @@ struct EditView: View {
     @State var showCourse = false
     @State var selectedIndex = 0
     @EnvironmentObject var model: AppModel
-    @StateObject var teacherDocument: TeacherDocument
+    @EnvironmentObject var universityDocument: UniversityDocument
     
     private var courses: [Course] {
         var courses: [Course] = []
-        courses.append(contentsOf: teacherDocument.getTeacherCourses())
+        courses.append(contentsOf: universityDocument.getCoursesForTeacher(teacherEmail: model.email))
         return courses
     }
     
@@ -55,7 +55,7 @@ struct EditView: View {
                     Color.clear.frame(height: 70)
                 })
                 .overlay {
-                    TeacherNavigationBar(title: "Курсы", hasScrolled: $hasScrolled, teacherDocument: teacherDocument)
+                    TeacherNavigationBar(title: "Курсы", hasScrolled: $hasScrolled)
                 }
                 if show {
                     detail
@@ -91,7 +91,7 @@ struct EditView: View {
     
     var cards: some View {
         ForEach(courses) { course in
-            TeacherCourseItem(course: course, namespace: namespace, show: $show, isEdit: true, teacherDocument: teacherDocument)
+            TeacherCourseItem(course: course, namespace: namespace, show: $show, isEdit: true)
                 .onTapGesture {
                     withAnimation(.openCard) {
                         show.toggle()
@@ -125,7 +125,7 @@ struct EditView: View {
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditView(teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
+        EditView()
             .preferredColorScheme(.dark)
     }
 }

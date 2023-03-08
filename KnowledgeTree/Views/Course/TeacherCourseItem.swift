@@ -14,7 +14,6 @@ struct TeacherCourseItem: View {
     var namespace: Namespace.ID
     @Binding var show: Bool
     var isEdit: Bool
-    @StateObject var teacherDocument: TeacherDocument
     
     var body: some View {
         VStack {
@@ -79,7 +78,7 @@ struct TeacherCourseItem: View {
                             .shadow(color: Color("Shadow").opacity(0.2), radius: 30, x: 0, y: 30)
                     }
                     .background(
-                        NavigationLink(destination: EditCourseView(course: course, courseTitle: course.title, courseSubTitle: course.subtitle, courseText: course.text, teacherDocument: teacherDocument), isActive: $isActive, label: {
+                        NavigationLink(destination: EditCourseView(course: course, courseTitle: course.title, courseSubTitle: course.subtitle, courseText: course.text), isActive: $isActive, label: {
                             EmptyView()
                         })
                     )
@@ -95,7 +94,7 @@ struct TeacherCourseItem: View {
 struct TeacherCourseItem_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        TeacherCourseItem(namespace: namespace, show: .constant(true), isEdit: true, teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
+        TeacherCourseItem(namespace: namespace, show: .constant(true), isEdit: true)
     }
 }
 

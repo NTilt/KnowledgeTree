@@ -77,7 +77,7 @@ struct TeacherAccountView: View {
     
     var menu: some View {
         Section {
-            NavigationLink(destination: TeacherHomeView(teacherDocument: TeacherDocument(teacher: userModel.getUser() as! Teacher))) {
+            NavigationLink(destination: TeacherHomeView()) {
                 Label("Настройки", systemImage: "gear")
             }
             Label("Помощь", systemImage: "questionmark")

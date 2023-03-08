@@ -15,7 +15,6 @@ struct TeacherNavigationBar: View {
     @EnvironmentObject var appModel: AppModel
     @AppStorage("showModal") var showModal = false
     @AppStorage("isLogged") var isLogged = false
-    @StateObject var teacherDocument: TeacherDocument
     
     var body: some View {
         ZStack {
@@ -88,6 +87,6 @@ struct TeacherNavigationBar: View {
 
 struct TeacherNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        TeacherNavigationBar(title: "Курсы", hasScrolled: .constant(false), teacherDocument: TeacherDocument(teacher: DataBase().teacherOlga))
+        TeacherNavigationBar(title: "Курсы", hasScrolled: .constant(false))
     }
 }
