@@ -33,7 +33,9 @@ struct CourseView: View {
                 }
                 .coordinateSpace(name: "scroll")
                 .onAppear {
-                    model.showDetail = true
+                    if !model.showDetail {
+                        model.showDetail = true
+                    }
                     
                 }
 //                .onDisappear {
@@ -242,6 +244,7 @@ struct CourseView_Previews: PreviewProvider {
     static var previews: some View {
         CourseView(course: DataBase().courseSwift, namespace: namespace, show: .constant(true), studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
+            .environmentObject(UniversityDocument())
     }
 }
 

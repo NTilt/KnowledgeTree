@@ -40,8 +40,13 @@ struct DataBase {
     lazy var programmingSwift = StudyItem(course: courseSwift, teachers: [self.teacherOlga], listOfGroups: [group441, group421])
     lazy var programmingC = StudyItem(course: courseCplusPlus, teachers: [self.teacherOlga], listOfGroups: [group421])
     lazy var programmingJava = StudyItem(course: courseJava, teachers: [self.teacherOlga], listOfGroups: [group441])
+    lazy var geom = StudyItem(course: courseGeom, teachers: [self.teacherOlga], listOfGroups: [group441, group421])
+    lazy var programmingdataBase = StudyItem(course: courseDataBase, teachers: [self.teacherOlga], listOfGroups: [group441, group421])
+    lazy var math = StudyItem(course: courseMath, teachers: [self.teacherOlga], listOfGroups: [group441, group421])
+    lazy var cSharp = StudyItem(course: courseCSharp, teachers: [self.teacherOlga], listOfGroups: [group441, group421])
+    lazy var machineLearning = StudyItem(course: courseMachineLearning, teachers: [self.teacherOlga], listOfGroups: [group441, group421])
     
-    private lazy var allStudyItems: [StudyItem] = [programmingC, programmingJava, programmingSwift]
+    private lazy var allStudyItems: [StudyItem] = [programmingC, programmingJava, programmingSwift, geom, programmingdataBase, math, cSharp, machineLearning]
     
     private lazy var users: [User] = [
         self.studentNikita,

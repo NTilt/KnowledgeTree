@@ -35,8 +35,20 @@ struct StudyItem: Identifiable {
         return listOfGroups
     }
     
-    mutating func changeCourse(title: String) {
-        course.title = title
+    mutating func changeCourse(title: String?, subTitle: String?, text: String?) {
+        if let newTitle = title {
+            course.title = newTitle
+        }
+        if let newSubTitle = subTitle {
+            course.subtitle = newSubTitle
+        }
+        if let newText = text {
+            course.text = newText
+        }
+    }
+    
+    mutating func changeCourseSection(sectionID: UUID, title: String?, subTitle: String?, text: String?) {
+        course.changeCourseSection(sectionID: sectionID, title: title, subTitle: subTitle, text: text)
     }
 }
 
@@ -56,9 +68,17 @@ struct StudyItemModel  {
         return nil
     }
     
-    mutating func changeCourse(studyItem: StudyItem, title: String) {
+    mutating func changeCourseSection(course: Course, section: CourseSection, title: String?,
+                                      subTitle: String?, text: String?) {
+        
+        guard let studyItem = getItemByCourse(course: course) else { return }
+        guard let itemIndex = index(of: studyItem) else { return }
+        studyItems[itemIndex].changeCourseSection(sectionID: section.id, title: title, subTitle: subTitle, text: text)
+    }
+    
+    mutating func changeCourse(studyItem: StudyItem, title: String?, subTitle: String?, text: String?) {
         if let itemIndex = index(of: studyItem) {
-            studyItems[itemIndex].changeCourse(title: title)
+            studyItems[itemIndex].changeCourse(title: title, subTitle: subTitle, text: text)
         }
     }
     
@@ -120,6 +140,14 @@ struct StudyItemModel  {
             if item.getTeachers().contains(where: {$0.getEmail() == email}) {
                 courses.append(item.getCourse())
             }
+        }
+        return courses
+    }
+    
+    func getAllCoursesForStudent() -> [Course] {
+        var courses: [Course] = []
+        for item in studyItems {
+            courses.append(item.getCourse())
         }
         return courses
     }

@@ -16,7 +16,8 @@ class StudentDocument: ObservableObject {
     init(student: Student, universityDocument: UniversityDocument) {
         self.universityDocument = universityDocument
         self.student = student
-        let allCourses: [Course] = universityDocument.courses
+        let allCourses: [Course] = universityDocument.getAllCoursesForStudent()
+        
         let openCourses: [Course] = universityDocument.getOpenCoursesForStudent(email: student.getEmail()) ?? []
         var sectionsProgress: [StudentSectionProgress] = []
         for course in openCourses {

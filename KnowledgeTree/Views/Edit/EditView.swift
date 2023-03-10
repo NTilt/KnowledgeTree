@@ -27,7 +27,7 @@ struct EditView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color("Background").ignoresSafeArea()
                 
@@ -98,7 +98,7 @@ struct EditView: View {
                         model.showDetail.toggle()
                         showStatusBar = false
                         selectedID = course.id
-                        model.currentCourseTitle = course.title
+                        model.currentCourseId = course.id
                     }
                 }
         }
@@ -127,5 +127,7 @@ struct EditView_Previews: PreviewProvider {
     static var previews: some View {
         EditView()
             .preferredColorScheme(.dark)
+            .environmentObject(AppModel())
+            .environmentObject(UniversityDocument())
     }
 }

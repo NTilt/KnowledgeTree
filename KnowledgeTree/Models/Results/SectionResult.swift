@@ -33,6 +33,18 @@ struct SectionResult: Identifiable {
     func studentIsAdmitted(student: Student) -> Bool {
         return admittedStudents.contains(where: {$0 == student})
     }
+    
+    mutating func changeSection(title: String?, subTitle: String?, text: String?) {
+        if let newTitle = title {
+            section.title = newTitle
+        }
+        if let newSubTitle = subTitle {
+            section.subtitle = newSubTitle
+        }
+        if let newText = text {
+            section.text = newText
+        }
+    }
 }
 
 struct SectionResultModel {
@@ -48,7 +60,7 @@ struct SectionResultModel {
     init(courses: [Course]) {
         uniqueId = 0
         for course in courses {
-            for (index, section) in course.sections.enumerated() {
+            for section in course.sections {
                 let result = SectionResult(id: uniqueId, section: section, admittedStudents: [])
                 uniqueId += 1
                 results.append(result)
@@ -58,6 +70,14 @@ struct SectionResultModel {
 }
 
 extension SectionResultModel {
+    
+    mutating func changeSection(section: CourseSection, title: String?, subTitle: String?, text: String?) {
+        if let result = getResultsForSection(for: section) {
+            if let index = index(of: result) {
+                results[index].changeSection(title: title, subTitle: subTitle, text: text)
+            }
+        }
+    }
     
     func checkStudentInSection(student: Student, section: CourseSection) -> Bool? {
         guard let result = getResultsForSection(for: section) else { return nil }

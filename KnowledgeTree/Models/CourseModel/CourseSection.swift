@@ -51,6 +51,7 @@ struct CourseSection : Identifiable {
 }
 
 extension CourseSection {
+    
     func getSectionProgress() -> CGFloat {
         let doneActivity = getDoneActivities()
         return CGFloat(doneActivity.count) / CGFloat(self.activities.count)
@@ -68,9 +69,13 @@ extension CourseSection {
 }
 
 
-extension CourseSection: Equatable {
+extension CourseSection: Equatable, Hashable {
     static func == (lhs: CourseSection, rhs: CourseSection) -> Bool {
         return lhs.title == rhs.title
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
     }
 }
 

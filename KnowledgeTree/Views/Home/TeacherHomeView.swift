@@ -19,7 +19,6 @@ struct TeacherHomeView: View {
     @EnvironmentObject var model: AppModel
     @EnvironmentObject var universityDocument: UniversityDocument
     @AppStorage("isLiteMode") var isLiteMode = true
-    //@StateObject var teacherDocument: TeacherDocument
     
     private var courses: [Course] {
         var courses: [Course] = []
@@ -34,14 +33,6 @@ struct TeacherHomeView: View {
             
             ScrollView {
                 scrollDetection
-                
-                //coursesView
-                
-//                Text("Все курсы".uppercased())
-//                    .font(.footnote.weight(.semibold))
-//                    .foregroundColor(.secondary)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .padding(.horizontal, 20)
                 
                 if !show {
                     cards

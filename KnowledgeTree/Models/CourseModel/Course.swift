@@ -26,6 +26,38 @@ struct Course: Identifiable {
 
 extension Course {
     
+    mutating func changeCourseSection(sectionID: UUID, title: String?, subTitle: String?, text: String?) {
+        if let sectionIndex = indexOfSection(of: sectionID) {
+            if let newTitle = title {
+                sections[sectionIndex].title = newTitle
+            }
+            if let newSubTitle = subTitle {
+                sections[sectionIndex].subtitle = newSubTitle
+            }
+            if let newText = text {
+                sections[sectionIndex].text = newText
+            }
+        }
+    }
+    
+    func indexOfSection(of sectionID: UUID) -> Int? {
+        for index in 0..<sections.count {
+            if sections[index].id == sectionID {
+                return index
+            }
+        }
+        return nil
+    }
+    
+    func getSectionByID(sectionID: UUID) -> CourseSection? {
+        for section in sections {
+            if section.id == sectionID {
+                return section
+            }
+        }
+        return nil
+    }
+    
     func getSectionByTitle(title: String) -> CourseSection? {
         for section in sections {
             if section.title == title {

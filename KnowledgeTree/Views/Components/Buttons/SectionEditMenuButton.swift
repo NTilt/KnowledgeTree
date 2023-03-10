@@ -1,13 +1,13 @@
 //
-//  LiquidMenuButtons.swift
+//  SectionEditMenuButton.swift
 //  KnowledgeTree
 //
-//  Created by Никита Ясеник on 05.03.2023.
+//  Created by Никита Ясеник on 10.03.2023.
 //
 
 import SwiftUI
 
-struct LiquidMenuButtons: View {
+struct SectionEditMenuButton: View {
     
     // - Properties -
     @State var offsetOne: CGSize = .zero
@@ -27,16 +27,17 @@ struct LiquidMenuButtons: View {
     // - Body -
     var body: some View {
         LiquidMenu()
+            .offset(x: -120, y: 350)
     }
 }
 
 
-extension LiquidMenuButtons {
+extension SectionEditMenuButton {
     
     private func LiquidMenu() -> some View {
         ZStack {
             Rectangle()
-                .fill(.linearGradient(colors: [.green, .blue], startPoint: .top, endPoint: .bottom))
+                .fill(.linearGradient(colors: [Color("lectionRight"), Color("topGreen")], startPoint: .top, endPoint: .bottom))
                 .mask {
                     Canvas { context, size in
                         //Adding Filters
@@ -64,35 +65,14 @@ extension LiquidMenuButtons {
                         
                         Symbol(offset: offsetThree)
                             .tag(4)
-                        
-                        Symbol(offset: offsetFour)
-                            .tag(5)
-                        
-                        Symbol(offset: offsetFive)
-                            .tag(6)
-                        
-                        Symbol(offset: offsetSix)
-                            .tag(7)
-                        
-                        Symbol(offset: offsetSeven)
-                            .tag(8)
-                        
-                        Symbol(offset: offsetEight)
-                            .tag(9)
                     }
                 }
             
-            CancelButton().blendMode(.softLight).rotationEffect(Angle(degrees: isCollapsed ? 90 : 45))
+            CancelButton().blendMode(.softLight).rotationEffect(Angle(degrees: isCollapsed ? 0 : 90))
             HomeButton().offset(offsetOne).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
-//            SettingsButton().offset(offsetTwo).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
-//
-//            PlusButton().offset(offsetFour).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
-            EditButton().offset(offsetThree).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
+            EditButton().offset(offsetTwo).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
             
-            SaveButton().offset(offsetFive).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
-//            PersonButton().offset(offsetSix).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
-//            TrashButton().offset(offsetSeven).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
-//            MinusButton().offset(offsetEight).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
+            SaveButton().offset(offsetThree).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
         }
         .frame(width: 500, height: 500)
         .contentShape(Circle())
@@ -120,9 +100,9 @@ extension LiquidMenuButtons {
     
     func CancelButton() -> some View {
         ZStack {
-            Image(systemName: "xmark")
+            Image(systemName: "slider.horizontal.2.gobackward")
                 .resizable()
-                .frame(width: 35, height: 35)
+                .frame(width: 55, height: 60)
                 .aspectRatio(.zero, contentMode: .fit).contentShape(Circle())
         }
         .frame(width: 100, height: 100)
@@ -132,45 +112,10 @@ extension LiquidMenuButtons {
             withAnimation { isCollapsed.toggle() }
             withAnimation(.interactiveSpring(response: 0.35, dampingFraction: 0.7, blendDuration: 0.1).speed(0.5)) {
                 offsetOne  = isCollapsed ? CGSize(width: 0, height: -120) : .zero
-//                offsetTwo  = isCollapsed ? CGSize(width: 0, height: -205) : .zero
+                offsetTwo  = isCollapsed ? CGSize(width: 0, height: -205) : .zero
                 offsetThree  = isCollapsed ? CGSize(width: 100, height: -80) : .zero
-//                offsetFour  = isCollapsed ? CGSize(width: 180, height: -140) : .zero
-                offsetFive  = isCollapsed ? CGSize(width: -100, height: -80) : .zero
-//                offsetSix  = isCollapsed ? CGSize(width: -180, height: -140) : .zero
-//                offsetSeven  = isCollapsed ? CGSize(width: -90, height: -180) : .zero
-//                offsetEight  = isCollapsed ? CGSize(width: 90, height: -180) : .zero
             }
         }
-    }
-
-    func SettingsButton() -> some View {
-        Button {
-        } label: {
-            ZStack {
-                Image(systemName: "gear")
-                    .resizable()
-                    .frame(width: 28, height: 28)
-            }
-            .frame(width: 65, height: 65)
-        }
-    }
-    
-    func TrashButton() -> some View {
-        ZStack {
-            Image(systemName: "trash")
-                .resizable()
-                .frame(width: 28, height: 28)
-        }
-        .frame(width: 65, height: 65)
-    }
-    
-    func MinusButton() -> some View {
-        ZStack {
-            Image(systemName: "minus.circle")
-                .resizable()
-                .frame(width: 28, height: 28)
-        }
-        .frame(width: 65, height: 65)
     }
     
     func PlusButton() -> some View {
@@ -180,20 +125,6 @@ extension LiquidMenuButtons {
                 .frame(width: 28, height: 28)
         }
         .frame(width: 65, height: 65)
-    }
-    
-    func PersonButton() -> some View {
-        Button {
-            print("aasasdasa")
-        } label: {
-            ZStack {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .frame(width: 28, height: 28)
-            }
-            .frame(width: 65, height: 65)
-        }
-        
     }
     
     func SaveButton() -> some View {
@@ -226,11 +157,8 @@ extension LiquidMenuButtons {
     
 }
 
-
-struct LiquidPreviews: PreviewProvider {
+struct SectionEditMenuButton_Previews: PreviewProvider {
     static var previews: some View {
-        LiquidMenuButtons(completionForSaveInfo: {},
-                          completionForEdit: {})
-            .preferredColorScheme(.dark)
+        SectionEditMenuButton(completionForSaveInfo: {}, completionForEdit: {})
     }
 }

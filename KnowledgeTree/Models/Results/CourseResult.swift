@@ -33,6 +33,18 @@ struct CourseResult: Identifiable {
     func studentIsAdmitted(student: Student) -> Bool {
         return admittedStudents.contains(where: {$0 == student})
     }
+    
+    mutating func changeCourse(title: String?, subTitle: String?, text: String?) {
+        if let newTitle = title {
+            course.title = newTitle
+        }
+        if let newSubTitle = subTitle {
+            course.subtitle = newSubTitle
+        }
+        if let newText = text {
+            course.text = newText
+        }
+    }
 }
 
 struct CourseResultModel {
@@ -47,6 +59,14 @@ struct CourseResultModel {
 }
 
 extension CourseResultModel {
+    
+    mutating func changeCourse(course: Course, title: String?, subTitle: String?, text: String?) {
+        if let result = getResultsForCourse(for: course) {
+            if let index = index(of: result) {
+                results[index].changeCourse(title: title, subTitle: subTitle, text: text)
+            }
+        }
+    }
     
     func checkStudentInCourse(student: Student, course: Course) -> Bool? {
         guard let result = getResultsForCourse(for: course) else { return nil }

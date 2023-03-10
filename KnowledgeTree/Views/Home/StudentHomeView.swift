@@ -23,11 +23,11 @@ struct StudentHomeView: View {
     @StateObject var studentDocument: StudentDocument
     
     private var openCourses: [Course] {
-        return studentDocument.getOpenCourses()
+        return universityDocument.getOpenCoursesForStudent(email: studentDocument.student.getEmail()) ?? []
     }
     
     private var allCourses: [Course] {
-        studentDocument.getAllCourses()
+        universityDocument.getAllCoursesForStudent()
     }
     
     var body: some View {
@@ -90,7 +90,7 @@ struct StudentHomeView: View {
     
     var detail: some View {
         ForEach(allCourses) { course in
-            if course.title == model.currentCourseTitle {
+            if course.id == model.currentCourseId {
                 CourseView(course: course, namespace: namespace, show: $show, studentDocument: studentDocument)
                     .zIndex(1)
                     .transition(.asymmetric(
@@ -108,8 +108,7 @@ struct StudentHomeView: View {
                         show.toggle()
                         model.showDetail.toggle()
                         showStatusBar = false
-                        selectedID = course.id
-                        model.currentCourseTitle = course.title
+                        model.currentCourseId = course.id
                     }
             }
         }
@@ -155,7 +154,7 @@ struct StudentHomeView: View {
                                 model.showDetail.toggle()
                                 showStatusBar = false
                                 selectedID = course.id
-                                model.currentCourseTitle = course.title
+                                model.currentCourseId = course.id
                             }
                     }
                 }
@@ -176,5 +175,6 @@ struct StudentHomeView_Previews: PreviewProvider {
     static var previews: some View {
         StudentHomeView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
+            .environmentObject(UniversityDocument())
     }
 }

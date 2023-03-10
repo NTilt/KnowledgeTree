@@ -58,7 +58,8 @@ struct SectionRow: View {
         .onTapGesture {
             if isOpen {
                 isActive = true
-                model.currentSectionTitle = section.title
+                model.currentSectionID = section.id
+                //model.currentSectionTitle = section.title
             }
         }
         .background(

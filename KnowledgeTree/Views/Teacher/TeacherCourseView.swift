@@ -21,7 +21,7 @@ struct TeacherCourseView: View {
     
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 ScrollView {
                     cover
@@ -32,9 +32,6 @@ struct TeacherCourseView: View {
                         .opacity(appear[2] ? 1 : 0)
                 }
                 .coordinateSpace(name: "scroll")
-                .onAppear {
-                    model.showDetail = true
-                }
                 .background(Color("Background"))
                 .mask(RoundedRectangle(cornerRadius: viewState.width / 3, style: .continuous))
                 .shadow(color: .black.opacity(0.3), radius: 30, x: 0, y: 10)
@@ -116,7 +113,7 @@ struct TeacherCourseView: View {
         VStack(alignment: .leading) {
             ForEach(Array(course.sections.enumerated()), id: \.offset) { index, section in
                 if index != 0 { Divider() }
-                TeacherSectionRow(section: section)
+                TeacherSectionRow(section: section, course: course)
             }
         }
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))

@@ -13,6 +13,7 @@ struct EditCourseView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: AppModel
     @EnvironmentObject var universityDocument: UniversityDocument
+    @State var showEditSectionModal = false
     @State var courseTitle: String
     @State var courseSubTitle: String
     @State var courseText: String
@@ -23,40 +24,74 @@ struct EditCourseView: View {
     lazy var oldCourseTitle: String = courseTitle
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
                 
-            VStack {
-                overlayContent
-                    .padding(.top, 60)
-                    .shadow(color: .green.opacity(0.3), radius: 10, x: 0, y: 10)
-                    .background(
-                        Image("greenBlobs")
-                            .resizable()
-                            .frame(width: 700, height: 600)
-                            .offset(x: 300, y: -50)
-                    )
-                    .offset(y: 40)
-                Spacer()
-            }
-            .overlay {
-                HStack {
-                    buttonBack
-                        .frame(maxHeight: .infinity, alignment: .top)
-                        .padding(.leading, 60)
+                VStack {
+                    overlayContent
+                        .padding(.top, 60)
+                        .shadow(color: .green.opacity(0.3), radius: 10, x: 0, y: 10)
+                        .background(
+                            Image("greenBlobs")
+                                .resizable()
+                                .frame(width: 700, height: 600)
+                                .offset(x: 300, y: -50)
+                        )
+                        .offset(y: 40)
+                        .padding(.bottom, 60)
+                    sectionView
                     Spacer()
                 }
-                LiquidMenuButtons()
+                .overlay {
+                    HStack {
+                        buttonBack
+                            .frame(maxHeight: .infinity, alignment: .top)
+                            .padding(.leading, 60)
+                        Spacer()
+                    }
+                    LiquidMenuButtons(completionForSaveInfo: {
+                        editCourseTitle = false
+                        editCourseText = false
+                        editCourseSubTitle = false
+                        universityDocument.changeCourseInStudyItem(course: course, title: courseTitle, subTitle: courseSubTitle, text: courseText)
+                    },
+                                      completionForEdit: {
+                        editCourseTitle = true
+                        editCourseText = true
+                        editCourseSubTitle = true
+                    })
                     .offset(x: 0, y: 350)
+                }
+                
             }
-            
+            .onTapGesture {
+                fieldIsFocused = false
+            }
         }
         .navigationBarBackButtonHidden()
-        .onTapGesture {
-            fieldIsFocused = false
-        }
         
+    }
+    
+    var sectionView: some View {
+        TabView {
+            ForEach(Array(course.sections.enumerated()), id: \.offset) { index, section in
+                GeometryReader { proxy in
+                    let minX = proxy.frame(in: .global).minX
+                    TeacherSectionRow(section: section, course: course)
+                        .rotation3DEffect(.degrees(minX / -10), axis: (x: 1, y: 1, z: 0))
+                        .shadow(color: .green.opacity(0.3), radius: 10, x: 0, y: 10)
+                        .blur(radius: abs(minX) / 40)
+                        .onTapGesture {
+                            showEditSectionModal = true
+                        }
+                }
+            }
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .frame(height: 130)
+
     }
     
     var buttonBack: some View {
@@ -110,6 +145,7 @@ struct EditCourseView: View {
                     .font(.footnote.weight(.semibold))
                     .frame(maxWidth: .infinity, maxHeight: 50)
                     .onLongPressGesture {
+                        universityDocument.changeCourseInStudyItem(course: course, subTitle: courseSubTitle)
                         editCourseSubTitle = false
                     }
                     .focused($fieldIsFocused)
@@ -129,6 +165,7 @@ struct EditCourseView: View {
                     .font(.footnote)
                     .frame(maxWidth: .infinity, maxHeight: 50)
                     .onLongPressGesture {
+                        universityDocument.changeCourseInStudyItem(course: course, text: courseText)
                         editCourseText = false
                         
                     }

@@ -62,11 +62,27 @@ extension UniversityDocument {
         return Float(countDone) / Float(activities.count)
     }
     
-    func getStudentActivities(courseTitle: String, sectionTitle: String, student: Student) -> [ActivityType] {
-        guard let course = getCourseByTitle(title: courseTitle) else { return []}
+    func getActivitiesBySectionID(courseID: UUID, sectionID: UUID) -> [ActivityType] {
+        guard let course = getCourseById(id: courseID) else { return [] }
+        var activities: [ActivityType] = []
+        for section in course.sections {
+            if section.id == sectionID {
+                activities = section.activities
+            }
+        }
+
+        for activity in activities {
+            activity.progress = .notStarted
+        }
+        
+        return activities
+    }
+    
+    func getStudentActivities(courseID: UUID, sectionID: UUID, student: Student) -> [ActivityType] {
+        guard let course = getCourseById(id: courseID) else { return []}
         var activitiesOfSection: [ActivityType] = []
         for section in course.sections {
-            if section.title == sectionTitle {
+            if section.id == sectionID {
                 activitiesOfSection.append(contentsOf: section.activities)
             }
         }
@@ -79,6 +95,15 @@ extension UniversityDocument {
             }
         }
         return activitiesOfSection
+    }
+    
+    func getCourseById(id: UUID) -> Course? {
+        for item in fullProgramm {
+            if item.getCourse().id == id {
+                return item.getCourse()
+            }
+        }
+        return nil
     }
     
     func studentDoneActivity(activity: ActivityType, student: Student) {
@@ -144,11 +169,27 @@ extension UniversityDocument {
         return nil
     }
     
-    func changeCourseInStudyItem(course: Course, title: String) {
+    func changeCourseSectionInStudyItem(course: Course,
+                                        section: CourseSection,
+                                        title: String? = nil,
+                                        subTitle: String? = nil,
+                                        text: String? = nil) {
+        studyModel.changeCourseSection(course: course, section: section, title: title, subTitle: subTitle, text: text)
+        sectionResultModel.changeSection(section: section, title: title, subTitle: subTitle, text: text)
+    }
+    
+    func changeCourseInStudyItem(course: Course,
+                                 title: String? = nil,
+                                 subTitle: String? = nil,
+                                 text: String?  = nil) {
         if let item = studyModel.getItemByCourse(course: course) {
-            print("Change done")
-            studyModel.changeCourse(studyItem: item, title: title)
+            studyModel.changeCourse(studyItem: item, title: title, subTitle: subTitle, text: text)
+            courseResultModel.changeCourse(course: item.getCourse(), title: title, subTitle: subTitle, text: text)
         }
+    }
+    
+    func getAllCoursesForStudent() -> [Course] {
+        return studyModel.getAllCoursesForStudent()
     }
     
     func getUserByEmail(by email: String) -> User? {

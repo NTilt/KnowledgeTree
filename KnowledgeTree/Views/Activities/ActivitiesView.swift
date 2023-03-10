@@ -17,7 +17,7 @@ struct ActivitiesView: View {
 
     
     private var activities: [ActivityType] {
-        return universityModel.getStudentActivities(courseTitle: model.currentCourseTitle, sectionTitle: model.currentSectionTitle, student: studentDocument.student)
+        return universityModel.getStudentActivities(courseID: model.currentCourseId, sectionID: model.currentSectionID, student: studentDocument.student)
     }
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
