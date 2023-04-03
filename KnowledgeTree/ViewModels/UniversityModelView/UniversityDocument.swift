@@ -47,6 +47,40 @@ class UniversityDocument: ObservableObject {
 
 extension UniversityDocument {
     
+    func getSortedStudentsByParameters(courseTitle: String?, groupNumber: Int, sortedBy: Sorting) -> [Student] {
+        var students = getStudentsByGroupNumber(by: groupNumber)
+        switch sortedBy {
+        case .byRating:
+            break
+        case .bySecondName:
+            students = students.sorted(by: {
+                $0.getSecondName() < $1.getSecondName()
+            })
+        }
+        return students
+    }
+    
+    
+    func getStudentsByGroup(by group: StudyGroup) -> [Student] {
+        group.getStudents()
+    }
+    
+    func getNumberGroups(by courseTitle: String) -> [Int] {
+        var listOfNumbers: [Int] = []
+        if let course = getCourseByTitle(title: courseTitle) {
+            listOfNumbers.append(contentsOf: getAllGroupsByCourse(by: course).map({$0.getGroupNumber()}))
+        }
+        return listOfNumbers
+    }
+    
+    func getAllGroupsByCourse(by course: Course) -> [StudyGroup] {
+        var groups: [StudyGroup] = []
+        if let studyItem = studyModel.getItemByCourse(course: course){
+            groups.append(contentsOf: studyItem.getListOfGroups())
+        }
+        return groups
+    }
+    
     func addStudentToCourse(student: Student, course: Course) {
         courseResultModel.addStudentToCourse(course: course, student: student)
     }

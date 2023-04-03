@@ -22,7 +22,15 @@ struct DataBase {
     
     var studentSergey = Student(name: "Сергей", secondName: "Сергеев", thirdName: "Сергеевич", groupNumber: 421, email: "sergeyaa@sgu.ru", phone: "89999999119", numberRecordBook: "20191232", directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems, urlToImage: nil)
     
-    private lazy var students: [Student] = [studentNikita, studentSergey]
+    var studentMax = Student(name: "Максим", secondName: "Карпов", thirdName: "Олегович", groupNumber: 441, email: "karpovmo@sgu.ru", phone: "11111111111", address: nil, numberRecordBook: "20193322", directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems, ratingInGroup: nil, rationInFaculties: nil, urlToImage: nil)
+    
+    var studentAlex = Student(name: "Алексей", secondName: "Смирнов", thirdName: "Сергеевич", groupNumber: 411, email: "alexeyso@sgu.ru", phone: "89999999110", numberRecordBook: "20191233", directionOfStudy: .FundamentalInformaticsAndInformationTechnology, urlToImage: nil)
+    
+    var studentDanil = Student(name: "Данил", secondName: "Павлов", thirdName: "Игоревич", groupNumber: 421, email: "danilpi@sgu.ru", phone: "89999929119", numberRecordBook: "20191331", directionOfStudy: .InformaticsAndComputerEngineering, urlToImage: nil)
+    
+    var studentOleg = Student(name: "Олег", secondName: "Бочаров", thirdName: "Олегович", groupNumber: 441, email: "olegbo@sgu.ru", phone: "82999999119", numberRecordBook: "20195232", directionOfStudy: .MathematicalSupportAndAdministrationOfInformationSystems, urlToImage: nil)
+    
+    private lazy var students: [Student] = [studentNikita, studentSergey, studentMax, studentAlex, studentDanil, studentOleg]
     
     // MARK: Teachers
     

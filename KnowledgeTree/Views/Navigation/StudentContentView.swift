@@ -13,6 +13,7 @@ struct StudentContentView: View {
     @AppStorage("showModal") var showModal = false
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var storage: Storage
+    @EnvironmentObject var universityDocument: UniversityDocument
     @StateObject var studentDocument: StudentDocument
     
     var body: some View {
@@ -24,7 +25,7 @@ struct StudentContentView: View {
                 case .study:
                     MainView(studentDocument: studentDocument)
                 case .rating:
-                    StudentHomeView(studentDocument: studentDocument)
+                    StudentsRating(students: universityDocument.students)
                 case .profile:
                     StudentAccountView(userModel: userModel)
                 }
@@ -42,6 +43,8 @@ struct StudentContentView_Previews: PreviewProvider {
     static var previews: some View {
         StudentContentView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
+            .environmentObject(Storage())
+            .environmentObject(UniversityDocument())
     }
 }
 

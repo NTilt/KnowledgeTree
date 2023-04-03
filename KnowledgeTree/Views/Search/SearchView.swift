@@ -84,5 +84,6 @@ struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
+            .environmentObject(UniversityDocument())
     }
 }
