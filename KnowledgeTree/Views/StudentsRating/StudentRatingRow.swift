@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StudentRatingRow: View {
     var student: Student
+    @State private var isActive = false
     var ratingNumber: Int
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
@@ -23,6 +24,14 @@ struct StudentRatingRow: View {
             }
         }
         .padding(20)
+        .onTapGesture {
+            isActive = true
+        }
+        .background(
+            NavigationLink(destination: StudentRatingInfo(student: student), isActive: $isActive, label: {
+                EmptyView()
+            })
+        )
     }
 }
 

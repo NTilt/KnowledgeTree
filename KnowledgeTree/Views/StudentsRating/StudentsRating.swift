@@ -13,23 +13,27 @@ struct StudentsRating: View {
     @State var selectedCourse: String = "SwiftUI"
     @State var selectedSort: Sorting = .byRating
     @State var selectedGroup: Int = 441
+    @State var showDetails = false
+    @State var opacityForDetail: Double = 1
     @Namespace var namespace
     @EnvironmentObject var universityDocument: UniversityDocument
     @State var students: [Student]
     var body: some View {
-        ZStack {
-            Color("Background").ignoresSafeArea()
-            ScrollView {
-                scrollDetection
-                content
-            }
-            .padding(.top, 70)
-            .overlay(RatingNavigationBar(completion: {showFilter = true}, hasScrolled: $hasScrolled))
-            .sheet(isPresented: $showFilter) {
-                FilterScreen(selectedCourse: $selectedCourse, selectedSort: $selectedSort, selectedGroup: $selectedGroup, completion: {
-                    self.students = universityDocument.getSortedStudentsByParameters(courseTitle: selectedCourse, groupNumber: selectedGroup, sortedBy: selectedSort)
-                })
-                    .presentationDetents([.medium])
+        NavigationStack {
+            ZStack {
+                Color("Background").ignoresSafeArea()
+                ScrollView {
+                    scrollDetection
+                    content
+                }
+                .padding(.top, 70)
+                .overlay(RatingNavigationBar(completion: {showFilter = true}, hasScrolled: $hasScrolled))
+                .sheet(isPresented: $showFilter) {
+                    FilterScreen(selectedCourse: $selectedCourse, selectedSort: $selectedSort, selectedGroup: $selectedGroup, completion: {
+                        self.students = universityDocument.getSortedStudentsByParameters(courseTitle: selectedCourse, groupNumber: selectedGroup, sortedBy: selectedSort)
+                    })
+                        .presentationDetents([.medium])
+                }
             }
         }
     }

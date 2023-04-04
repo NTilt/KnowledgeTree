@@ -34,6 +34,7 @@
 		115C4CDB29B7D32000A55514 /* TeacherNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C4CDA29B7D32000A55514 /* TeacherNavigationBar.swift */; };
 		115C4CDD29B7D37600A55514 /* TeacherSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C4CDC29B7D37600A55514 /* TeacherSearchView.swift */; };
 		115C4CE029B7DC6300A55514 /* CourseSectionDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C4CDF29B7DC6300A55514 /* CourseSectionDB.swift */; };
+		116AF0F029DB6A760054512D /* StudentRatingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116AF0EF29DB6A760054512D /* StudentRatingInfo.swift */; };
 		1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180E13B29A738E200577003 /* TeacherTabBar.swift */; };
 		1183D48829B0E667007F16D1 /* ActivityNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183D48729B0E667007F16D1 /* ActivityNavigationBar.swift */; };
 		1183D48A29B0E9C4007F16D1 /* TestWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183D48929B0E9C4007F16D1 /* TestWork.swift */; };
@@ -65,6 +66,7 @@
 		118F2B8F29A3C0AD00FAFF9C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B8C29A3C0AD00FAFF9C /* TabBar.swift */; };
 		118F2B9029A3C0AD00FAFF9C /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B8D29A3C0AD00FAFF9C /* NavigationBar.swift */; };
 		118F2B9129A3C0AD00FAFF9C /* StudentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118F2B8E29A3C0AD00FAFF9C /* StudentContentView.swift */; };
+		1191DCA729DC012A00880851 /* CardAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191DCA629DC012A00880851 /* CardAccountView.swift */; };
 		1192F25B29B6477400C681C6 /* EditTextFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1192F25A29B6477300C681C6 /* EditTextFieldsView.swift */; };
 		1192F25D29B737F900C681C6 /* TeacherCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1192F25C29B737F900C681C6 /* TeacherCourseItem.swift */; };
 		11A8977229AB5F56006F609C /* UniversityDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8977129AB5F56006F609C /* UniversityDocument.swift */; };
@@ -79,6 +81,7 @@
 		11B0566A29DABA43001C05C0 /* StudentsRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566929DABA43001C05C0 /* StudentsRating.swift */; };
 		11B0566E29DAC45C001C05C0 /* RatingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566D29DAC45C001C05C0 /* RatingNavigationBar.swift */; };
 		11B0567029DADD24001C05C0 /* FilterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566F29DADD24001C05C0 /* FilterScreen.swift */; };
+		11B34E2029DC0FE300CF40E9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B34E1F29DC0FE300CF40E9 /* ChartView.swift */; };
 		11B5B85229241C5A009CC3D4 /* VertexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B85129241C5A009CC3D4 /* VertexView.swift */; };
 		11B5B85429241CE3009CC3D4 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B85329241CE3009CC3D4 /* UtilityExtensions.swift */; };
 		11B5B85629241D4A009CC3D4 /* Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B5B85529241D4A009CC3D4 /* Center.swift */; };
@@ -143,6 +146,7 @@
 		115C4CDA29B7D32000A55514 /* TeacherNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherNavigationBar.swift; sourceTree = "<group>"; };
 		115C4CDC29B7D37600A55514 /* TeacherSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSearchView.swift; sourceTree = "<group>"; };
 		115C4CDF29B7DC6300A55514 /* CourseSectionDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionDB.swift; sourceTree = "<group>"; };
+		116AF0EF29DB6A760054512D /* StudentRatingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRatingInfo.swift; sourceTree = "<group>"; };
 		1180E13B29A738E200577003 /* TeacherTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabBar.swift; sourceTree = "<group>"; };
 		1183D48729B0E667007F16D1 /* ActivityNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityNavigationBar.swift; sourceTree = "<group>"; };
 		1183D48929B0E9C4007F16D1 /* TestWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWork.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 		118F2B8C29A3C0AD00FAFF9C /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		118F2B8D29A3C0AD00FAFF9C /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		118F2B8E29A3C0AD00FAFF9C /* StudentContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentContentView.swift; sourceTree = "<group>"; };
+		1191DCA629DC012A00880851 /* CardAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAccountView.swift; sourceTree = "<group>"; };
 		1192F25A29B6477300C681C6 /* EditTextFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextFieldsView.swift; sourceTree = "<group>"; };
 		1192F25C29B737F900C681C6 /* TeacherCourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherCourseItem.swift; sourceTree = "<group>"; };
 		11A8977129AB5F56006F609C /* UniversityDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDocument.swift; sourceTree = "<group>"; };
@@ -188,6 +193,7 @@
 		11B0566929DABA43001C05C0 /* StudentsRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsRating.swift; sourceTree = "<group>"; };
 		11B0566D29DAC45C001C05C0 /* RatingNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingNavigationBar.swift; sourceTree = "<group>"; };
 		11B0566F29DADD24001C05C0 /* FilterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreen.swift; sourceTree = "<group>"; };
+		11B34E1F29DC0FE300CF40E9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		11B5B85129241C5A009CC3D4 /* VertexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexView.swift; sourceTree = "<group>"; };
 		11B5B85329241CE3009CC3D4 /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
 		11B5B85529241D4A009CC3D4 /* Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Center.swift; sourceTree = "<group>"; };
@@ -425,6 +431,7 @@
 				118F2B4229A3B4A800FAFF9C /* BlobView.swift */,
 				118F2B4429A3B55B00FAFF9C /* StudentAccountView.swift */,
 				11A9AE5F29ACCF9400733E99 /* TeacherAccountView.swift */,
+				1191DCA629DC012A00880851 /* CardAccountView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -564,6 +571,8 @@
 				11B0566729DAB57B001C05C0 /* RatingNumber.swift */,
 				11B0566D29DAC45C001C05C0 /* RatingNavigationBar.swift */,
 				11B0566F29DADD24001C05C0 /* FilterScreen.swift */,
+				116AF0EF29DB6A760054512D /* StudentRatingInfo.swift */,
+				11B34E1F29DC0FE300CF40E9 /* ChartView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -873,8 +882,10 @@
 				1183D48E29B0F245007F16D1 /* LaboratoryWork.swift in Sources */,
 				11FD406D29B88082005186AD /* ActivityResult.swift in Sources */,
 				11E78FE4299B90B600DBC344 /* Student.swift in Sources */,
+				1191DCA729DC012A00880851 /* CardAccountView.swift in Sources */,
 				118F2B4829A3B58500FAFF9C /* StudentHomeView.swift in Sources */,
 				110510C72971D5CF0046223E /* SectionKnowledgeSpaceView.swift in Sources */,
+				116AF0F029DB6A760054512D /* StudentRatingInfo.swift in Sources */,
 				11B0566829DAB57B001C05C0 /* RatingNumber.swift in Sources */,
 				11FD406F29B89A05005186AD /* SectionResult.swift in Sources */,
 				118F2B8529A3C04C00FAFF9C /* FeaturedItem.swift in Sources */,
@@ -883,6 +894,7 @@
 				111FDB36299D2A9A0013F9D7 /* KnowledgeTreeErrors.swift in Sources */,
 				11B5B85629241D4A009CC3D4 /* Center.swift in Sources */,
 				11B7AC0C29B0A9370077E7AB /* Lection.swift in Sources */,
+				11B34E2029DC0FE300CF40E9 /* ChartView.swift in Sources */,
 				11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */,
 				118F2B5229A3B6E200FAFF9C /* SignInView.swift in Sources */,
 				11403BA329B4CC7D00420E65 /* TeacherCourseView.swift in Sources */,
