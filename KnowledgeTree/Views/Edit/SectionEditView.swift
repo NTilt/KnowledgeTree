@@ -82,7 +82,7 @@ struct SectionEditView: View {
             VStack(alignment: .center) {
                 LazyHGrid(rows: rows, spacing: 30) {
                     ForEach(section.activities) { activity in
-                        ActivityItem(activity: activity, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
+                        ActivityItem(activity: activity, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()), completion: {})
                     }
                 }
                 .padding()

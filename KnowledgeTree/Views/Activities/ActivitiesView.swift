@@ -10,6 +10,8 @@ import SwiftUI
 struct ActivitiesView: View {
     
     @State var hasScrolled = false
+    @State var showTestWork = false
+    @State var showLabWork = false
     @EnvironmentObject var model: AppModel
     @ObservedObject var studentDocument: StudentDocument
     @EnvironmentObject var universityModel: UniversityDocument
@@ -56,6 +58,12 @@ struct ActivitiesView: View {
                     .frame(height: hasScrolled ? 44 : 70)
                     .frame(maxHeight: .infinity, alignment: .top)
                 })
+                if showTestWork {
+                    TestWorkStudentView(show: $showTestWork)
+                }
+                if showLabWork {
+                    LaboratoryWorkStudentView(show: $showLabWork)
+                }
             }
             .onAppear {
                 studentDocument.objectWillChange.send()
@@ -67,7 +75,15 @@ struct ActivitiesView: View {
     var lectionSections: some View {
         LazyVGrid(columns: columns, spacing: 40) {
             ForEach(activities) { activity in
-                ActivityItem(activity: activity, studentDocument: studentDocument)
+                switch activity.type {
+                case .lection:
+                    ActivityItem(activity: activity, studentDocument: studentDocument, completion: {})
+                case .testWork, .practice:
+                    ActivityItem(activity: activity, studentDocument: studentDocument, completion: {showTestWork = true})
+                case .laboratoryWork:
+                    ActivityItem(activity: activity, studentDocument: studentDocument, completion: {showLabWork = true})
+                }
+                
             }
         }
     }
@@ -110,6 +126,7 @@ struct ActivitiesView_Previews: PreviewProvider {
     static var previews: some View {
         ActivitiesView(studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
             .environmentObject(AppModel())
+            .environmentObject(UniversityDocument())
             .preferredColorScheme(.dark)
     }
 }

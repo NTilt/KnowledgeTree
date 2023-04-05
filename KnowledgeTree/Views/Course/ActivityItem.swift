@@ -12,6 +12,8 @@ struct ActivityItem: View {
     var activity: ActivityType = activities[0]
     @ObservedObject var studentDocument: StudentDocument
     @State private var isActive = false
+    @State var showWork = false
+    var completion: () -> Void
     
     @ViewBuilder
     private var sectionView: some View {
@@ -19,7 +21,7 @@ struct ActivityItem: View {
         case .lection:
             SectionView(lection: activity as! Lection, studentDocument: studentDocument)
         case .laboratoryWork, .testWork, .practice:
-            TestView()
+            EmptyView()
         }
     }
     
@@ -66,7 +68,12 @@ struct ActivityItem: View {
                 .padding(.trailing, 40)
         )
         .onTapGesture {
-            self.isActive = true
+            switch activity.type {
+            case .lection:
+                self.isActive = true
+            case .practice, .testWork, .laboratoryWork:
+                completion()
+            }
         }
         .background(
             NavigationLink(destination: sectionView, isActive: $isActive, label: {
@@ -78,6 +85,6 @@ struct ActivityItem: View {
 
 struct LectionItem_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityItem(activity: activities[1], studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
+        ActivityItem(activity: activities[1], studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()), completion: {})
     }
 }

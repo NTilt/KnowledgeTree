@@ -10,30 +10,59 @@ import Charts
 
 struct ChartView: View {
     var body: some View {
-        Chart {
-            ForEach(data) { item in
-                LineMark(
-                    x: .value("Category", item.category),
-                    y: .value("Value", item.value),
-                    series: .value("Year", "2022")
-                )
-                .foregroundStyle(by: .value("Year", "2022"))
-                .symbol(by: .value("Year", "2022"))
-                .interpolationMethod(.catmullRom)
+        TabView {
+            Chart {
+                ForEach(data) { item in
+                    LineMark(
+                        x: .value("Category", item.category),
+                        y: .value("Value", item.value),
+                        series: .value("Year", "2022")
+                    )
+                    .foregroundStyle(by: .value("Year", "2022"))
+                    .symbol(by: .value("Year", "2022"))
+                    .interpolationMethod(.catmullRom)
+                }
+                ForEach(data2) { item in
+                    LineMark(
+                        x: .value("Category", item.category),
+                        y: .value("Value", item.value),
+                        series: .value("Year", "2021")
+                    )
+                    .cornerRadius(10)
+                    .foregroundStyle(by: .value("Year", "2021"))
+                    .symbol(by: .value("Year", "2021"))
+                    .interpolationMethod(.catmullRom)
+                }
             }
-            ForEach(data2) { item in
-                LineMark(
-                    x: .value("Category", item.category),
-                    y: .value("Value", item.value),
-                    series: .value("Year", "2021")
-                )
-                .cornerRadius(10)
-                .foregroundStyle(by: .value("Year", "2021"))
-                .symbol(by: .value("Year", "2021"))
-                .interpolationMethod(.catmullRom)
+            .frame(width: 300, height: 300)
+            Chart {
+                ForEach(data) { item in
+                    LineMark(
+                        x: .value("Category", item.category),
+                        y: .value("Value", item.value),
+                        series: .value("Year", "2022")
+                    )
+                    .foregroundStyle(by: .value("Year", "2022"))
+                    .symbol(by: .value("Year", "2022"))
+                    .interpolationMethod(.catmullRom)
+                }
+                ForEach(data2) { item in
+                    LineMark(
+                        x: .value("Category", item.category),
+                        y: .value("Value", item.value),
+                        series: .value("Year", "2021")
+                    )
+                    .cornerRadius(10)
+                    .foregroundStyle(by: .value("Year", "2021"))
+                    .symbol(by: .value("Year", "2021"))
+                    .interpolationMethod(.catmullRom)
+                }
             }
+            .frame(width: 300, height: 300)
         }
-        .frame(width: 300, height: 300)
+        .tabViewStyle(.page)
+        //.frame(height: 130)
+        
     }
 }
 
