@@ -23,6 +23,7 @@ struct SectionEditMenuButton: View {
     @EnvironmentObject var model: AppModel
     var completionForSaveInfo: () -> Void
     var completionForEdit: () -> Void
+    var completionForShowDoneTestWork: () -> Void
     
     // - Body -
     var body: some View {
@@ -65,14 +66,18 @@ extension SectionEditMenuButton {
                         
                         Symbol(offset: offsetThree)
                             .tag(4)
+                        
+                        Symbol(offset: offsetFour)
+                            .tag(5)
                     }
                 }
             
             CancelButton().blendMode(.softLight).rotationEffect(Angle(degrees: isCollapsed ? 0 : 90))
             HomeButton().offset(offsetOne).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
             EditButton().offset(offsetTwo).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
-            
             SaveButton().offset(offsetThree).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
+            PlusButton().offset(offsetFour).blendMode(.softLight)
+                .opacity(isCollapsed ? 1 : 0)
         }
         .frame(width: 500, height: 500)
         .contentShape(Circle())
@@ -114,17 +119,22 @@ extension SectionEditMenuButton {
                 offsetOne  = isCollapsed ? CGSize(width: 0, height: -120) : .zero
                 offsetTwo  = isCollapsed ? CGSize(width: 0, height: -205) : .zero
                 offsetThree  = isCollapsed ? CGSize(width: 100, height: -80) : .zero
+                offsetFour = isCollapsed ? CGSize(width: 110, height: 10) : .zero
             }
         }
     }
     
     func PlusButton() -> some View {
-        ZStack {
-            Image(systemName: "plus.circle")
-                .resizable()
-                .frame(width: 28, height: 28)
+        Button {
+           completionForShowDoneTestWork()
+        } label: {
+            ZStack {
+                Image(systemName: "plus.circle")
+                    .resizable()
+                    .frame(width: 28, height: 28)
+            }
+            .frame(width: 65, height: 65)
         }
-        .frame(width: 65, height: 65)
     }
     
     func SaveButton() -> some View {
@@ -159,6 +169,6 @@ extension SectionEditMenuButton {
 
 struct SectionEditMenuButton_Previews: PreviewProvider {
     static var previews: some View {
-        SectionEditMenuButton(completionForSaveInfo: {}, completionForEdit: {})
+        SectionEditMenuButton(completionForSaveInfo: {}, completionForEdit: {}, completionForShowDoneTestWork: {})
     }
 }

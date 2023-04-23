@@ -16,6 +16,7 @@ class UniversityDocument: ObservableObject {
     @Published private var courseResultModel: CourseResultModel
     @Published private(set) var sectionResultModel: SectionResultModel
     @Published private(set) var activityResultModel: ActivityResultModel
+    @Published private(set) var doneTestWorks: DoneTestWorkModel
     @Published var groups: [StudyGroup] = []
     @Published var courses: [Course] = []
     @Published var fullProgramm: [StudyProgramm] = []
@@ -28,6 +29,7 @@ class UniversityDocument: ObservableObject {
         self.courseResultModel = CourseResultModel(results: dataBase.getAllCourseResults())
         self.sectionResultModel = SectionResultModel(courses: dataBase.getAllCourses())
         self.activityResultModel = ActivityResultModel(courses: dataBase.getAllCourses())
+        self.doneTestWorks = DoneTestWorkModel()
         self.groups = dataBase.getAllGroups()
         self.fullProgramm = dataBase.getFullStudyProgramm()
         self.courses = dataBase.getAllCourses()
@@ -46,6 +48,18 @@ class UniversityDocument: ObservableObject {
 }
 
 extension UniversityDocument {
+    
+    func getDoneTestWorksByCourse(courseID: UUID) -> [DoneTestWork] {
+        doneTestWorks.getWorksForCourse(courseID: courseID)
+    }
+    
+    func getAllDoneTestWorks() -> [DoneTestWork] {
+        doneTestWorks.getAllWorks()
+    }
+    
+    func addDoneTestWork(answers: [Answers], student: Student, courseID: UUID, sectionID: UUID, activityID: UUID) {
+        doneTestWorks.addDoneTestWork(answers: answers, student: student, courseID: courseID, sectionID: sectionID, activityID: activityID)
+    }
     
     func getSortedStudentsByParameters(courseTitle: String?, groupNumber: Int, sortedBy: Sorting) -> [Student] {
         var students = getStudentsByGroupNumber(by: groupNumber)
@@ -173,7 +187,7 @@ extension UniversityDocument {
         }
     }
     
-    private func getStudentByEmail(by email: String) -> Student? {
+    func getStudentByEmail(by email: String) -> Student? {
         for student in students {
             if student.getEmail() == email {
                 return student

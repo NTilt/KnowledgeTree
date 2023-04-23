@@ -97,6 +97,7 @@ struct TeacherHomeView: View {
                         model.showDetail.toggle()
                         showStatusBar = false
                         selectedID = course.id
+                        model.currentCourseId = course.id
                     }
             }
         }

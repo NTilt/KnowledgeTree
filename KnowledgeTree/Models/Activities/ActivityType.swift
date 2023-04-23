@@ -53,7 +53,7 @@ extension ActivityType {
 
 var activities: [ActivityType] = [
     lection1,
-    test1,
+    test3,
     lection2,
     test2,
     work1,

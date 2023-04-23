@@ -33,7 +33,6 @@ struct SectionEditView: View {
                     .offset(y: 50)
                 Spacer()
             }
-            
         }
         .overlay {
             HStack {
@@ -52,6 +51,15 @@ struct SectionEditView: View {
                 editText = true
                 editTitle = true
                 editSubTitle = true
+            },
+            completionForShowDoneTestWork: {
+                let works = universityDocument.getDoneTestWorksByCourse(courseID: model.currentCourseId)
+                print(universityDocument.getActivitiesBySectionID(courseID: model.currentCourseId, sectionID: model.currentSectionID))
+                for item in works {
+                    print(item.student.getGroupNumber())
+                    print(item.answers)
+                    
+                }
             })
         }
         .onTapGesture(perform: {

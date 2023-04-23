@@ -11,8 +11,8 @@ import Combine
 class AppModel: ObservableObject {
     @Published var showDetail: Bool = false
     @Published var selectedModel: Modal = .signIn
-    @Published var email: String = "yasenikns@sgu.ru"
-    @Published var accessLevel: AccessLevel = .student
+    @Published var email: String = "teacher@sgu.ru"
+    @Published var accessLevel: AccessLevel = .teacher
     @Published var groupNumber: Int? = nil
 //    @Published var currentCourseTitle: String = ""
 //    @Published var currentSectionTitle: String = ""

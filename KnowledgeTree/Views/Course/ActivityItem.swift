@@ -20,7 +20,9 @@ struct ActivityItem: View {
         switch activity.type {
         case .lection:
             SectionView(lection: activity as! Lection, studentDocument: studentDocument)
-        case .laboratoryWork, .testWork, .practice:
+        case .testWork:
+            TestWorkStudentView(testWork: activity as! TestWork, arr: [:], isStarted: .constant(true))
+        case .laboratoryWork, .practice:
             EmptyView()
         }
     }
@@ -68,12 +70,7 @@ struct ActivityItem: View {
                 .padding(.trailing, 40)
         )
         .onTapGesture {
-            switch activity.type {
-            case .lection:
-                self.isActive = true
-            case .practice, .testWork, .laboratoryWork:
-                completion()
-            }
+            self.isActive = true
         }
         .background(
             NavigationLink(destination: sectionView, isActive: $isActive, label: {

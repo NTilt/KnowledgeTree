@@ -12,6 +12,7 @@ struct ActivitiesView: View {
     @State var hasScrolled = false
     @State var showTestWork = false
     @State var showLabWork = false
+    @State var startTestWork = false
     @EnvironmentObject var model: AppModel
     @ObservedObject var studentDocument: StudentDocument
     @EnvironmentObject var universityModel: UniversityDocument
@@ -59,10 +60,13 @@ struct ActivitiesView: View {
                     .frame(maxHeight: .infinity, alignment: .top)
                 })
                 if showTestWork {
-                    TestWorkStudentView(show: $showTestWork)
+                    TestWorkPreview(completion: {startTestWork = true; showTestWork = false}, show: $showTestWork)
                 }
                 if showLabWork {
                     LaboratoryWorkStudentView(show: $showLabWork)
+                }
+                if startTestWork {
+                    TestWorkStudentView(isStarted: $startTestWork)
                 }
             }
             .onAppear {
