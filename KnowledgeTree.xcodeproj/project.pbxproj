@@ -107,6 +107,7 @@
 		11B7AC1129B0AF790077E7AB /* ActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B7AC1029B0AF790077E7AB /* ActivitiesView.swift */; };
 		11BD21C829DC97B500264777 /* TestWorkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BD21C729DC97B500264777 /* TestWorkPreview.swift */; };
 		11C25BA22971DE9C00C21A27 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C25BA12971DE9C00C21A27 /* Storage.swift */; };
+		11D94EEC29F5963B0050A78D /* TeacherActivityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D94EEB29F5963B0050A78D /* TeacherActivityItem.swift */; };
 		11E78FE4299B90B600DBC344 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FE3299B90B600DBC344 /* Student.swift */; };
 		11E78FE8299B92BD00DBC344 /* Speciality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FE7299B92BD00DBC344 /* Speciality.swift */; };
 		11E78FEB299B974400DBC344 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E78FEA299B974400DBC344 /* DataBase.swift */; };
@@ -226,6 +227,7 @@
 		11B7AC1029B0AF790077E7AB /* ActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesView.swift; sourceTree = "<group>"; };
 		11BD21C729DC97B500264777 /* TestWorkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWorkPreview.swift; sourceTree = "<group>"; };
 		11C25BA12971DE9C00C21A27 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		11D94EEB29F5963B0050A78D /* TeacherActivityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherActivityItem.swift; sourceTree = "<group>"; };
 		11E78FE3299B90B600DBC344 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		11E78FE7299B92BD00DBC344 /* Speciality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speciality.swift; sourceTree = "<group>"; };
 		11E78FEA299B974400DBC344 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				118F2B8229A3C04C00FAFF9C /* FeaturedItem.swift */,
 				11B7AC0D29B0AAF80077E7AB /* ActivityItem.swift */,
 				1192F25C29B737F900C681C6 /* TeacherCourseItem.swift */,
+				11D94EEB29F5963B0050A78D /* TeacherActivityItem.swift */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -1008,6 +1011,7 @@
 				11339EE129F133EE00C2259B /* StudentListWorksView.swift in Sources */,
 				118F2B8429A3C04C00FAFF9C /* CourseView.swift in Sources */,
 				11B5B85229241C5A009CC3D4 /* VertexView.swift in Sources */,
+				11D94EEC29F5963B0050A78D /* TeacherActivityItem.swift in Sources */,
 				11B0566E29DAC45C001C05C0 /* RatingNavigationBar.swift in Sources */,
 				11FD406B29B877C6005186AD /* CourseResult.swift in Sources */,
 				11FABBCE29A74794005FE9C7 /* Teacher.swift in Sources */,
@@ -1142,7 +1146,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"KnowledgeTree/Preview Content\"";
-				DEVELOPMENT_TEAM = Q3NL6VLK5D;
+				DEVELOPMENT_TEAM = 9YHQ7U2466;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KnowledgeTree/SupportingFiles/Info.plist;
@@ -1156,7 +1160,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = FLT.KnowledgeTree;
+				PRODUCT_BUNDLE_IDENTIFIER = FLT.KnowledgeTrees;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1174,7 +1178,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"KnowledgeTree/Preview Content\"";
-				DEVELOPMENT_TEAM = Q3NL6VLK5D;
+				DEVELOPMENT_TEAM = 9YHQ7U2466;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KnowledgeTree/SupportingFiles/Info.plist;
@@ -1188,7 +1192,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = FLT.KnowledgeTree;
+				PRODUCT_BUNDLE_IDENTIFIER = FLT.KnowledgeTrees;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

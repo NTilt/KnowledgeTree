@@ -49,6 +49,20 @@ class UniversityDocument: ObservableObject {
 
 extension UniversityDocument {
     
+    func getActivityByID(courseID: UUID, sectionID: UUID, activityID: UUID) -> ActivityType? {
+        let activities = getActivitiesBySectionID(courseID: courseID, sectionID: sectionID)
+        for activity in activities {
+            if activity.getID() == activityID {
+                return activity
+            }
+        }
+        return nil
+    }
+    
+    func getDoneTestWorksByCourseSection(courseID: UUID, sectionID: UUID) -> [DoneTestWork] {
+        doneTestWorks.getWorksForCourseSection(courseID: courseID, sectionID: sectionID)
+    }
+    
     func getDoneTestWorksByCourse(courseID: UUID) -> [DoneTestWork] {
         doneTestWorks.getWorksForCourse(courseID: courseID)
     }

@@ -60,7 +60,8 @@ struct ActivitiesView: View {
                     .frame(maxHeight: .infinity, alignment: .top)
                 })
                 if showTestWork {
-                    TestWorkPreview(completion: {startTestWork = true; showTestWork = false}, show: $showTestWork)
+                    TestWorkPreview(completion: {startTestWork = true; showTestWork = false;
+                    }, show: $showTestWork)
                 }
                 if showLabWork {
                     LaboratoryWorkStudentView(show: $showLabWork)

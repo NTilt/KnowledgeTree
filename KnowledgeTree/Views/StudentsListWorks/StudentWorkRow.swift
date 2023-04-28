@@ -8,43 +8,36 @@
 import SwiftUI
 
 struct StudentWorkRow: View {
-    var section: CourseSection = courseSections[0]
-    var progress: Float
-    var isOpen: Bool
-    @State private var isActive = false
-    @ObservedObject var studentDocument: StudentDocument
-    @EnvironmentObject var model: AppModel
+    var work: DoneTestWork
+    var number: Int
     @EnvironmentObject var universityDocument: UniversityDocument
+    var currentActivity: ActivityType? {
+        universityDocument.getActivityByID(courseID: work.courseID, sectionID: work.sectionID, activityID: work.activityID)
+    }
     
     var body: some View {
-        HStack(alignment: .top, spacing: 16) {
+        HStack(alignment: .center, spacing: 16) {
+            RatingNumber(ratingNumber: number)
             VStack(alignment: .leading, spacing: 8) {
-                Text(section.subtitle)
+                Text(currentActivity?.title ?? "Математический анализ")
                     .font(.caption).fontWeight(.medium)
                     .foregroundColor(.secondary)
-                Text(section.title)
+                Text("\(work.student.getSecondName()) \(work.student.getName()) ")
+                    .font(.title2)
                     .fontWeight(.semibold)
-                Text(section.text)
+                Text(currentActivity?.subtitle ?? "Контрольная работа 3")
                     .font(.caption.weight(.medium))
                     .foregroundColor(.secondary)
-                ProgressView(value: progress)
-                    .accentColor(.white)
-                    .frame(maxWidth: 132 )
             }
+            Spacer()
         }
         .padding(20)
-        .onTapGesture {
-            if isOpen {
-                isActive = true
-                model.currentSectionID = section.id
-                //model.currentSectionTitle = section.title
-            }
-        }
     }
 }
 
 struct StudentWorkRow_Previews: PreviewProvider {
     static var previews: some View {
-        StudentWorkRow(progress: 0.5, isOpen: true, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()))
+        StudentWorkRow(work: DoneTestWork(answers: [], student: DataBase().studentNikita, courseID: DataBase().courseSwift.id, sectionID: DataBase().courseSwift.sections[0].id, activityID: test3.id), number: 1)
+            .environmentObject(UniversityDocument())
     }
 }

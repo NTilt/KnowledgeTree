@@ -14,6 +14,7 @@ struct ActivityItem: View {
     @State private var isActive = false
     @State var showWork = false
     var completion: () -> Void
+    @EnvironmentObject var model: AppModel
     
     @ViewBuilder
     private var sectionView: some View {
@@ -70,7 +71,13 @@ struct ActivityItem: View {
                 .padding(.trailing, 40)
         )
         .onTapGesture {
-            self.isActive = true
+            model.currentActivityId = activity.getID()
+            if activity.type == .lection {
+                self.isActive = true
+            }
+            else {
+                completion()
+            }
         }
         .background(
             NavigationLink(destination: sectionView, isActive: $isActive, label: {
@@ -83,5 +90,6 @@ struct ActivityItem: View {
 struct LectionItem_Previews: PreviewProvider {
     static var previews: some View {
         ActivityItem(activity: activities[1], studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()), completion: {})
+            .environmentObject(AppModel())
     }
 }

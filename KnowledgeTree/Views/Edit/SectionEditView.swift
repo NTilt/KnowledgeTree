@@ -19,53 +19,55 @@ struct SectionEditView: View {
     @State var editTitle = false
     @State var editSubTitle = false
     @State var editText = false
+    @State var showListStudents = false
     @FocusState var fieldIsFocused: Bool
     
     let rows = [GridItem(.flexible())]
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .ignoresSafeArea()
-            VStack {
-                overlayContent
-                content
-                    .offset(y: 50)
-                Spacer()
-            }
-        }
-        .overlay {
-            HStack {
-                buttonBack
-                    .frame(maxHeight: .infinity, alignment: .top)
-                    .padding(.leading, 60)
-                Spacer()
-            }
-            SectionEditMenuButton(completionForSaveInfo: {
-                universityDocument.changeCourseSectionInStudyItem(course: course, section: section, title: sectionTitle, subTitle: sectionSubTitle, text: sectionText)
-                editText = false
-                editTitle = false
-                editSubTitle = false
-                fieldIsFocused = false
-            }, completionForEdit: {
-                editText = true
-                editTitle = true
-                editSubTitle = true
-            },
-            completionForShowDoneTestWork: {
-                let works = universityDocument.getDoneTestWorksByCourse(courseID: model.currentCourseId)
-                print(universityDocument.getActivitiesBySectionID(courseID: model.currentCourseId, sectionID: model.currentSectionID))
-                for item in works {
-                    print(item.student.getGroupNumber())
-                    print(item.answers)
-                    
+        NavigationStack {
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
+                VStack {
+                    overlayContent
+                    content
+                        .offset(y: 50)
+                    Spacer()
                 }
+            }
+            .overlay {
+                HStack {
+                    buttonBack
+                        .frame(maxHeight: .infinity, alignment: .top)
+                        .padding(.leading, 60)
+                    Spacer()
+                }
+                SectionEditMenuButton(completionForSaveInfo: {
+                    universityDocument.changeCourseSectionInStudyItem(course: course, section: section, title: sectionTitle, subTitle: sectionSubTitle, text: sectionText)
+                    editText = false
+                    editTitle = false
+                    editSubTitle = false
+                    fieldIsFocused = false
+                }, completionForEdit: {
+                    editText = true
+                    editTitle = true
+                    editSubTitle = true
+                },
+                completionForShowDoneTestWork: {
+                    showListStudents = true
+                })
+            }
+            .onTapGesture(perform: {
+                fieldIsFocused = false
             })
-        }
-        .onTapGesture(perform: {
-            fieldIsFocused = false
-        })
+            .background(
+                NavigationLink(destination: StudentListWorksView(courseID: course.id, sectionID: section.id), isActive: $showListStudents, label: {
+                    EmptyView()
+                })
+            )
         .navigationBarBackButtonHidden()
+        }
     }
     
     var buttonBack: some View {
@@ -81,7 +83,7 @@ struct SectionEditView: View {
                     .background(Color(UIColor.systemBackground).opacity(0.3))
                     .mask(Circle())
             }
-                
+
         }
     }
     
@@ -90,7 +92,7 @@ struct SectionEditView: View {
             VStack(alignment: .center) {
                 LazyHGrid(rows: rows, spacing: 30) {
                     ForEach(section.activities) { activity in
-                        ActivityItem(activity: activity, studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()), completion: {})
+                        TeacherActivityItem(activity: activity, completion: {})
                     }
                 }
                 .padding()

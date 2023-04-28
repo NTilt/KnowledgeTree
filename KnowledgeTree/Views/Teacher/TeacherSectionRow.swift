@@ -29,6 +29,7 @@ struct TeacherSectionRow: View {
                         .foregroundColor(.secondary)
                     Text(section.title)
                         .fontWeight(.semibold)
+                        .foregroundColor(.white)
                     Text(section.text)
                         .font(.caption.weight(.medium))
                         .foregroundColor(.secondary)

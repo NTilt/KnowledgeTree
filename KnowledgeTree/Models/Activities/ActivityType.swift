@@ -43,6 +43,10 @@ class ActivityType: Identifiable {
     func done() {
         self.progress = .done
     }
+    
+    func getID() -> UUID {
+        return id
+    }
 }
 
 extension ActivityType {
