@@ -16,22 +16,25 @@ struct StudentWorkRow: View {
     }
     
     var body: some View {
-        HStack(alignment: .center, spacing: 16) {
-            RatingNumber(ratingNumber: number)
-            VStack(alignment: .leading, spacing: 8) {
-                Text(currentActivity?.title ?? "Математический анализ")
-                    .font(.caption).fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                Text("\(work.student.getSecondName()) \(work.student.getName()) ")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                Text(currentActivity?.subtitle ?? "Контрольная работа 3")
-                    .font(.caption.weight(.medium))
-                    .foregroundColor(.secondary)
+        NavigationLink(destination: ExaminationWorkView(studentWork: work), label: {
+            HStack(alignment: .center, spacing: 16) {
+                RatingNumber(ratingNumber: number)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(currentActivity?.title ?? "Математический анализ")
+                        .font(.caption).fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                    Text("\(work.student.getSecondName()) \(work.student.getName()) ")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    Text(currentActivity?.subtitle ?? "Контрольная работа 3")
+                        .font(.caption.weight(.medium))
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
             }
-            Spacer()
-        }
-        .padding(20)
+            .padding(20)
+        })
+        
     }
 }
 

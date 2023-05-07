@@ -75,6 +75,8 @@
 		11A13FF929DD670400CCABCF /* LaboratoryWorkStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A13FF829DD670400CCABCF /* LaboratoryWorkStudentView.swift */; };
 		11A13FFB29DD6A9E00CCABCF /* TestWorkStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A13FFA29DD6A9E00CCABCF /* TestWorkStudentView.swift */; };
 		11A13FFD29DD6B2000CCABCF /* TestWorkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A13FFC29DD6B2000CCABCF /* TestWorkRow.swift */; };
+		11A49A4F29FC4278002E949E /* ExaminationWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A49A4E29FC4278002E949E /* ExaminationWorkView.swift */; };
+		11A49A5129FC4434002E949E /* ExaminationWorkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A49A5029FC4434002E949E /* ExaminationWorkRow.swift */; };
 		11A8977229AB5F56006F609C /* UniversityDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8977129AB5F56006F609C /* UniversityDocument.swift */; };
 		11A9AE5629AC8F8900733E99 /* CourseProgramm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AE5529AC8F8900733E99 /* CourseProgramm.swift */; };
 		11A9AE5929ACC2EF00733E99 /* StudentCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AE5829ACC2EF00733E99 /* StudentCourses.swift */; };
@@ -195,6 +197,8 @@
 		11A13FF829DD670400CCABCF /* LaboratoryWorkStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaboratoryWorkStudentView.swift; sourceTree = "<group>"; };
 		11A13FFA29DD6A9E00CCABCF /* TestWorkStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWorkStudentView.swift; sourceTree = "<group>"; };
 		11A13FFC29DD6B2000CCABCF /* TestWorkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWorkRow.swift; sourceTree = "<group>"; };
+		11A49A4E29FC4278002E949E /* ExaminationWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationWorkView.swift; sourceTree = "<group>"; };
+		11A49A5029FC4434002E949E /* ExaminationWorkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExaminationWorkRow.swift; sourceTree = "<group>"; };
 		11A8977129AB5F56006F609C /* UniversityDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityDocument.swift; sourceTree = "<group>"; };
 		11A9AE5529AC8F8900733E99 /* CourseProgramm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseProgramm.swift; sourceTree = "<group>"; };
 		11A9AE5829ACC2EF00733E99 /* StudentCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCourses.swift; sourceTree = "<group>"; };
@@ -328,6 +332,7 @@
 		11339EDD29F1329E00C2259B /* StudentsListWorks */ = {
 			isa = PBXGroup;
 			children = (
+				11A49A4D29FC4244002E949E /* ExaminationWork */,
 				11339EDE29F132DD00C2259B /* StudentWorkRow.swift */,
 				11339EE029F133EE00C2259B /* StudentListWorksView.swift */,
 			);
@@ -563,6 +568,15 @@
 				11A13FF829DD670400CCABCF /* LaboratoryWorkStudentView.swift */,
 			);
 			path = LaboratoryWork;
+			sourceTree = "<group>";
+		};
+		11A49A4D29FC4244002E949E /* ExaminationWork */ = {
+			isa = PBXGroup;
+			children = (
+				11A49A4E29FC4278002E949E /* ExaminationWorkView.swift */,
+				11A49A5029FC4434002E949E /* ExaminationWorkRow.swift */,
+			);
+			path = ExaminationWork;
 			sourceTree = "<group>";
 		};
 		11A8977029AB5EE5006F609C /* UniversityModelView */ = {
@@ -937,9 +951,11 @@
 				110510C72971D5CF0046223E /* SectionKnowledgeSpaceView.swift in Sources */,
 				1107DD6529DD9840000BF191 /* Answers.swift in Sources */,
 				116AF0F029DB6A760054512D /* StudentRatingInfo.swift in Sources */,
+				11A49A4F29FC4278002E949E /* ExaminationWorkView.swift in Sources */,
 				11339EDF29F132DD00C2259B /* StudentWorkRow.swift in Sources */,
 				11B0566829DAB57B001C05C0 /* RatingNumber.swift in Sources */,
 				11FD406F29B89A05005186AD /* SectionResult.swift in Sources */,
+				11A49A5129FC4434002E949E /* ExaminationWorkRow.swift in Sources */,
 				1107DD6329DD974C000BF191 /* DoneTestWork.swift in Sources */,
 				118F2B8529A3C04C00FAFF9C /* FeaturedItem.swift in Sources */,
 				11403B9B29B4C0F000420E65 /* LiquidMenuButtons.swift in Sources */,

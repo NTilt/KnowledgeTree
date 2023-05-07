@@ -16,9 +16,9 @@ struct StudentListWorksView: View {
     @EnvironmentObject var universityDocument: UniversityDocument
     
     var studentsWorks: [DoneTestWork] {
-//        universityDocument.getDoneTestWorksByCourseSection(courseID: courseID, sectionID: sectionID)
-        [DoneTestWork(answers: [], student: DataBase().studentNikita, courseID: DataBase().courseSwift.id, sectionID: DataBase().courseSwift.sections[0].id, activityID: test3.id),
-         DoneTestWork(answers: [], student: DataBase().studentNikita, courseID: DataBase().courseSwift.id, sectionID: DataBase().courseSwift.sections[0].id, activityID: test3.id)]
+        universityDocument.getDoneTestWorksByCourseSection(courseID: courseID, sectionID: sectionID)
+//        [DoneTestWork(answers: [], student: DataBase().studentNikita, courseID: DataBase().courseSwift.id, sectionID: DataBase().courseSwift.sections[0].id, activityID: test3.id),
+//         DoneTestWork(answers: [], student: DataBase().studentNikita, courseID: DataBase().courseSwift.id, sectionID: DataBase().courseSwift.sections[0].id, activityID: test3.id)]
     }
     
     var body: some View {
@@ -31,7 +31,6 @@ struct StudentListWorksView: View {
                 }
                 .padding(.top, 70)
                 .overlay(RatingNavigationBar(title: "Готовые работы", completion: {showFilter = true}, hasScrolled: $hasScrolled))
-                
             }
         }
     }
