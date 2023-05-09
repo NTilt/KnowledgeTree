@@ -6,12 +6,17 @@
 //
 
 import Foundation
+import Combine
 
 class StudentDocument: ObservableObject {
 
     var student: Student
     private var universityDocument: UniversityDocument
     @Published private(set) var studentCourses: StudentCourses
+    private var studentsEvaluatedWorks: [any Evaluated] = []
+    @Published var studentsNotifications: [any Notification] = []
+//    var studentsNotifications = CurrentValueSubject<[any Notification], Never>([])
+    var cancellable = Set<AnyCancellable>()
     
     init(student: Student, universityDocument: UniversityDocument) {
         self.universityDocument = universityDocument
@@ -34,10 +39,29 @@ class StudentDocument: ObservableObject {
             sectionsProgress.append(item)
         }
         self.studentCourses = StudentCourses(student: student, allCourses: allCourses, openCourses: openCourses, sectionProgress: sectionsProgress)
+        
+        universityDocument.$notificationCenter.sink { [weak self] center in
+            for notification in center.notifications {
+                if let student = (notification.notificationFor as? Student) {
+                    if student == self?.student {
+                        print("Уведомление для студента Никита!")
+                        self?.studentsNotifications.append(notification)
+                    }
+                }
+            }
+        }
+        .store(in: &cancellable)
     }
 }
 
 extension StudentDocument {
+    
+    func removeNotificationByID(id: UUID) {
+        self.universityDocument.removeNotificationByID(id: id)
+        self.studentsNotifications.removeAll { notification in
+            notification.id == id
+        }
+    }
     
     func openNewSectionsByTitle(courseTitle: String, sectionTitle: String) {
         if let course = universityDocument.getCourseByTitle(title: courseTitle) {

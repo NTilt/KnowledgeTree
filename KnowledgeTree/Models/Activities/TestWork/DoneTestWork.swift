@@ -34,10 +34,10 @@ struct DoneTestWorkModel {
     }
     
     mutating func addDoneTestWork(answers: [Answers],
-                         student: Student,
-                         courseID: UUID,
-                         sectionID: UUID,
-                         activityID: UUID) {
+                                  student: Student,
+                                  courseID: UUID,
+                                  sectionID: UUID,
+                                  activityID: UUID) {
         works.append(DoneTestWork(answers: answers, student: student, courseID: courseID, sectionID: sectionID, activityID: activityID))
     }
     

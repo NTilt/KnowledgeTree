@@ -66,6 +66,15 @@ extension CourseSection {
         }
         return doneActivity
     }
+    
+    func getActivityByID(activityID: UUID) -> ActivityType? {
+        for activity in activities {
+            if activity.getID() == activityID {
+                return activity
+            }
+        }
+        return nil
+    }
 }
 
 

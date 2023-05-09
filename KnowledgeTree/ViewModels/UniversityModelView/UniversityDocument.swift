@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 
 class UniversityDocument: ObservableObject {
@@ -17,11 +18,16 @@ class UniversityDocument: ObservableObject {
     @Published private(set) var sectionResultModel: SectionResultModel
     @Published private(set) var activityResultModel: ActivityResultModel
     @Published private(set) var doneTestWorks: DoneTestWorkModel
+    @Published private(set) var evaluatedWorks: EvaluatedWorkRepository
+    @Published private(set) var notificationCenter: AppNotificationCenter
     @Published var groups: [StudyGroup] = []
     @Published var courses: [Course] = []
     @Published var fullProgramm: [StudyProgramm] = []
     @Published var students: [Student] = []
     var users: [User] = []
+    var evaluatedFlow = PassthroughSubject<any Evaluated, Never>()
+    var evaluatedPublisher: AnyPublisher<any Evaluated, Never>
+    var cancellables = Set<AnyCancellable>()
     
     
     init() {
@@ -30,11 +36,23 @@ class UniversityDocument: ObservableObject {
         self.sectionResultModel = SectionResultModel(courses: dataBase.getAllCourses())
         self.activityResultModel = ActivityResultModel(courses: dataBase.getAllCourses())
         self.doneTestWorks = DoneTestWorkModel()
+        self.evaluatedWorks = EvaluatedWorkRepository()
+        self.notificationCenter = AppNotificationCenter()
         self.groups = dataBase.getAllGroups()
         self.fullProgramm = dataBase.getFullStudyProgramm()
         self.courses = dataBase.getAllCourses()
         self.users = dataBase.getAllUsers()
         self.students = dataBase.getAllStudents()
+        
+        evaluatedPublisher = evaluatedFlow.eraseToAnyPublisher()
+        evaluatedPublisher.sink { [weak self] evaluated in
+            guard let self = self else { return }
+            print("Проверили новую работу!")
+            self.evaluatedWorks.addWork(work: evaluated)
+            let notification = self.createNotification(evaluated: evaluated)
+            self.notificationCenter.addNotification(notification: notification)
+        }
+        .store(in: &cancellables)
         
         for student in students {
             if let openCourses = getOpenCoursesForStudent(email: student.getEmail()) {
@@ -48,6 +66,23 @@ class UniversityDocument: ObservableObject {
 }
 
 extension UniversityDocument {
+    
+    func removeNotificationByID(id: UUID) {
+        notificationCenter.deleteNotificationByID(id: id)
+    }
+    
+    func createNotification(evaluated: any Evaluated) -> any Notification {
+        if let work = (evaluated as? EvaluatedTestWork) {
+            if let course = getCourseById(id: work.courseID), let section = course.getSectionByID(sectionID: work.sectionID), let activity = section.getActivityByID(activityID: work.activityID)  {
+                return WorkNotification(mainMessage: "Проверена контрольная работа", courseName: course.icon, sectionName: section.title, activityName: activity.title, notificationType: .student, notificationFor: work.student)
+            }
+        }
+        return EmptyNotification(mainMessage: "Пустое уведомление", notificationType: .system, notificationFor: "")
+    }
+    
+    func addAnyEvaluated(_ anyEvaluated: any Evaluated) {
+        evaluatedFlow.send(anyEvaluated)
+    }
     
     func getActivityByID(courseID: UUID, sectionID: UUID, activityID: UUID) -> ActivityType? {
         let activities = getActivitiesBySectionID(courseID: courseID, sectionID: sectionID)

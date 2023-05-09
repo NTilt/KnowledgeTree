@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LaboratoryWorkStudentView: View {
-    var work: LaboratoryWork = work3
+    var work: TestWork = test2
+    var completion: () -> Void
     @Binding var show: Bool
     var body: some View {
         ZStack {
@@ -68,7 +69,7 @@ struct LaboratoryWorkStudentView: View {
                         HStack(alignment: .center) {
                             Spacer()
                             Button {
-                                
+                                completion()
                             } label: {
                                 Text("Приступить к выполнению")
                                     .fontWeight(.bold)
@@ -114,6 +115,6 @@ struct LaboratoryWorkStudentView: View {
 
 struct LaboratoryWorkStudentView_Previews: PreviewProvider {
     static var previews: some View {
-        LaboratoryWorkStudentView(show: .constant(true))
+        LaboratoryWorkStudentView(completion: {}, show: .constant(true))
     }
 }

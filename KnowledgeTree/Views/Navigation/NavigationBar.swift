@@ -10,6 +10,7 @@ struct StudentNavigationBar: View {
     var title: String = ""
     @Binding var hasScrolled: Bool
     @State var showSearch = false
+    @State var showNotification = false
     @State var showAccount = false
     @EnvironmentObject var appModel: AppModel
     @AppStorage("showModal") var showModal = false
@@ -30,20 +31,7 @@ struct StudentNavigationBar: View {
                 .padding(.top, 20)
                 .offset(y: hasScrolled ? -4 : 0)
             HStack(spacing: 26) {
-                Button {
-                    showSearch = true
-                } label:{
-                    Image(systemName: "magnifyingglass")
-                        .font(.body.weight(.bold))
-                        .frame(width: 46, height: 46)
-                        .foregroundColor(.secondary)
-                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-                    .strokeStyle(cornerRadius: 14)
-                }
-                .sheet(isPresented: $showSearch) {
-                    SearchView(studentDocument: studentDocument)
-                }
-                
+                notificationButton
                 Button {
                     if isLogged {
                         showAccount = true
@@ -82,6 +70,54 @@ struct StudentNavigationBar: View {
         }
         .frame(height: hasScrolled ? 44 : 70)
         .frame(maxHeight: .infinity, alignment: .top)
+        
+    }
+    
+    var notificationButton: some View {
+        Button {
+            showNotification = true
+        } label:{
+            Image("NotificationImage")
+                .font(.body.weight(.bold))
+                .frame(width: 46, height: 46)
+                .foregroundColor(.secondary)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .strokeStyle(cornerRadius: 14)
+            .overlay(
+                countNotification
+                    .offset(x: 15, y: -18)
+            )
+        }
+        .sheet(isPresented: $showNotification) {
+            NotificationView(studentDocument: studentDocument)
+        }
+    }
+    
+    var countNotification: some View {
+        ZStack {
+            Circle()
+                .frame(width: 20, height: 20)
+                .foregroundColor(.purple)
+            Text("\(studentDocument.studentsNotifications.count)")
+                .font(.caption2)
+                .foregroundColor(.white)
+        }
+    }
+    
+    var searchButton: some View {
+        Button {
+            showSearch = true
+        } label:{
+            Image(systemName: "magnifyingglass")
+                .font(.body.weight(.bold))
+                .frame(width: 46, height: 46)
+                .foregroundColor(.secondary)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .strokeStyle(cornerRadius: 14)
+        }
+        .sheet(isPresented: $showSearch) {
+            SearchView(studentDocument: studentDocument)
+        }
     }
 }
 

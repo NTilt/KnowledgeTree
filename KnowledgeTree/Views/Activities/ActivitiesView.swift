@@ -13,6 +13,7 @@ struct ActivitiesView: View {
     @State var showTestWork = false
     @State var showLabWork = false
     @State var startTestWork = false
+    @State var startLabWork = false
     @EnvironmentObject var model: AppModel
     @ObservedObject var studentDocument: StudentDocument
     @EnvironmentObject var universityModel: UniversityDocument
@@ -64,10 +65,15 @@ struct ActivitiesView: View {
                     }, show: $showTestWork)
                 }
                 if showLabWork {
-                    LaboratoryWorkStudentView(show: $showLabWork)
+                    LaboratoryWorkStudentView(work: test2, completion: {
+                        startLabWork = true; showLabWork = false
+                    }, show: $startLabWork)
                 }
                 if startTestWork {
                     TestWorkStudentView(isStarted: $startTestWork)
+                }
+                if startLabWork {
+                    TestWorkStudentView(testWork: test2, isStarted: $startLabWork)
                 }
             }
             .onAppear {

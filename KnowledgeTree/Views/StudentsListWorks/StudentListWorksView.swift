@@ -17,8 +17,6 @@ struct StudentListWorksView: View {
     
     var studentsWorks: [DoneTestWork] {
         universityDocument.getDoneTestWorksByCourseSection(courseID: courseID, sectionID: sectionID)
-//        [DoneTestWork(answers: [], student: DataBase().studentNikita, courseID: DataBase().courseSwift.id, sectionID: DataBase().courseSwift.sections[0].id, activityID: test3.id),
-//         DoneTestWork(answers: [], student: DataBase().studentNikita, courseID: DataBase().courseSwift.id, sectionID: DataBase().courseSwift.sections[0].id, activityID: test3.id)]
     }
     
     var body: some View {
