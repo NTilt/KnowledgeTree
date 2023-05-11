@@ -123,5 +123,6 @@ struct StudentRatingInfo: View {
 struct StudentRatingInfo_Previews: PreviewProvider {
     static var previews: some View {
         StudentRatingInfo(student: DataBase().studentNikita)
+            .environmentObject(UniversityDocument())
     }
 }

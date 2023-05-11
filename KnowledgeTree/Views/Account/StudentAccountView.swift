@@ -12,6 +12,7 @@ struct StudentAccountView: View {
     var userModel: UserModelView
     @Environment(\.dismiss) var dismiss
     @AppStorage("isLiteMode") var isLiteMode = true
+    @State var isAnnonimMode: Bool
     @EnvironmentObject var universityDocument: UniversityDocument
     
     var body: some View {
@@ -26,6 +27,16 @@ struct StudentAccountView: View {
                     Toggle(isOn: $isLiteMode) {
                         Label("Анимации", systemImage: isLiteMode ? "tortoise": "hare")
                             .foregroundColor(.primary)
+                    }
+                    Toggle(isOn: $isAnnonimMode) {
+                        Label("Скрытый профиль", systemImage: isAnnonimMode ? "eye.slash.fill": "eye.fill")
+                            .foregroundColor(.primary)
+                    }
+                    .onChange(of: isAnnonimMode) { newValue in
+                        universityDocument.toogleAnonimModeForStudent(for: userModel.getUser()! as! Student, mode: newValue)
+                        for student in universityDocument.students {
+                            print("\(student.getName()) \(student.isAnonimMode())")
+                        }
                     }
                 }
                 
@@ -105,7 +116,7 @@ struct StudentAccountView: View {
 
 struct StudentAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        StudentAccountView(userModel: UserModelView(email: "yasenikns@sgu.ru"))
+        StudentAccountView(userModel: UserModelView(email: "yasenikns@sgu.ru"), isAnnonimMode: false)
     }
 }
 

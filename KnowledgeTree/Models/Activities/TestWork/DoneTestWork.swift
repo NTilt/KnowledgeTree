@@ -64,4 +64,11 @@ struct DoneTestWorkModel {
         }
         return worksForCourseSection
     }
+    
+    mutating func removeWorkByCourseForStudent(for student: Student, courseID: UUID, sectionID: UUID, activityID: UUID)
+    {
+        works.removeAll { doneWork in
+            doneWork.student == student && doneWork.courseID == courseID && doneWork.sectionID == sectionID && doneWork.activityID == activityID
+        }
+    }
 }

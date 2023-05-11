@@ -13,6 +13,7 @@ class Student: User {
     private var directionOfStudy: DirectionsName
     private var ratingInGroup: Int?
     private var rationInFaculties: Int?
+    private var isAnonymousMode: Bool = false
     
     init(
          name: String,
@@ -56,6 +57,14 @@ class Student: User {
 }
 
 extension Student {
+    
+    func setAnonimMode(mode: Bool) {
+        self.isAnonymousMode = mode
+    }
+    
+    func isAnonimMode() -> Bool {
+        return isAnonymousMode
+    }
     
     func getNumberRecordBook() -> String {
         return numberRecordBook

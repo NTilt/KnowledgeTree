@@ -55,7 +55,8 @@ struct StudentNavigationBar: View {
                     .sheet(isPresented: $showAccount) {
                         let userModel = UserModelView(email: appModel.email)
                         if appModel.getAccessLevel() == .student {
-                            StudentAccountView(userModel: userModel)
+                            let student = userModel.getUser() as! Student
+                            StudentAccountView(userModel: userModel, isAnnonimMode: student.isAnonimMode())
                         }
                         else {
                             TeacherAccountView(userModel: userModel)

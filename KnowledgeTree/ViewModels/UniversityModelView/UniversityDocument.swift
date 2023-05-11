@@ -67,6 +67,27 @@ class UniversityDocument: ObservableObject {
     }
 }
 
+// MARK: Extension for StudyItemModel
+extension UniversityDocument {
+    func getMaxScoreForActivity(courseID: UUID, sectionID: UUID, activityID: UUID) -> Int? {
+        guard let course = getCourseById(id: courseID) else { return nil }
+        guard let section = course.getSectionByID(sectionID: sectionID) else { return nil }
+        guard let activity = section.getActivityByID(activityID: activityID) else { return nil }
+        switch activity.type {
+        case .testWork:
+            let testWork = activity as! TestWork
+            return testWork.maxScore
+        case .lection:
+            return nil
+        case .laboratoryWork:
+            let laboratoryWork = activity as! LaboratoryWork
+            return laboratoryWork.maxScore
+        case .practice:
+            return nil
+        }
+    }
+}
+
 // MARK: Extension for StudentRatingModel
 extension UniversityDocument {
     
@@ -121,6 +142,29 @@ extension UniversityDocument {
 }
 
 extension UniversityDocument {
+    
+    func getModeForStudent(for student: Student) -> Bool {
+        guard let studentIndex = index(of: student) else { return false }
+        return students[studentIndex].isAnonimMode()
+    }
+    
+    func index(of student: Student) -> Int? {
+        for index in 0..<students.count {
+            if students[index].getNumberRecordBook() == student.getNumberRecordBook() {
+                return index
+            }
+        }
+        return nil
+    }
+    
+    func toogleAnonimModeForStudent(for student: Student, mode: Bool) {
+        guard let studentIndex = index(of: student) else { return }
+        students[studentIndex].setAnonimMode(mode: mode)
+    }
+    
+    func removeDoneWorkForStudent(for student: Student, courseID: UUID, sectionID: UUID, activityID: UUID)  {
+        doneTestWorks.removeWorkByCourseForStudent(for: student, courseID: courseID, sectionID: sectionID, activityID: activityID)
+    }
     
     func removeNotificationByID(id: UUID) {
         notificationCenter.deleteNotificationByID(id: id)

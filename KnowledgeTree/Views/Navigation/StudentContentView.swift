@@ -27,7 +27,7 @@ struct StudentContentView: View {
                 case .rating:
                     StudentsRatingView(students: universityDocument.sortedStudentsByRating())
                 case .profile:
-                    StudentAccountView(userModel: userModel)
+                    StudentAccountView(userModel: userModel, isAnnonimMode: universityDocument.getModeForStudent(for: studentDocument.student))
                 }
                 TabBar()
                     .offset(y: appModel.showDetail ? 200 : 0)

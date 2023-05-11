@@ -11,7 +11,6 @@ struct RatingNavigationBar: View {
     var title: String = "Рейтинг студентов"
     var completion: () -> Void
     @Binding var hasScrolled: Bool
-    
     var body: some View {
         ZStack {
             Color.clear
