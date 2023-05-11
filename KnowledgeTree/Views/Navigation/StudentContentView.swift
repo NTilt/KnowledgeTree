@@ -25,7 +25,7 @@ struct StudentContentView: View {
                 case .study:
                     MainView(studentDocument: studentDocument)
                 case .rating:
-                    StudentsRating(students: universityDocument.students)
+                    StudentsRatingView(students: universityDocument.sortedStudentsByRating())
                 case .profile:
                     StudentAccountView(userModel: userModel)
                 }

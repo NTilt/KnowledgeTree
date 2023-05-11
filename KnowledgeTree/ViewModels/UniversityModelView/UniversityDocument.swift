@@ -20,6 +20,7 @@ class UniversityDocument: ObservableObject {
     @Published private(set) var doneTestWorks: DoneTestWorkModel
     @Published private(set) var evaluatedWorks: EvaluatedWorkRepository
     @Published private(set) var notificationCenter: AppNotificationCenter
+    @Published private(set) var studentsRatingSystem: StudentRatingModel
     @Published var groups: [StudyGroup] = []
     @Published var courses: [Course] = []
     @Published var fullProgramm: [StudyProgramm] = []
@@ -38,6 +39,7 @@ class UniversityDocument: ObservableObject {
         self.doneTestWorks = DoneTestWorkModel()
         self.evaluatedWorks = EvaluatedWorkRepository()
         self.notificationCenter = AppNotificationCenter()
+        self.studentsRatingSystem = StudentRatingModel(students: dataBase.getAllStudents())
         self.groups = dataBase.getAllGroups()
         self.fullProgramm = dataBase.getFullStudyProgramm()
         self.courses = dataBase.getAllCourses()
@@ -62,6 +64,28 @@ class UniversityDocument: ObservableObject {
             }
             
         }
+    }
+}
+
+// MARK: Extension for StudentRatingModel
+extension UniversityDocument {
+    
+    func addScoreForStudent(for student: Student, score: Int) {
+        studentsRatingSystem.addScoreForStudent(for: student, score: score)
+    }
+    
+    func getScoreForStudent(for student: Student) -> Int? {
+        studentsRatingSystem.getStudentRating(student: student)?.ratingScore
+    }
+    
+    func sortedStudentsByRating() -> [Student] {
+        var students: [Student] = []
+        let sortedStudents = self.studentsRatingSystem.sortedStudents()
+        for rating in sortedStudents {
+            students.append(rating.student)
+        }
+        
+        return students
     }
 }
 
@@ -145,7 +169,7 @@ extension UniversityDocument {
         var students = getStudentsByGroupNumber(by: groupNumber)
         switch sortedBy {
         case .byRating:
-            break
+            students = self.sortedStudentsByRating()
         case .bySecondName:
             students = students.sorted(by: {
                 $0.getSecondName() < $1.getSecondName()

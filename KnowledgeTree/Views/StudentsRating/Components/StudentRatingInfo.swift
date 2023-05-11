@@ -16,8 +16,12 @@ enum StudentInformation: String, CaseIterable, Identifiable {
 
 struct StudentRatingInfo: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var universityDocument: UniversityDocument
     var student: Student
     @State var selectedItem: StudentInformation = .personInfo
+    var studentScore: Int {
+        universityDocument.getScoreForStudent(for: student) ?? 0
+    }
     var body: some View {
         ZStack {
             Color("Background").edgesIgnoringSafeArea(.all)
@@ -96,7 +100,7 @@ struct StudentRatingInfo: View {
     
     var circleCourseRating: some View {
         VStack {
-            Text("\(251)")
+            Text("\(studentScore)")
                 .font(.system(size: 50))
             Text("Баллы")
                 .font(.title3)

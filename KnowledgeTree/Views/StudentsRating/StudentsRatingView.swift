@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StudentsRating: View {
+struct StudentsRatingView: View {
     @State var hasScrolled = false
     @State var showFilter = false
     @State var selectedCourse: String = "SwiftUI"
@@ -58,6 +58,7 @@ struct StudentsRating: View {
         VStack(alignment: .leading) {
             ForEach(Array(students.enumerated()), id: \.offset) { index, student in
                 if index != 0 { Divider() }
+                let score = 0
                 StudentRatingRow(student: student, ratingNumber: index + 1)
             }
         }
@@ -71,7 +72,7 @@ struct StudentsRating: View {
 
 struct StudentsRating_Previews: PreviewProvider {
     static var previews: some View {
-        StudentsRating(students: UniversityDocument().students)
+        StudentsRatingView(students: UniversityDocument().students)
             .environmentObject(UniversityDocument())
     }
 }

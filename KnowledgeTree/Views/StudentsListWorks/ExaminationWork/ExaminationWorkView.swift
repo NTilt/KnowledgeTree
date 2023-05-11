@@ -31,6 +31,7 @@ struct ExaminationWorkView: View {
                     let teacher = universityDocument.getUserByEmail(by: model.email)! as! Teacher
                     let testWork = EvaluatedTestWork(grade: 10, type: .rating, examiner: teacher, student: studentWork.student, courseID: studentWork.courseID, sectionID: studentWork.sectionID, activityID: studentWork.activityID)
                     universityDocument.addAnyEvaluated(testWork)
+                    universityDocument.addScoreForStudent(for: studentWork.student, score: 100)
                     if let activity = universityDocument.getActivityByID(courseID: studentWork.courseID, sectionID: studentWork.sectionID, activityID: studentWork.activityID) {
                         universityDocument.studentDoneActivity(activity: activity, student: studentWork.student)
                     }

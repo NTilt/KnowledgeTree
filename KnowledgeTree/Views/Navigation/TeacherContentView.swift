@@ -24,7 +24,7 @@ struct TeacherContentView: View {
                 case .edit:
                     EditView()
                 case .rating:
-                    StudentsRating(students: universityDocument.students)
+                    StudentsRatingView(students: universityDocument.students)
                 case .profile:
                     TeacherAccountView(userModel: userModel)
                 }

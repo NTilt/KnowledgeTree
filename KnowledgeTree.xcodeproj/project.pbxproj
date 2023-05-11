@@ -86,7 +86,7 @@
 		11A9AE6229AD097500733E99 /* TeacherContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AE6129AD097500733E99 /* TeacherContentView.swift */; };
 		11B0566529DAAE27001C05C0 /* StudentRatingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566429DAAE27001C05C0 /* StudentRatingRow.swift */; };
 		11B0566829DAB57B001C05C0 /* RatingNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566729DAB57B001C05C0 /* RatingNumber.swift */; };
-		11B0566A29DABA43001C05C0 /* StudentsRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566929DABA43001C05C0 /* StudentsRating.swift */; };
+		11B0566A29DABA43001C05C0 /* StudentsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566929DABA43001C05C0 /* StudentsRatingView.swift */; };
 		11B0566E29DAC45C001C05C0 /* RatingNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566D29DAC45C001C05C0 /* RatingNavigationBar.swift */; };
 		11B0567029DADD24001C05C0 /* FilterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566F29DADD24001C05C0 /* FilterScreen.swift */; };
 		11B34E2029DC0FE300CF40E9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B34E1F29DC0FE300CF40E9 /* ChartView.swift */; };
@@ -125,6 +125,7 @@
 		11F52FC12A0A7CC900C4D3FC /* EvaluatedWorkStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F52FC02A0A7CC900C4D3FC /* EvaluatedWorkStore.swift */; };
 		11F52FC32A0A8FCD00C4D3FC /* EvaluatedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F52FC22A0A8FCD00C4D3FC /* EvaluatedNotification.swift */; };
 		11F52FC62A0B9C6700C4D3FC /* StudentResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F52FC52A0B9C6700C4D3FC /* StudentResultsView.swift */; };
+		11F52FC92A0CF61E00C4D3FC /* StudentsRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F52FC82A0CF61E00C4D3FC /* StudentsRating.swift */; };
 		11FABBCC29A73ED1005FE9C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBCB29A73ED1005FE9C7 /* User.swift */; };
 		11FABBCE29A74794005FE9C7 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBCD29A74794005FE9C7 /* Teacher.swift */; };
 		11FABBD129A79A6E005FE9C7 /* StudyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBD029A79A6E005FE9C7 /* StudyItem.swift */; };
@@ -216,7 +217,7 @@
 		11A9AE6129AD097500733E99 /* TeacherContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherContentView.swift; sourceTree = "<group>"; };
 		11B0566429DAAE27001C05C0 /* StudentRatingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRatingRow.swift; sourceTree = "<group>"; };
 		11B0566729DAB57B001C05C0 /* RatingNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingNumber.swift; sourceTree = "<group>"; };
-		11B0566929DABA43001C05C0 /* StudentsRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsRating.swift; sourceTree = "<group>"; };
+		11B0566929DABA43001C05C0 /* StudentsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsRatingView.swift; sourceTree = "<group>"; };
 		11B0566D29DAC45C001C05C0 /* RatingNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingNavigationBar.swift; sourceTree = "<group>"; };
 		11B0566F29DADD24001C05C0 /* FilterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreen.swift; sourceTree = "<group>"; };
 		11B34E1F29DC0FE300CF40E9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 		11F52FC02A0A7CC900C4D3FC /* EvaluatedWorkStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluatedWorkStore.swift; sourceTree = "<group>"; };
 		11F52FC22A0A8FCD00C4D3FC /* EvaluatedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluatedNotification.swift; sourceTree = "<group>"; };
 		11F52FC52A0B9C6700C4D3FC /* StudentResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentResultsView.swift; sourceTree = "<group>"; };
+		11F52FC82A0CF61E00C4D3FC /* StudentsRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsRating.swift; sourceTree = "<group>"; };
 		11FABBCB29A73ED1005FE9C7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11FABBCD29A74794005FE9C7 /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		11FABBD029A79A6E005FE9C7 /* StudyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyItem.swift; sourceTree = "<group>"; };
@@ -624,7 +626,7 @@
 			children = (
 				11B0566629DAB534001C05C0 /* Components */,
 				11B0566429DAAE27001C05C0 /* StudentRatingRow.swift */,
-				11B0566929DABA43001C05C0 /* StudentsRating.swift */,
+				11B0566929DABA43001C05C0 /* StudentsRatingView.swift */,
 			);
 			path = StudentsRating;
 			sourceTree = "<group>";
@@ -644,6 +646,7 @@
 		11B5B84A29241A07009CC3D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				11F52FC72A0CF60200C4D3FC /* StudentsRating */,
 				11F52FBA2A0A75F700C4D3FC /* EvaluatedWorks */,
 				11F52FB52A07B19000C4D3FC /* Notifications */,
 				11FD406929B877AC005186AD /* Results */,
@@ -886,6 +889,14 @@
 			path = Results;
 			sourceTree = "<group>";
 		};
+		11F52FC72A0CF60200C4D3FC /* StudentsRating */ = {
+			isa = PBXGroup;
+			children = (
+				11F52FC82A0CF61E00C4D3FC /* StudentsRating.swift */,
+			);
+			path = StudentsRating;
+			sourceTree = "<group>";
+		};
 		11FABBCF29A79A17005FE9C7 /* ConnectionModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,7 +997,7 @@
 				11339EE329F135E500C2259B /* EditShape.swift in Sources */,
 				11403B9E29B4C2D100420E65 /* EditView.swift in Sources */,
 				11A13FFD29DD6B2000CCABCF /* TestWorkRow.swift in Sources */,
-				11B0566A29DABA43001C05C0 /* StudentsRating.swift in Sources */,
+				11B0566A29DABA43001C05C0 /* StudentsRatingView.swift in Sources */,
 				115C4CDB29B7D32000A55514 /* TeacherNavigationBar.swift in Sources */,
 				11B5B86829241F7D009CC3D4 /* CourseKnowledgeSpaceView.swift in Sources */,
 				11A9AE5C29ACC4C300733E99 /* StudentDocument.swift in Sources */,
@@ -996,6 +1007,7 @@
 				11BD21C829DC97B500264777 /* TestWorkPreview.swift in Sources */,
 				11FABBD429A79B41005FE9C7 /* StudyGroup.swift in Sources */,
 				118F2B9129A3C0AD00FAFF9C /* StudentContentView.swift in Sources */,
+				11F52FC92A0CF61E00C4D3FC /* StudentsRating.swift in Sources */,
 				11B5B85C29241DBC009CC3D4 /* Square.swift in Sources */,
 				11A9AE5E29ACCE7A00733E99 /* TeacherHomeView.swift in Sources */,
 				118F2B6829A3BA2200FAFF9C /* AppModel.swift in Sources */,
