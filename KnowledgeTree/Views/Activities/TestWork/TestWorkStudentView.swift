@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TestWorkStudentView: View {
-    var testWork = test3
+    var testWork: TestWork
     @State var arr: [Int: String] = [:]
     @Binding var isStarted: Bool
     @EnvironmentObject var universityDocument: UniversityDocument
@@ -39,7 +39,7 @@ struct TestWorkStudentView: View {
                             
                         }
                         universityDocument.addDoneTestWork(answers: answers, student: student!, courseID: model.currentCourseId, sectionID: model.currentSectionID, activityID: model.currentActivityId)
-                        universityDocument.studentDoneActivity(activity: testWork, student: student!)
+                        universityDocument.studentSendActivityForCheck(activity: testWork, student: student!)
                         isStarted = false
                     } label: {
                         Text("Завершить работу")
@@ -62,7 +62,7 @@ struct TestWorkStudentView: View {
 
 struct TestWorkStudentView_Previews: PreviewProvider {
     static var previews: some View {
-        TestWorkStudentView(isStarted: .constant(true))
+        TestWorkStudentView(testWork: test2, isStarted: .constant(true))
             .environmentObject(UniversityDocument())
             .environmentObject(AppModel())
     }

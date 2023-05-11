@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LaboratoryWorkStudentView: View {
-    var work: TestWork = test2
+    var work: TestWork
     var completion: () -> Void
     @Binding var show: Bool
     var body: some View {
@@ -115,6 +115,6 @@ struct LaboratoryWorkStudentView: View {
 
 struct LaboratoryWorkStudentView_Previews: PreviewProvider {
     static var previews: some View {
-        LaboratoryWorkStudentView(completion: {}, show: .constant(true))
+        LaboratoryWorkStudentView(work: test2, completion: {}, show: .constant(true))
     }
 }

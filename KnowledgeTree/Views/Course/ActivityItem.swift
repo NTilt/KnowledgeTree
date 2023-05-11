@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ActivityItem: View {
     
-    var activity: ActivityType = activities[0]
+    var activity: ActivityType
     @ObservedObject var studentDocument: StudentDocument
     @State private var isActive = false
     @State var showWork = false
     var completion: () -> Void
+    var completionForDone: () -> Void
     @EnvironmentObject var model: AppModel
     
     @ViewBuilder
@@ -22,7 +23,7 @@ struct ActivityItem: View {
         case .lection:
             SectionView(lection: activity as! Lection, studentDocument: studentDocument)
         case .testWork:
-            TestWorkStudentView(testWork: activity as! TestWork, arr: [:], isStarted: .constant(true))
+            TestWorkStudentView(testWork: activity as! TestWork, arr: [:], isStarted: .constant(false))
         case .laboratoryWork, .practice:
             EmptyView()
         }
@@ -31,6 +32,9 @@ struct ActivityItem: View {
     private var colors: [Color] {
         if activity.progress == .done {
             return [.green, Color("topGreen")]
+        }
+        else if activity.progress == .inProgress {
+            return [.gray]
         }
         else {
             switch activity.type {
@@ -71,12 +75,27 @@ struct ActivityItem: View {
                 .padding(.trailing, 40)
         )
         .onTapGesture {
-            model.currentActivityId = activity.getID()
-            if activity.type == .lection {
-                self.isActive = true
-            }
-            else {
-                completion()
+            switch activity.progress {
+            case .notStarted:
+                model.currentActivityId = activity.getID()
+                if activity.type == .lection {
+                    self.isActive = true
+                }
+                else {
+                    print("-------------------------")
+                    print("\(activity.title) \(activity.progress)")
+                    completion()
+                }
+            case .inProgress:
+                model.currentActivityId = activity.getID()
+                print("-------------------------")
+                print("\(activity.title) \(activity.progress)")
+                break
+            case .done:
+                model.currentActivityId = activity.getID()
+                print("-------------------------")
+                print("\(activity.title) \(activity.progress)")
+                completionForDone()
             }
         }
         .background(
@@ -84,12 +103,15 @@ struct ActivityItem: View {
                 EmptyView()
             })
         )
+        .onAppear {
+            print("\(activity.title) \(activity.progress)")
+        }
     }
 }
 
 struct LectionItem_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityItem(activity: activities[1], studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()), completion: {})
+        ActivityItem(activity: activities[1], studentDocument: StudentDocument(student: DataBase().studentNikita, universityDocument: UniversityDocument()), completion: {}, completionForDone: {})
             .environmentObject(AppModel())
     }
 }

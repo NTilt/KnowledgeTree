@@ -1,15 +1,21 @@
 //
-//  TestWorkStudentView.swift
+//  StudentResultsView.swift
 //  KnowledgeTree
 //
-//  Created by Никита Ясеник on 04.04.2023.
+//  Created by Никита Ясеник on 10.05.2023.
 //
 
 import SwiftUI
 
-struct TestWorkPreview: View {
-    var work: TestWork
-    var completion: () -> Void
+struct StudentResultsView: View {
+    var work: EvaluatedTestWork
+    @EnvironmentObject var universityDocument: UniversityDocument
+//    var course: Course? {
+//        universityDocument.getCourseById(id: work.courseID)
+//    }
+//    var activity: ActivityType? {
+//        universityDocument.getActivityByID(courseID: work.courseID, sectionID: work.sectionID, activityID: work.activityID)
+//    }
     @Binding var show: Bool
     var body: some View {
         ZStack {
@@ -18,28 +24,17 @@ struct TestWorkPreview: View {
                     VStack(alignment: .leading, spacing: 16) {
                         HStack(spacing: 16) {
                             ZStack {
-                                Image(work.logo)
+                                Image("math_icon")
                                     .resizable()
                                     .frame(width: 66, height: 66, alignment: .center)
                             }
                             .frame(width: 66, height: 66, alignment: .center)
                             
                             VStack(alignment: .leading) {
-                                Text(work.subtitle)
+                                Text("Контрольная работа 3")
                                     .foregroundColor(.white)
                                     .font(.title2)
                                     .bold()
-                                if work.executionTime != nil {
-                                    Text("Время на выполнение: \(work.executionTime!) минут")
-                                        .foregroundColor(.white.opacity(0.7))
-                                        .font(.footnote)
-                                }
-                                else {
-                                    Text("Время на выполнение: неограничено")
-                                        .foregroundColor(.white.opacity(0.7))
-                                        .font(.footnote)
-                                }
-                                
                             }
                             
                             Spacer()
@@ -47,19 +42,12 @@ struct TestWorkPreview: View {
                         
                         Divider()
                             .background(Color.white.opacity(1))
-                        Text(work.title)
+                        Text("Доверительные интервалы")
                             .foregroundColor(.white)
                             .font(.title.bold())
-                        if work.maxScore != nil {
-                            Label("Максимальный балл: \(work.maxScore!)", systemImage: "info.bubble")
-                                .foregroundColor(.white.opacity(0.7))
-                                .font(.footnote)
-                        }
-                        else {
-                            Label("Оценивается преподавателем", systemImage: "info.bubble")
-                                .foregroundColor(.white.opacity(0.7))
-                                .font(.footnote)
-                        }
+                        Label("Балл: \(work.grade)", systemImage: "info.bubble")
+                            .foregroundColor(.white.opacity(0.7))
+                            .font(.footnote)
                         
                         Divider()
                             .background(Color.white.opacity(1))
@@ -67,9 +55,9 @@ struct TestWorkPreview: View {
                         HStack(alignment: .center) {
                             Spacer()
                             Button {
-                                completion()
+                                show = false
                             } label: {
-                                Text("Приступить к выполнению")
+                                Text("Закрыть")
                                     .fontWeight(.bold)
                                     .frame(maxWidth: .infinity)
                             }
@@ -109,10 +97,11 @@ struct TestWorkPreview: View {
             .background(Color.red.opacity(0.35))
         }
     }
+
 }
 
-struct TestWorkPreview_Previews: PreviewProvider {
+struct StudentResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        TestWorkPreview(work: test2, completion: {}, show: .constant(true))
+        StudentResultsView(work: EvaluatedTestWork(grade: 10, type: .rating, examiner: DataBase().teacherOlga, student: DataBase().studentNikita, courseID: UUID(), sectionID: UUID(), activityID: UUID()), show: .constant(true))
     }
 }

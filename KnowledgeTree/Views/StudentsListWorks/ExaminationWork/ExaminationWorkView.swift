@@ -10,6 +10,7 @@ import SwiftUI
 struct ExaminationWorkView: View {
     var studentWork: DoneTestWork
     @EnvironmentObject var universityDocument: UniversityDocument
+    @EnvironmentObject var model: AppModel
     var body: some View {
         ZStack {
             Color("Background").edgesIgnoringSafeArea(.all)
@@ -27,9 +28,13 @@ struct ExaminationWorkView: View {
                     .padding(20)
                 }
                 Button {
-                    print("Tap")
-                    let testWork = EvaluatedTestWork(grade: 10, type: .rating, examiner: DataBase().teacherOlga, student: DataBase().studentNikita, courseID: studentWork.courseID, sectionID: studentWork.sectionID, activityID: studentWork.activityID)
+                    let teacher = universityDocument.getUserByEmail(by: model.email)! as! Teacher
+                    let testWork = EvaluatedTestWork(grade: 10, type: .rating, examiner: teacher, student: studentWork.student, courseID: studentWork.courseID, sectionID: studentWork.sectionID, activityID: studentWork.activityID)
                     universityDocument.addAnyEvaluated(testWork)
+                    if let activity = universityDocument.getActivityByID(courseID: studentWork.courseID, sectionID: studentWork.sectionID, activityID: studentWork.activityID) {
+                        universityDocument.studentDoneActivity(activity: activity, student: studentWork.student)
+                    }
+                    
                 } label: {
                     Text("Проверить работу")
                         .fontWeight(.bold)

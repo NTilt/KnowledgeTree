@@ -65,6 +65,37 @@ class UniversityDocument: ObservableObject {
     }
 }
 
+// MARK: Extension for EvaluatedWorkRepository
+extension UniversityDocument {
+    func getEvaluatedWorkForStudentByActivityID(student: Student, courseID: UUID, sectionID: UUID,  activityID: UUID) -> EvaluatedTestWork? {
+        let work = evaluatedWorks.getWorkForStudentByActivity(student: student, courseID: courseID, sectionID: sectionID, activityID: activityID)
+        return work
+    }
+}
+
+// MARK: Extension for ActivityResultModel
+extension UniversityDocument {
+    func checkStudentAccessToActivity(student: Student, activity: ActivityType) -> Bool {
+        let activityResult = activityResultModel.getActivityResultByStudent(by: student, activity: activity)
+        switch activityResult {
+        case .done, .inProgress:
+            return false
+        case .notStarted:
+            return true
+        case .none:
+            return true
+        }
+    }
+    
+    func studentSendActivityForCheck(activity: ActivityType, student: Student) {
+        activityResultModel.addStudentToActivityResult(student: student, activity: activity, studentProgress: .inProgress)
+    }
+    
+    func studentDoneActivity(activity: ActivityType, student: Student) {
+        activityResultModel.addStudentToActivityResult(student: student, activity: activity, studentProgress: .done)
+    }
+}
+
 extension UniversityDocument {
     
     func removeNotificationByID(id: UUID) {
@@ -201,10 +232,6 @@ extension UniversityDocument {
             }
         }
         return nil
-    }
-    
-    func studentDoneActivity(activity: ActivityType, student: Student) {
-        activityResultModel.addStudentToActivityResult(student: student, activity: activity, studentProgress: .done)
     }
     
     func studentDoneSection(courseTitle: String, sectionTitle: String, student: Student) {
