@@ -39,6 +39,8 @@
 		115C4CDD29B7D37600A55514 /* TeacherSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C4CDC29B7D37600A55514 /* TeacherSearchView.swift */; };
 		115C4CE029B7DC6300A55514 /* CourseSectionDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C4CDF29B7DC6300A55514 /* CourseSectionDB.swift */; };
 		116AF0F029DB6A760054512D /* StudentRatingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116AF0EF29DB6A760054512D /* StudentRatingInfo.swift */; };
+		116F29352A0E421600BE6515 /* BarChartStudentCountWorksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F29342A0E421600BE6515 /* BarChartStudentCountWorksView.swift */; };
+		116F29372A0E46F700BE6515 /* PieChartStudentWorksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116F29362A0E46F700BE6515 /* PieChartStudentWorksView.swift */; };
 		1180E13C29A738E200577003 /* TeacherTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180E13B29A738E200577003 /* TeacherTabBar.swift */; };
 		1183D48829B0E667007F16D1 /* ActivityNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183D48729B0E667007F16D1 /* ActivityNavigationBar.swift */; };
 		1183D48A29B0E9C4007F16D1 /* TestWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1183D48929B0E9C4007F16D1 /* TestWork.swift */; };
@@ -84,6 +86,8 @@
 		11A9AE5E29ACCE7A00733E99 /* TeacherHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AE5D29ACCE7A00733E99 /* TeacherHomeView.swift */; };
 		11A9AE6029ACCF9400733E99 /* TeacherAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AE5F29ACCF9400733E99 /* TeacherAccountView.swift */; };
 		11A9AE6229AD097500733E99 /* TeacherContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9AE6129AD097500733E99 /* TeacherContentView.swift */; };
+		11ABD0582A0D2CB3002718F9 /* LineChartStudentScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ABD0572A0D2CB3002718F9 /* LineChartStudentScoreView.swift */; };
+		11ABD0652A0D3092002718F9 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 11ABD0642A0D3092002718F9 /* SwiftUICharts */; };
 		11B0566529DAAE27001C05C0 /* StudentRatingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566429DAAE27001C05C0 /* StudentRatingRow.swift */; };
 		11B0566829DAB57B001C05C0 /* RatingNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566729DAB57B001C05C0 /* RatingNumber.swift */; };
 		11B0566A29DABA43001C05C0 /* StudentsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0566929DABA43001C05C0 /* StudentsRatingView.swift */; };
@@ -170,6 +174,8 @@
 		115C4CDC29B7D37600A55514 /* TeacherSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSearchView.swift; sourceTree = "<group>"; };
 		115C4CDF29B7DC6300A55514 /* CourseSectionDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionDB.swift; sourceTree = "<group>"; };
 		116AF0EF29DB6A760054512D /* StudentRatingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRatingInfo.swift; sourceTree = "<group>"; };
+		116F29342A0E421600BE6515 /* BarChartStudentCountWorksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartStudentCountWorksView.swift; sourceTree = "<group>"; };
+		116F29362A0E46F700BE6515 /* PieChartStudentWorksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartStudentWorksView.swift; sourceTree = "<group>"; };
 		1180E13B29A738E200577003 /* TeacherTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabBar.swift; sourceTree = "<group>"; };
 		1183D48729B0E667007F16D1 /* ActivityNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityNavigationBar.swift; sourceTree = "<group>"; };
 		1183D48929B0E9C4007F16D1 /* TestWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWork.swift; sourceTree = "<group>"; };
@@ -215,6 +221,7 @@
 		11A9AE5D29ACCE7A00733E99 /* TeacherHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherHomeView.swift; sourceTree = "<group>"; };
 		11A9AE5F29ACCF9400733E99 /* TeacherAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherAccountView.swift; sourceTree = "<group>"; };
 		11A9AE6129AD097500733E99 /* TeacherContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherContentView.swift; sourceTree = "<group>"; };
+		11ABD0572A0D2CB3002718F9 /* LineChartStudentScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartStudentScoreView.swift; sourceTree = "<group>"; };
 		11B0566429DAAE27001C05C0 /* StudentRatingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRatingRow.swift; sourceTree = "<group>"; };
 		11B0566729DAB57B001C05C0 /* RatingNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingNumber.swift; sourceTree = "<group>"; };
 		11B0566929DABA43001C05C0 /* StudentsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsRatingView.swift; sourceTree = "<group>"; };
@@ -271,6 +278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11ABD0652A0D3092002718F9 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +629,16 @@
 			path = StudentModelView;
 			sourceTree = "<group>";
 		};
+		11ABD0592A0D2CBA002718F9 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				11ABD0572A0D2CB3002718F9 /* LineChartStudentScoreView.swift */,
+				116F29342A0E421600BE6515 /* BarChartStudentCountWorksView.swift */,
+				116F29362A0E46F700BE6515 /* PieChartStudentWorksView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		11B0566229DAADED001C05C0 /* StudentsRating */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,6 +710,7 @@
 				118F2B4129A3B49600FAFF9C /* Account */,
 				11388AC929ADF4B400F1FC70 /* Launch */,
 				118F2B3E29A3B3F300FAFF9C /* Section */,
+				11ABD0592A0D2CBA002718F9 /* Charts */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -939,6 +958,9 @@
 			dependencies = (
 			);
 			name = KnowledgeTree;
+			packageProductDependencies = (
+				11ABD0642A0D3092002718F9 /* SwiftUICharts */,
+			);
 			productName = KnowledgeTree;
 			productReference = 1113773D292419620062FE61 /* KnowledgeTree.app */;
 			productType = "com.apple.product-type.application";
@@ -967,6 +989,9 @@
 				Base,
 			);
 			mainGroup = 11137734292419620062FE61;
+			packageReferences = (
+				11ABD0632A0D3092002718F9 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 1113773E292419620062FE61 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1031,6 +1056,7 @@
 				11A49A4F29FC4278002E949E /* ExaminationWorkView.swift in Sources */,
 				11339EDF29F132DD00C2259B /* StudentWorkRow.swift in Sources */,
 				11B0566829DAB57B001C05C0 /* RatingNumber.swift in Sources */,
+				116F29372A0E46F700BE6515 /* PieChartStudentWorksView.swift in Sources */,
 				11FD406F29B89A05005186AD /* SectionResult.swift in Sources */,
 				11A49A5129FC4434002E949E /* ExaminationWorkRow.swift in Sources */,
 				1107DD6329DD974C000BF191 /* DoneTestWork.swift in Sources */,
@@ -1047,6 +1073,7 @@
 				118F2B5029A3B68F00FAFF9C /* ModalView.swift in Sources */,
 				11EA300029BA63A100A82C90 /* SectionEditView.swift in Sources */,
 				11388AC429ADE10A00F1FC70 /* SectionProgramm.swift in Sources */,
+				116F29352A0E421600BE6515 /* BarChartStudentCountWorksView.swift in Sources */,
 				11F52FBC2A0A764200C4D3FC /* Evaluated.swift in Sources */,
 				118F2B4B29A3B5E600FAFF9C /* SearchView.swift in Sources */,
 				11B0567029DADD24001C05C0 /* FilterScreen.swift in Sources */,
@@ -1060,6 +1087,7 @@
 				1156DFE229813A7500BD2FFE /* LaunchView.swift in Sources */,
 				115C4CE029B7DC6300A55514 /* CourseSectionDB.swift in Sources */,
 				118F2B5D29A3B7D200FAFF9C /* InputStyle.swift in Sources */,
+				11ABD0582A0D2CB3002718F9 /* LineChartStudentScoreView.swift in Sources */,
 				11A9AE5929ACC2EF00733E99 /* StudentCourses.swift in Sources */,
 				11E78FEB299B974400DBC344 /* DataBase.swift in Sources */,
 				11F52FC12A0A7CC900C4D3FC /* EvaluatedWorkStore.swift in Sources */,
@@ -1323,6 +1351,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		11ABD0632A0D3092002718F9 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		11ABD0642A0D3092002718F9 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11ABD0632A0D3092002718F9 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 11137735292419620062FE61 /* Project object */;
 }
