@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct Course: Identifiable {
     let id = UUID()
     var title: String 

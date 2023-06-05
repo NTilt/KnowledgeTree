@@ -21,6 +21,13 @@ struct StudyProgramm {
 
 extension StudyProgramm {
     
+    mutating func changeSectionProgramm(sections: [SectionProgramm]) {
+        self.sectionProgramm = sections
+    }
+}
+
+extension StudyProgramm {
+    
     func getCourseProgramm() -> CourseProgramm {
         return courseProgramm
     }

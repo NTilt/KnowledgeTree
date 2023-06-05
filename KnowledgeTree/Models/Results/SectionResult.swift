@@ -81,7 +81,9 @@ extension SectionResultModel {
     
     func checkStudentInSection(student: Student, section: CourseSection) -> Bool? {
         guard let result = getResultsForSection(for: section) else { return nil }
+        print("\(section.title) \(result)")
         guard let index = index(of: result) else { return nil }
+        print("\(section.title) \(index)")
         return results[index].studentIsAdmitted(student: student)
         
     }

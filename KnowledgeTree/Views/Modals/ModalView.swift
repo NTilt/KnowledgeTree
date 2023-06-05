@@ -12,6 +12,7 @@ struct ModalView: View {
     @EnvironmentObject var model: AppModel
     @EnvironmentObject var storage: Storage
     @EnvironmentObject var universityDocument: UniversityDocument
+//    var db = DataBaseFireStore()
     @State var viewState: CGSize = .zero
     @State var isDismissed = false
     @State var appear = [false, false, false]

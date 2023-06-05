@@ -67,6 +67,34 @@ class UniversityDocument: ObservableObject {
     }
 }
 
+extension UniversityDocument {
+    
+    func updateSectionResults() {
+        self.sectionResultModel = SectionResultModel(courses: dataBase.getAllCourses())
+        for student in students {
+            if let openCourses = getOpenCoursesForStudent(email: student.getEmail()) {
+                for course in openCourses {
+                    sectionResultModel.addStudentToSection(section: course.sections[0], student: student)
+                }
+            }
+            
+        }
+    }
+    
+    func changeFullProgramm(index: Int, sections: [SectionProgramm]) {
+        self.fullProgramm[0].changeSectionProgramm(sections: sections)
+    }
+    
+    func addNewSectionAt(title: String, subtitle: String, time: String, at index: Int) {
+        let section = CourseSection(title: title, subtitle: time, text: subtitle, image: "c++_course", background: "Background 1", icon: "c++_icon")
+        dataBase.addNewSectionProgramm(index: index, section: section)
+        changeFullProgramm(index: index - 1, sections: sectionProgramm)
+        studyModel.addNewCourseSectionIn(in: DataBase().courseCplusPlus, section: section, ind: index)
+        dataBase.addNewSection(section: section)
+        updateSectionResults()
+    }
+}
+
 // MARK: Extension for StudyItemModel
 extension UniversityDocument {
     func getMaxScoreForActivity(courseID: UUID, sectionID: UUID, activityID: UUID) -> Int? {

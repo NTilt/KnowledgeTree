@@ -10,10 +10,17 @@ import SwiftUI
 struct EditCourseView: View {
     
     var course = DataBase().courseSwift
-    @Environment(\.dismiss) var dismiss
+    
     @EnvironmentObject var model: AppModel
+    @EnvironmentObject var storage: Storage
     @EnvironmentObject var universityDocument: UniversityDocument
+    @Environment(\.dismiss) var dismiss
+    @State var sectionTitle: String = ""
+    @State var sectionSubTitle: String = ""
+    @State var sectionTime: String = ""
+    @State var sectionPosition: String = ""
     @State var showEditSectionModal = false
+    @State var createSection = false
     @State var courseTitle: String
     @State var courseSubTitle: String
     @State var courseText: String
@@ -56,11 +63,16 @@ struct EditCourseView: View {
                         editCourseText = false
                         editCourseSubTitle = false
                         universityDocument.changeCourseInStudyItem(course: course, title: courseTitle, subTitle: courseSubTitle, text: courseText)
+                        DataBaseService.shared.updateCourse(course: DataBase().courseCplusFireBase)
                     },
                                       completionForEdit: {
                         editCourseTitle = true
                         editCourseText = true
                         editCourseSubTitle = true
+                    },
+                                      completionForPlus: {
+                        print("Add section")
+                        createSection = true
                     })
                     .offset(x: 0, y: 350)
                 }
@@ -71,6 +83,11 @@ struct EditCourseView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .sheet(isPresented: $createSection) {
+            CreateCourseSectionView(completion: { universityDocument.addNewSectionAt(title: sectionTitle , subtitle: sectionSubTitle , time: sectionTime, at: Int(sectionPosition) ?? 1)
+                storage.updateSectionProgramm(programm: universityDocument.fullProgramm)
+            }, sectionTitle: $sectionTitle, sectionSubTitle: $sectionSubTitle, time: $sectionTime, position: $sectionPosition)
+        }
         
     }
     

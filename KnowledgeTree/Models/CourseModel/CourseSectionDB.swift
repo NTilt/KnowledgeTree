@@ -28,6 +28,8 @@ var section8 = CourseSection(title: "Пространство имен", subtitl
 
 var section9 = CourseSection(title: "Элегантность кода", subtitle: "11 разделов - 30 часов", text: "Вы научитесь сохранять код в чистоте и порядке", image: "c++_course", background: "Background 1", icon: "c++_icon", activities: activities)
 
+var newSection = CourseSection(title: "Основные функции С++", subtitle: "5 разделов - 10 часов", text: "Вы научитесь основным функциям языка С++", image: "c++_course", background: "Background 1", icon: "c++_icon", activities: activities)
+
 var cPlusPlusSections = [
     section1,
     section2,
@@ -67,3 +69,15 @@ var sectionProgramm: [SectionProgramm] = [
     SectionProgramm(section: section9, childSections: [], category: .advanced)
     
 ]
+
+func rebuildSectionProgramm(index: Int, newSection: CourseSection) {
+    guard index != 0 && index < sectionProgramm.count else { return }
+    sectionProgramm[index - 1].removeChilds(childs: [sectionProgramm[index].getSection()])
+    sectionProgramm[index - 1].addChilds(childs: [newSection])
+    let newSectionProgramm: SectionProgramm = SectionProgramm(section: newSection, childSections: [sectionProgramm[index].getSection()], category: .advanced)
+    sectionProgramm.insert(newSectionProgramm, at: index)
+}
+
+//func getSectionFromIndex(index: Int) -> CourseSection {
+//    return sectionProgramm[index].getSection()
+//}

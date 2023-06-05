@@ -35,6 +35,10 @@ struct StudyItem: Identifiable {
         return listOfGroups
     }
     
+    mutating func addNewCourseSection(courseSection: CourseSection, at index: Int) {
+        self.course.sections.insert(courseSection, at: index)
+    }
+    
     mutating func changeCourse(title: String?, subTitle: String?, text: String?) {
         if let newTitle = title {
             course.title = newTitle
@@ -66,6 +70,12 @@ struct StudyItemModel  {
             }
         }
         return nil
+    }
+    
+    mutating func addNewCourseSectionIn(in course: Course, section: CourseSection, ind: Int) {
+        guard let studyItem = getItemByCourse(course: course) else { return }
+        guard let itemIndex = index(of: studyItem) else { return }
+        studyItems[itemIndex].addNewCourseSection(courseSection: section, at: ind)
     }
     
     mutating func changeCourseSection(course: Course, section: CourseSection, title: String?,

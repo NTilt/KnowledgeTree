@@ -15,10 +15,10 @@ class StudentDocument: ObservableObject {
     @Published private(set) var studentCourses: StudentCourses
     private var studentsEvaluatedWorks: [any Evaluated] = []
     @Published var studentsNotifications: [any Notification] = []
-//    var studentsNotifications = CurrentValueSubject<[any Notification], Never>([])
     var cancellable = Set<AnyCancellable>()
     
     init(student: Student, universityDocument: UniversityDocument) {
+        print("StudentDocument")
         self.universityDocument = universityDocument
         self.student = student
         let allCourses: [Course] = universityDocument.getAllCoursesForStudent()
@@ -55,6 +55,26 @@ class StudentDocument: ObservableObject {
 }
 
 extension StudentDocument {
+    
+    func updateCourseSections() {
+        let allCourses: [Course] = universityDocument.getAllCoursesForStudent()
+        let openCourses: [Course] = universityDocument.getOpenCoursesForStudent(email: student.getEmail()) ?? []
+        var sectionsProgress: [StudentSectionProgress] = []
+        for course in openCourses {
+            
+            var openSectionsForCourse: [CourseSection] = []
+            if let sections = universityDocument.getSectionProgrammsByCourse(course: course) {
+                for item in sections {
+                    if universityDocument.haveAccessStudentForSection(course: course, section: item.getSection(), student: student) {
+                        openSectionsForCourse.append(item.getSection())
+                    }
+                }
+            }
+            let item = StudentSectionProgress(course: course, openSections: openSectionsForCourse)
+            sectionsProgress.append(item)
+        }
+        self.studentCourses = StudentCourses(student: student, allCourses: allCourses, openCourses: openCourses, sectionProgress: sectionsProgress)
+    }
     
     func removeNotificationByID(id: UUID) {
         self.universityDocument.removeNotificationByID(id: id)

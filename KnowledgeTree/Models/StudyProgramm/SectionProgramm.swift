@@ -36,6 +36,20 @@ struct SectionProgramm {
 
 extension SectionProgramm {
     
+    mutating func removeChilds(childs: [CourseSection])  {
+        self.childSections.removeAll { section in
+            childs.contains { childSection in
+                childSection == section
+            }
+        }
+    }
+    
+    mutating func addChilds(childs: [CourseSection]) {
+        for item in childs {
+            self.childSections.append(item)
+        }
+    }
+    
     func getSection() -> CourseSection {
         return section
     }

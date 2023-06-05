@@ -93,8 +93,9 @@ struct DataBase {
         sectionImage: "SectionBackground7"
     )
     
+    var courseCplusFireBase = CourseFireBase(id: "1", title: "С++ для начинающих", subtitle: "20 модулей - 15 часов", text: "Научитесь создавать простые консольные приложения на языке С++")
+    
     private lazy var allCourses: [Course] = [
-        
         courseCplusPlus,
         courseCSharp,
         courseGeom,
@@ -104,6 +105,10 @@ struct DataBase {
         courseDataBase,
         courseMachineLearning,
     ]
+    
+    mutating func addNewSection(section: CourseSection) {
+        allCourses[0].sections.append(section)
+    }
     
     private lazy var fullProgramm: [StudyProgramm] = [
         StudyProgramm(courseProgramm: CourseProgramm(course: courseCplusPlus,
@@ -134,6 +139,14 @@ struct DataBase {
         CourseResult(id: 7, course: courseJava, admittedStudents: [])
     ]
     
+}
+
+extension DataBase {
+    
+    
+    func addNewSectionProgramm(index: Int, section: CourseSection) {
+        rebuildSectionProgramm(index: index, newSection: section)
+    }
 }
 
 extension DataBase {

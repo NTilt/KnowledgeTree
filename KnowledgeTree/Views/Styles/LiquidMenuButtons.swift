@@ -23,7 +23,7 @@ struct LiquidMenuButtons: View {
     @EnvironmentObject var model: AppModel
     var completionForSaveInfo: () -> Void
     var completionForEdit: () -> Void
-    
+    var completionForPlus: () -> Void
     // - Body -
     var body: some View {
         LiquidMenu()
@@ -86,7 +86,7 @@ extension LiquidMenuButtons {
             HomeButton().offset(offsetOne).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
 //            SettingsButton().offset(offsetTwo).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
 //
-//            PlusButton().offset(offsetFour).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
+            PlusButton().offset(offsetFour).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
             EditButton().offset(offsetThree).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
             
             SaveButton().offset(offsetFive).blendMode(.softLight).opacity(isCollapsed ? 1 : 0)
@@ -134,7 +134,7 @@ extension LiquidMenuButtons {
                 offsetOne  = isCollapsed ? CGSize(width: 0, height: -120) : .zero
 //                offsetTwo  = isCollapsed ? CGSize(width: 0, height: -205) : .zero
                 offsetThree  = isCollapsed ? CGSize(width: 100, height: -80) : .zero
-//                offsetFour  = isCollapsed ? CGSize(width: 180, height: -140) : .zero
+                offsetFour  = isCollapsed ? CGSize(width: 0, height: -205) : .zero
                 offsetFive  = isCollapsed ? CGSize(width: -100, height: -80) : .zero
 //                offsetSix  = isCollapsed ? CGSize(width: -180, height: -140) : .zero
 //                offsetSeven  = isCollapsed ? CGSize(width: -90, height: -180) : .zero
@@ -174,12 +174,17 @@ extension LiquidMenuButtons {
     }
     
     func PlusButton() -> some View {
-        ZStack {
-            Image(systemName: "plus.circle")
-                .resizable()
-                .frame(width: 28, height: 28)
+        Button {
+            completionForPlus()
+        } label: {
+            ZStack {
+                Image(systemName: "plus.circle")
+                    .resizable()
+                    .frame(width: 28, height: 28)
+            }
+            .frame(width: 65, height: 65)
         }
-        .frame(width: 65, height: 65)
+        
     }
     
     func PersonButton() -> some View {
@@ -230,7 +235,8 @@ extension LiquidMenuButtons {
 struct LiquidPreviews: PreviewProvider {
     static var previews: some View {
         LiquidMenuButtons(completionForSaveInfo: {},
-                          completionForEdit: {})
+                          completionForEdit: {},
+                          completionForPlus: {})
             .preferredColorScheme(.dark)
     }
 }
